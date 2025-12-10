@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covalex Logistics - Scarcity Update (V40)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Covalex Logistics - Mobile Ready (V41)</title>
     <style>
         :root {
             --sc-blue: #00d8ff;
@@ -41,7 +40,7 @@
         /* HEADER & LOGO */
         .brand-header { display: flex; align-items: center; gap: 15px; }
         .covalex-logo {
-            width: 250px; height: 250px;
+            width: 50px; height: 50px;
             filter: drop-shadow(0 0 5px var(--sc-blue));
         }
         .cls-1 { fill: var(--sc-blue); } 
@@ -65,6 +64,7 @@
         }
         #manualDrawer.active { right: 0; }
         #manualTab.active { right: 75%; background: var(--sc-alert); color: #000; }
+        
         .manual-content h2 { border-bottom: 1px solid #444; padding-bottom: 10px; margin-top: 30px; color: #fff; }
         .manual-content h3 { color: var(--sc-blue); margin-top: 20px; }
         .manual-content ul { line-height: 1.6; color: #ccc; }
@@ -77,8 +77,14 @@
             color: #555; font-size: 0.7rem; text-align: center; width: 100%;
         }
 
-        /* Layout Grid */
-        .container { display: grid; grid-template-columns: 380px 1fr; gap: 20px; max-width: 1600px; margin: 0 auto; }
+        /* DEFAULT LAYOUT (Desktop) */
+        .container {
+            display: grid;
+            grid-template-columns: 380px 1fr; /* Sidebar fixed width, Content fills rest */
+            gap: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
 
         /* Panels */
         .panel {
@@ -163,9 +169,39 @@
 
         .contract-name-builder { display:flex; flex-direction:column; gap:5px; background:rgba(255,255,255,0.05); padding:10px; border:1px solid #444; margin-bottom:10px; }
         .cnb-row { display:flex; gap:5px; }
+        
+        .financial-grid { display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:10px; text-align:center; }
         .fin-stat-box { text-align:center; padding: 5px; }
         .fin-val { font-size:1.5rem; font-weight:bold; }
         .fin-sub { font-size:0.8rem; color:#888; }
+
+        /* ----------------------- */
+        /* MOBILE RESPONSIVENESS */
+        /* ----------------------- */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr; /* Stack everything */
+                gap: 10px;
+            }
+            
+            /* Sidebar on top for config access */
+            .sidebar { order: 1; }
+            .main-content { order: 2; }
+            
+            /* Manual Drawer full width on mobile */
+            #manualDrawer { width: 100%; right: -100%; }
+            #manualTab.active { right: 0; top: auto; bottom: 20px; writing-mode: horizontal-tb; width: 100%; text-align: center; border-radius: 0; }
+            
+            /* Financials 2x2 instead of 1x4 */
+            .financial-grid { grid-template-columns: 1fr 1fr; }
+            
+            .contract-card { grid-template-columns: 1fr; } /* Stack contract details */
+            .contract-card > div:last-child { text-align: left; margin-left: 0; margin-top: 10px; border-top: 1px solid #333; padding-top: 5px; }
+            
+            .fuel-input-row { width: 100%; }
+            .btn-complete { width: 100%; margin-top: 5px; }
+        }
+
     </style>
 </head>
 <body>
@@ -173,7 +209,7 @@
     <div id="manualTab" onclick="toggleManual()">📘 MANUAL</div>
     <div id="manualDrawer">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V40.0</span></h1>
+            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V41.0</span></h1>
             <button class="btn btn-del" style="width:auto; height:30px; padding:0 10px;" onclick="toggleManual()">CLOSE X</button>
         </div>
         <div class="manual-content">
@@ -181,9 +217,7 @@
             <h2>1. Initial Setup</h2>
             <ul>
                 <li><strong>Vessel Config:</strong> Select <code>4608 SCU</code> for standard runs or <code>2880 SCU</code> for safe config.</li>
-                <li><strong>Drive Calibration:</strong> Select your Quantum Drive. 
-                    <br><span style="color:var(--sc-warning);">Note: Military drives (Pontes, TS-2) are marked as [LOCKED] because they cannot be bought in shops. Only select them if you have looted one.</span>
-                </li>
+                <li><strong>Drive Calibration:</strong> Select your Quantum Drive (e.g., <code>Kama</code>, <code>TS-2</code>).</li>
                 <li><strong>Starting State:</strong> Select your parked location. Switch to <strong>NAV Mode</strong> in-game and enter the Fuel Reading (e.g., <code>8.60</code>).</li>
             </ul>
             <h2>2. Adding Contracts</h2>
@@ -197,10 +231,17 @@
                 <li>Follow the <strong>Itinerary</strong>. Stops are optimized to minimize travel.</li>
                 <li><strong>Completing Legs:</strong> When you arrive, enter your actual Fuel Reading and click <code>COMPLETE LEG</code> to calibrate the system.</li>
             </ul>
-            <h2>4. Component Rarity</h2>
+            
+            <h2>4. Mid-Trip Updates</h2>
             <ul>
-                <li>Military components like the <strong>TS-2</strong> are superior but rare.</li>
-                <li>If you lose your ship with a looted drive, you must select <strong>Kama (Industrial)</strong> in the tool until you find a replacement.</li>
+                <li><strong>Best Practice:</strong> If you accept a new contract while flying (in Quantum), wait until you land and click <code>COMPLETE LEG</code> before adding the new contract to the tool.</li>
+                <li>This ensures the solver plans from your actual arrival location rather than trying to re-route a flight you are already finishing.</li>
+            </ul>
+            
+            <h2>5. Adaptive Learning (V38 Update)</h2>
+            <ul>
+                <li>The system learns distances as you fly.</li>
+                <li><strong>Patch Resilience:</strong> The system now prioritizes recent trips (weighted 30% per new trip). If a game patch changes planetary distances, your map will self-correct within 3-4 flights.</li>
             </ul>
         </div>
     </div>
@@ -214,9 +255,8 @@
                     <path d="M432.91 296.91H367.1l-38.05-58.09 38.05-58.09h65.81l11.03-20.41h-87.88l-51.4 78.5 51.4 78.49h87.88l-11.03-20.4z" class="cls-1"/>
                     <path d="M376.31 285.01h50.72l29.14-44.49h-50.73l-29.13 44.49zM373.16 194.03l-29.33 44.79 29.33 44.78 29.33-44.78-29.33-44.79zM405.44 237.12h50.73l-29.14-44.49h-50.72l29.13 44.49z" class="cls-1"/>
                     <path d="M197.24 412.38h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM264.86 372.74h-47.41v25.65h47.41v-25.65Zm13.99 22.73c0 4.66-1.65 8.64-4.96 11.95-3.3 3.31-7.29 4.96-11.95 4.96h-41.58c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95s7.29-4.96 11.95-4.96h41.58c4.66 0 8.64 1.65 11.95 4.96 3.3 3.3 4.96 7.29 4.96 11.95v19.82ZM374.74 358.75l-35.75 47.9c-3.43 4.6-7.48 6.89-12.15 6.89s-8.81-2.3-12.24-6.89l-35.75-47.9h17.78l30.21 41.39 30.12-41.39h17.78ZM439.15 412.38h-17.78l-7.58-10.3h-39.35l10.2-13.99h18.95l-12.44-17.1-30.12 41.39h-17.78L379 364.49c3.43-4.6 7.51-6.9 12.24-6.9s8.71 2.3 12.15 6.9l35.75 47.89ZM500.55 412.38h-44.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.95-7.29-4.95-11.95v-36.72h13.99v39.64h47.41v13.99ZM580.61 392.56h-56.74v-13.99h56.74v13.99Zm0 19.82h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.31-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM678.15 412.38h-23.03l-20.31-16.03c-2.33-1.81-3.98-4.01-4.95-6.6-.91 2.59-2.53 4.79-4.86 6.6l-20.3 16.03h-23.03l34.68-27.01-34.2-26.62h23.03l19.92 15.64c2.27 1.81 3.85 3.99 4.76 6.51.97-2.53 2.59-4.7 4.86-6.51l19.92-15.64h23.02l-34.19 26.62 34.68 27.01Z" class="cls-1"/>
-                    <path d="M146.29 449.64H122.9v-3.88h25.57v-5.34h-20.56c-3.36 0-6.07-2.71-6.07-6.06v-.97c0-3.36 2.71-6.06 6.07-6.06h23.39v3.88h-25.57v5.34h20.56c3.36 0 6.07 2.71 6.07 6.06v.97c0 3.36-2.71 6.06-6.07 6.06M229.95 449.64v-9.22h-21.69v9.22h-3.88v-22.31h3.88v9.22h21.69v-9.22h3.89v22.31h-3.89zM286.91 427.33h3.88v22.31h-3.88zM369.45 431.21h-21.69v7.76h21.69v-7.76Zm-2.18 11.64h-19.51v6.79h-3.88v-22.31h23.39c3.36 0 6.07 2.71 6.07 6.06v3.39c0 3.36-2.71 6.06-6.07 6.06M451.99 431.21H430.3v7.76h21.69v-7.76Zm-2.19 11.64h-19.51v6.79h-3.88v-22.31h23.39c3.36 0 6.07 2.71 6.07 6.06v3.39c0 3.36-2.71 6.06-6.07 6.06M508.95 427.33h3.88v22.31h-3.88zM595.62 445.64c0 2.42-1.94 4.36-4.37 4.36-1.21 0-2.31-.48-3.11-1.29l-18.33-18.59v19.52h-3.88v-18.31c0-2.42 1.94-4.36 4.37-4.36 1.21 0 2.31.48 3.12 1.29l18.33 18.58v-19.51h3.89v18.3ZM672.09 449.64h-17.32c-3.36 0-6.07-2.71-6.07-6.06V433.4c0-3.36 2.71-6.06 6.07-6.06h23.39v3.88h-25.57v14.55h21.69v-5.34H662.9v-3.88h15.26v7.03c0 3.36-2.71 6.06-6.07 6.06" class="cls-1"/>
                 </svg>
-                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V40</span></h1>
+                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V41</span></h1>
             </div>
             <div style="text-align:right;">
                 <button class="btn btn-add" style="border-color:var(--sc-money); color:var(--sc-money);" onclick="exportReport()">EXPORT</button>
@@ -252,19 +292,11 @@
                     <h4 style="color:var(--sc-fuel); margin-bottom:5px;">Quantum Drive Calibration</h4>
                     <select id="qtDriveSelect" onchange="updateShip()">
                         <option value="kama" selected>Kama (Industrial C)</option>
-                        <option value="pontes" style="color:#ffcc00;">Pontes (Ind B) [LOOT ONLY]</option>
-                        <option value="ts2" style="color:#ffcc00;">TS-2 (Mil A) [LOCKED]</option>
+                        <option value="pontes">Pontes (Industrial B)</option>
+                        <option value="ts2">TS-2 (Military A)</option>
                     </select>
                     <div id="driveStats" style="margin-top:10px;">
-                        <div class="eng-stat-row"><span>Speed (km/s)</span> <span id="dsSpeed" class="eng-val">319,000</span></div>
-                        <div class="eng-stat-row">
-                            <span>Consumption (mSCU/Gm)</span> 
-                            <span id="dsCons" class="eng-val" style="color:var(--sc-fuel);">26.00</span>
-                        </div>
-                        <div class="eng-stat-row" style="border-top:1px dashed #333; margin-top:5px; padding-top:5px;">
-                            <span>Efficiency Rating</span> 
-                            <span id="dsEffScore" class="eng-val" style="color:var(--sc-success); font-weight:bold;">12.3</span>
-                        </div>
+                        <div class="eng-stat-row"><span>Calibrated Rate (mSCU/Gm)</span> <span id="dsEff" class="eng-val" style="color:var(--sc-fuel); font-weight:bold;">26.00</span></div>
                     </div>
                 </div>
             </div>
@@ -312,7 +344,7 @@
         </div>
 
         <div class="main-content">
-            <div class="panel" style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:10px; text-align:center;">
+            <div class="panel financial-grid">
                 <div class="fin-stat-box">
                     <div class="fin-sub">EARNED</div>
                     <div id="moneyEarned" class="fin-val" style="color:var(--sc-money);">0</div>
@@ -414,9 +446,9 @@
             // Timer Loop
             setInterval(updateSessionStats, 1000);
 
-            function saveData() { localStorage.setItem('covalex_v40_state', JSON.stringify(appState)); updateUI(); }
+            function saveData() { localStorage.setItem('covalex_v41_state', JSON.stringify(appState)); updateUI(); }
             function loadData() {
-                const saved = localStorage.getItem('covalex_v40_state');
+                const saved = localStorage.getItem('covalex_v41_state');
                 if(saved) { 
                     appState = JSON.parse(saved); 
                     if(!appState.calibratedRate) appState.calibratedRate = 26.0; 
@@ -424,7 +456,7 @@
                     appState.contracts.forEach(c => { if(!c.feedback) c.feedback = { status: "pending", issues: [], notes: "" }; });
                 }
             }
-            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v40_state'); location.reload(); } }
+            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v41_state'); location.reload(); } }
 
             // STATS LOGIC
             function updateSessionStats() {
@@ -695,13 +727,7 @@
                     if (fuelUsedSCU > 0) {
                         const impliedDist = (fuelUsedSCU * 1000) / appState.calibratedRate;
                         const key = getRouteKey(appState.currentLocation, stepData.loc);
-                        if(!appState.routeMemory[key]) {
-                            appState.routeMemory[key] = { dist: impliedDist, count: 1 };
-                        } else { 
-                            const m = appState.routeMemory[key];
-                            m.dist = (m.dist * 0.7) + (impliedDist * 0.3);
-                            m.count++; 
-                        }
+                        if(!appState.routeMemory[key]) appState.routeMemory[key] = { dist: impliedDist, count: 1 }; else { const m = appState.routeMemory[key]; m.dist = (m.dist * 0.7) + (impliedDist * 0.3); m.count++; }
                         appState.completedLegs.push({action: "LEARNING", location: "NavComp", desc: `Route Updated: ${key} ~${impliedDist.toFixed(1)}Gm`, time: new Date().toLocaleTimeString(), ts: Date.now()});
                     }
                     appState.currentFuelSCU = actualFuel;
@@ -720,4 +746,3 @@
     </script>
 </body>
 </html>
-
