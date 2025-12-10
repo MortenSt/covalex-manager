@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covalex Logistics - Big Brand (V33)</title>
+    <title>Covalex Logistics - Manuell Kontroll (V31)</title>
     <style>
         :root {
             --sc-blue: #00d8ff;
@@ -38,11 +38,11 @@
             margin-top: 0;
         }
 
-        /* HEADER & LOGO (Updated V33) */
-        .brand-header { display: flex; align-items: center; gap: 20px; }
+        /* HEADER & LOGO */
+        .brand-header { display: flex; align-items: center; gap: 15px; }
         .covalex-logo {
-            width: 150px; height: 150px; /* V33: UPSCALED */
-            filter: drop-shadow(0 0 8px var(--sc-blue));
+            width: 50px; height: 50px;
+            filter: drop-shadow(0 0 5px var(--sc-blue));
         }
         .cls-1 { fill: var(--sc-blue); } 
         .cls-2 { fill: #fff; }
@@ -161,8 +161,6 @@
         .fuel-input-row { display: flex; gap: 10px; margin-top: 5px; align-items: center; background: #111; padding: 5px; border: 1px solid #333; }
         .fuel-input-row input { height: 25px; margin: 0; border: 1px solid var(--sc-fuel); color: var(--sc-fuel); width: 80px; }
 
-        .contract-name-builder { display:flex; flex-direction:column; gap:5px; background:rgba(255,255,255,0.05); padding:10px; border:1px solid #444; margin-bottom:10px; }
-        .cnb-row { display:flex; gap:5px; }
     </style>
 </head>
 <body>
@@ -170,7 +168,7 @@
     <div id="manualTab" onclick="toggleManual()">📘 MANUAL</div>
     <div id="manualDrawer">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V33.0</span></h1>
+            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V31.0</span></h1>
             <button class="btn btn-del" style="width:auto; height:30px; padding:0 10px;" onclick="toggleManual()">CLOSE X</button>
         </div>
         <div class="manual-content">
@@ -183,7 +181,7 @@
             </ul>
             <h2>2. Adding Contracts</h2>
             <ul>
-                <li><strong>Name:</strong> Type the name manually OR use the "Autofill Template" dropdown to paste a template.</li>
+                <li><strong>Name:</strong> Type the name manually OR use the "Autofyll" dropdown to paste a template.</li>
                 <li><strong>Pickups/Drops:</strong> Add each location line item individually with its specific commodity.</li>
                 <li>Click <code>ADD TO MANIFEST</code>. The itinerary will auto-calculate based on your current location.</li>
             </ul>
@@ -203,10 +201,10 @@
                     <path d="M449.52 150h-99.04l-58.16 88.82 58.16 88.81h99.04l58.16-88.81L449.52 150z" class="cls-2"/>
                     <path d="M432.91 296.91H367.1l-38.05-58.09 38.05-58.09h65.81l11.03-20.41h-87.88l-51.4 78.5 51.4 78.49h87.88l-11.03-20.4z" class="cls-1"/>
                     <path d="M376.31 285.01h50.72l29.14-44.49h-50.73l-29.13 44.49zM373.16 194.03l-29.33 44.79 29.33 44.78 29.33-44.78-29.33-44.79zM405.44 237.12h50.73l-29.14-44.49h-50.72l29.13 44.49z" class="cls-1"/>
-                    <path d="M197.24 412.38h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM264.86 372.74h-47.41v25.65h47.41v-25.65Zm13.99 22.73c0 4.66-1.65 8.64-4.96 11.95-3.3 3.31-7.29 4.96-11.95 4.96h-41.58c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95s7.29-4.96 11.95-4.96h41.58c4.66 0 8.64 1.65 11.95 4.96 3.3 3.3 4.96 7.29 4.96 11.95v19.82ZM374.74 358.75l-35.75 47.9c-3.43 4.6-7.48 6.89-12.15 6.89s-8.81-2.3-12.24-6.89l-35.75-47.9h17.78l30.21 41.39 30.12-41.39h17.78ZM439.15 412.38h-17.78l-7.58-10.3h-39.35l10.2-13.99h18.95l-12.44-17.1-30.12 41.39h-17.78L379 364.49c3.43-4.6 7.51-6.9 12.24-6.9s8.71 2.3 12.15 6.9l35.75 47.89ZM500.55 412.38h-44.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.95-7.29-4.95-11.95v-36.72h13.99v39.64h47.41v13.99ZM580.61 392.56h-56.74v-13.99h56.74v13.99Zm0 19.82h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.31-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM678.15 412.38h-23.03l-20.31-16.03c-2.33-1.81-3.98-4.01-4.95-6.6-.91 2.59-2.53 4.79-4.86 6.6l-20.3 16.03h-23.03l34.68-27.01-34.2-26.62h23.03l19.92 15.64c2.27 1.81 3.85 3.99 4.76 6.51.97-2.53 2.59-4.7 4.86-6.51l19.92-15.64h23.02l-34.19 26.62 34.68 27.01Z" class="cls-2"/>
+                    <path d="M197.24 412.38h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM264.86 372.74h-47.41v25.65h47.41v-25.65Zm13.99 22.73c0 4.66-1.65 8.64-4.96 11.95-3.3 3.31-7.29 4.96-11.95 4.96h-41.58c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95s7.29-4.96 11.95-4.96h41.58c4.66 0 8.64 1.65 11.95 4.96 3.3 3.3 4.96 7.29 4.96 11.95v19.82ZM374.74 358.75l-35.75 47.9c-3.43 4.6-7.48 6.89-12.15 6.89s-8.81-2.3-12.24-6.89l-35.75-47.9h17.78l30.21 41.39 30.12-41.39h17.78ZM439.15 412.38h-17.78l-7.58-10.3h-39.35l10.2-13.99h18.95l-12.44-17.1-30.12 41.39h-17.78L379 364.49c3.43-4.6 7.51-6.9 12.24-6.9s8.71 2.3 12.15 6.9l35.75 47.89ZM500.55 412.38h-44.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.95-7.29-4.95-11.95v-36.72h13.99v39.64h47.41v13.99ZM580.61 392.56h-56.74v-13.99h56.74v13.99Zm0 19.82h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.31-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM678.15 412.38h-23.03l-20.31-16.03c-2.33-1.81-3.98-4.01-4.95-6.6-.91 2.59-2.53 4.79-4.86 6.6l-20.3 16.03h-23.03l34.68-27.01-34.2-26.62h23.03l19.92 15.64c2.27 1.81 3.85 3.99 4.76 6.51.97-2.53 2.59-4.7 4.86-6.51l19.92-15.64h23.02l-34.19 26.62 34.68 27.01Z" class="cls-1"/>
                     <path d="M146.29 449.64H122.9v-3.88h25.57v-5.34h-20.56c-3.36 0-6.07-2.71-6.07-6.06v-.97c0-3.36 2.71-6.06 6.07-6.06h23.39v3.88h-25.57v5.34h20.56c3.36 0 6.07 2.71 6.07 6.06v.97c0 3.36-2.71 6.06-6.07 6.06M229.95 449.64v-9.22h-21.69v9.22h-3.88v-22.31h3.88v9.22h21.69v-9.22h3.89v22.31h-3.89zM286.91 427.33h3.88v22.31h-3.88zM369.45 431.21h-21.69v7.76h21.69v-7.76Zm-2.18 11.64h-19.51v6.79h-3.88v-22.31h23.39c3.36 0 6.07 2.71 6.07 6.06v3.39c0 3.36-2.71 6.06-6.07 6.06M451.99 431.21H430.3v7.76h21.69v-7.76Zm-2.19 11.64h-19.51v6.79h-3.88v-22.31h23.39c3.36 0 6.07 2.71 6.07 6.06v3.39c0 3.36-2.71 6.06-6.07 6.06M508.95 427.33h3.88v22.31h-3.88zM595.62 445.64c0 2.42-1.94 4.36-4.37 4.36-1.21 0-2.31-.48-3.11-1.29l-18.33-18.59v19.52h-3.88v-18.31c0-2.42 1.94-4.36 4.37-4.36 1.21 0 2.31.48 3.12 1.29l18.33 18.58v-19.51h3.89v18.3ZM672.09 449.64h-17.32c-3.36 0-6.07-2.71-6.07-6.06V433.4c0-3.36 2.71-6.06 6.07-6.06h23.39v3.88h-25.57v14.55h21.69v-5.34H662.9v-3.88h15.26v7.03c0 3.36-2.71 6.06-6.07 6.06" class="cls-1"/>
                 </svg>
-                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V33</span></h1>
+                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V31</span></h1>
             </div>
             <div style="text-align:right;">
                 <button class="btn btn-add" style="border-color:var(--sc-money); color:var(--sc-money);" onclick="exportReport()">EXPORT</button>
@@ -256,9 +254,9 @@
                 
                 <div style="display:flex; gap:5px; align-items:end; margin-bottom:5px;">
                     <div style="flex:2;">
-                        <label>Autofill Template</label>
+                        <label>Autofyll Mal</label>
                         <select id="nameTemplate" onchange="applyTemplate()" style="margin-bottom:0;">
-                            <option value="">-- Select Template --</option>
+                            <option value="">-- Velg mal --</option>
                             <option value="Experienced Rank - Direct Large Cargo Haul">Exp. Direct Large</option>
                             <option value="Experienced Rank - Large Cargo Haul">Exp. Large</option>
                             <option value="Senior Rank - Direct Large Cargo Haul">Senior Direct Large</option>
@@ -269,8 +267,8 @@
                     </div>
                 </div>
 
-                <label>Contract Name (Manual)</label>
-                <input type="text" id="cName" placeholder="Enter name...">
+                <label>Contract Name (Manuell)</label>
+                <input type="text" id="cName" placeholder="Skriv inn navn...">
 
                 <label style="color:var(--sc-money);">Reward (aUEC)</label>
                 <input type="number" id="cPrice" placeholder="0">
@@ -355,9 +353,9 @@
             // INIT
             loadData(); initUI(); updateUI();
 
-            function saveData() { localStorage.setItem('covalex_v33_state', JSON.stringify(appState)); updateUI(); }
+            function saveData() { localStorage.setItem('covalex_v31_state', JSON.stringify(appState)); updateUI(); }
             function loadData() {
-                const saved = localStorage.getItem('covalex_v33_state');
+                const saved = localStorage.getItem('covalex_v31_state');
                 if(saved) { 
                     appState = JSON.parse(saved); 
                     if(!appState.calibratedRate) appState.calibratedRate = 26.0; 
@@ -365,7 +363,7 @@
                     appState.contracts.forEach(c => { if(!c.feedback) c.feedback = { status: "pending", issues: [], notes: "" }; });
                 }
             }
-            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v33_state'); location.reload(); } }
+            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v31_state'); location.reload(); } }
 
             // NAME HELPER
             window.applyTemplate = function() {
@@ -477,7 +475,6 @@
                 const p = getPoints('pickupContainer'); const d = getPoints('dropContainer');
                 if(p.t === 0 || d.t === 0) { alert("Add Pickups/Drops."); return; }
                 if(p.t !== d.t) { if(!confirm(`Pickup Total (${p.t}) != Drop Total (${d.t}). Proceed?`)) return; }
-                
                 for(let comm in p.commMap) { if(p.commMap[comm] !== d.commMap[comm]) { if(!confirm(`Commodity Mismatch: ${comm}. Proceed?`)) return; } }
                 let summaryComms = []; for(let comm in p.commMap) { summaryComms.push({name: comm, scu: p.commMap[comm]}); }
 
@@ -512,7 +509,9 @@
             function renderLogs() { const tbody = document.getElementById('logBody'); tbody.innerHTML = ""; [...appState.completedLegs].reverse().forEach(log => { tbody.innerHTML += `<tr><td>${log.action}</td><td>${log.location}</td><td>${log.desc}</td><td>${log.time}</td></tr>`; }); }
             function loadDemoData() { appState.currentLocation = "Everus Harbor (Hurston)"; appState.currentLoad = 0; appState.currentFuelSCU = 2.50; document.getElementById('currentFuelInput').value = "2.50"; let p1 = [{location:"Everus Harbor (Hurston)", commodity:"Iron", amount:500}, {location:"Everus Harbor (Hurston)", commodity:"Gold", amount:500}]; let d1 = [{location:"Port Tressler (microTech)", commodity:"Iron", amount:500}, {location:"Port Tressler (microTech)", commodity:"Gold", amount:500}]; appState.contracts = [ { id: 1, name: "Experienced Rank - Direct Large Cargo Haul", commodities:[{name:"Iron", scu:500}, {name:"Gold", scu:500}], price: 50000, totalSCU: 1000, pickups:p1, drops:d1, pickedUp:0, droppedOff:0, feedback: { status: "pending", issues: [], notes: "" } } ]; saveData(); renderManifest(); calculateRoute(); }
             window.removeContract = function(id) { appState.contracts = appState.contracts.filter(c => c.id !== id); saveData(); renderManifest(); calculateRoute(); };
-
+            window.toggleManual = function() { const drawer = document.getElementById('manualDrawer'); const tab = document.getElementById('manualTab'); if(drawer.classList.contains('active')) { drawer.classList.remove('active'); tab.classList.remove('active'); } else { drawer.classList.add('active'); tab.classList.add('active'); } }
+            
+            // --- TRAVEL LOGIC ---
             function getRouteKey(a, b) { return a < b ? `${a}_${b}` : `${b}_${a}`; }
             function getTravelMetrics(locNameA, locNameB) {
                 if (locNameA === locNameB) return { jumps:0, distGm:0, isVerified:true };
@@ -526,7 +525,6 @@
                 const result = findShortestPath(locA.system, locB.system); if (!result) return { jumps:99, distGm:9999, isVerified:false };
                 return { jumps: result.jumps, distGm: result.jumps * 100, isVerified:false };
             }
-
             function findShortestPath(startSys, endSys) {
                 if (startSys === endSys) return { jumps: 0 }; let queue = [[startSys, 0]]; let visited = new Set(); visited.add(startSys);
                 while (queue.length > 0) { let [current, dist] = queue.shift(); if (current === endSys) return { jumps: dist }; const neighbors = systemGraph[current] || []; for (let n of neighbors) { if (!visited.has(n)) { visited.add(n); queue.push([n, dist + 1]); } } } return null;
