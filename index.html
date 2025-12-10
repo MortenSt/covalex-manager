@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covalex Logistics - Gateway Update (V34)</title>
+    <title>Covalex Logistics - Analytics (V36)</title>
     <style>
         :root {
             --sc-blue: #00d8ff;
@@ -39,10 +39,10 @@
         }
 
         /* HEADER & LOGO */
-        .brand-header { display: flex; align-items: center; gap: 20px; }
+        .brand-header { display: flex; align-items: center; gap: 15px; }
         .covalex-logo {
             width: 250px; height: 250px;
-            filter: drop-shadow(0 0 8px var(--sc-blue));
+            filter: drop-shadow(0 0 5px var(--sc-blue));
         }
         .cls-1 { fill: var(--sc-blue); } 
         .cls-2 { fill: #fff; }
@@ -163,6 +163,10 @@
 
         .contract-name-builder { display:flex; flex-direction:column; gap:5px; background:rgba(255,255,255,0.05); padding:10px; border:1px solid #444; margin-bottom:10px; }
         .cnb-row { display:flex; gap:5px; }
+        
+        .fin-stat-box { text-align:center; padding: 5px; }
+        .fin-val { font-size:1.5rem; font-weight:bold; }
+        .fin-sub { font-size:0.8rem; color:#888; }
     </style>
 </head>
 <body>
@@ -170,7 +174,7 @@
     <div id="manualTab" onclick="toggleManual()">📘 MANUAL</div>
     <div id="manualDrawer">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V34.0</span></h1>
+            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V36.0</span></h1>
             <button class="btn btn-del" style="width:auto; height:30px; padding:0 10px;" onclick="toggleManual()">CLOSE X</button>
         </div>
         <div class="manual-content">
@@ -206,7 +210,7 @@
                     <path d="M197.24 412.38h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM264.86 372.74h-47.41v25.65h47.41v-25.65Zm13.99 22.73c0 4.66-1.65 8.64-4.96 11.95-3.3 3.31-7.29 4.96-11.95 4.96h-41.58c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95s7.29-4.96 11.95-4.96h41.58c4.66 0 8.64 1.65 11.95 4.96 3.3 3.3 4.96 7.29 4.96 11.95v19.82ZM374.74 358.75l-35.75 47.9c-3.43 4.6-7.48 6.89-12.15 6.89s-8.81-2.3-12.24-6.89l-35.75-47.9h17.78l30.21 41.39 30.12-41.39h17.78ZM439.15 412.38h-17.78l-7.58-10.3h-39.35l10.2-13.99h18.95l-12.44-17.1-30.12 41.39h-17.78L379 364.49c3.43-4.6 7.51-6.9 12.24-6.9s8.71 2.3 12.15 6.9l35.75 47.89ZM500.55 412.38h-44.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.95-7.29-4.95-11.95v-36.72h13.99v39.64h47.41v13.99ZM580.61 392.56h-56.74v-13.99h56.74v13.99Zm0 19.82h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.31-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM678.15 412.38h-23.03l-20.31-16.03c-2.33-1.81-3.98-4.01-4.95-6.6-.91 2.59-2.53 4.79-4.86 6.6l-20.3 16.03h-23.03l34.68-27.01-34.2-26.62h23.03l19.92 15.64c2.27 1.81 3.85 3.99 4.76 6.51.97-2.53 2.59-4.7 4.86-6.51l19.92-15.64h23.02l-34.19 26.62 34.68 27.01Z" class="cls-1"/>
                     <path d="M146.29 449.64H122.9v-3.88h25.57v-5.34h-20.56c-3.36 0-6.07-2.71-6.07-6.06v-.97c0-3.36 2.71-6.06 6.07-6.06h23.39v3.88h-25.57v5.34h20.56c3.36 0 6.07 2.71 6.07 6.06v.97c0 3.36-2.71 6.06-6.07 6.06M229.95 449.64v-9.22h-21.69v9.22h-3.88v-22.31h3.88v9.22h21.69v-9.22h3.89v22.31h-3.89zM286.91 427.33h3.88v22.31h-3.88zM369.45 431.21h-21.69v7.76h21.69v-7.76Zm-2.18 11.64h-19.51v6.79h-3.88v-22.31h23.39c3.36 0 6.07 2.71 6.07 6.06v3.39c0 3.36-2.71 6.06-6.07 6.06M451.99 431.21H430.3v7.76h21.69v-7.76Zm-2.19 11.64h-19.51v6.79h-3.88v-22.31h23.39c3.36 0 6.07 2.71 6.07 6.06v3.39c0 3.36-2.71 6.06-6.07 6.06M508.95 427.33h3.88v22.31h-3.88zM595.62 445.64c0 2.42-1.94 4.36-4.37 4.36-1.21 0-2.31-.48-3.11-1.29l-18.33-18.59v19.52h-3.88v-18.31c0-2.42 1.94-4.36 4.37-4.36 1.21 0 2.31.48 3.12 1.29l18.33 18.58v-19.51h3.89v18.3ZM672.09 449.64h-17.32c-3.36 0-6.07-2.71-6.07-6.06V433.4c0-3.36 2.71-6.06 6.07-6.06h23.39v3.88h-25.57v14.55h21.69v-5.34H662.9v-3.88h15.26v7.03c0 3.36-2.71 6.06-6.07 6.06" class="cls-1"/>
                 </svg>
-                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V34</span></h1>
+                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V36</span></h1>
             </div>
             <div style="text-align:right;">
                 <button class="btn btn-add" style="border-color:var(--sc-money); color:var(--sc-money);" onclick="exportReport()">EXPORT</button>
@@ -294,10 +298,25 @@
         </div>
 
         <div class="main-content">
-            <div class="panel" style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; text-align:center;">
-                <div><h4 style="margin:0; color:#888;">REALIZED EARNINGS</h4><span id="moneyEarned" style="font-size:1.5rem; font-weight:bold; color:var(--sc-money);">0 aUEC</span></div>
-                <div><h4 style="margin:0; color:#888;">POTENTIAL REMAINING</h4><span id="moneyPotential" style="font-size:1.5rem; font-weight:bold; color:#fff;">0 aUEC</span></div>
+            <div class="panel" style="display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:10px; text-align:center;">
+                <div class="fin-stat-box">
+                    <div class="fin-sub">EARNED</div>
+                    <div id="moneyEarned" class="fin-val" style="color:var(--sc-money);">0</div>
+                </div>
+                <div class="fin-stat-box">
+                    <div class="fin-sub">POTENTIAL</div>
+                    <div id="moneyPotential" class="fin-val" style="color:#fff;">0</div>
+                </div>
+                <div class="fin-stat-box">
+                    <div class="fin-sub">TIME ACTIVE</div>
+                    <div id="timeActive" class="fin-val" style="color:var(--sc-blue);">00:00</div>
+                </div>
+                <div class="fin-stat-box">
+                    <div class="fin-sub">aUEC / HOUR</div>
+                    <div id="hourlyRate" class="fin-val" style="color:var(--sc-warning);">0</div>
+                </div>
             </div>
+
             <div class="panel">
                 <div style="display:flex; justify-content:space-between; align-items:end;"><h4 style="margin:0; color:#888;">CARGO LOAD</h4><span id="capacityText" style="margin:0; font-weight:bold;">0 / 4608 SCU</span></div>
                 <div class="capacity-bar-container"><div id="fillBar" class="capacity-bar"></div></div>
@@ -324,46 +343,22 @@
 
     <footer>
         <p>This is an unofficial Star Citizen fan site.</p>
-        <p>This content is not endorsed by or affiliated with Cloud Imperium or its licensors. Star Citizen®, Roberts Space Industries®, and Cloud Imperium® are registered trademarks of Cloud Imperium Rights LLC. All content on this site not authored by its host or users are property of their respective owners.</p>
+        <p>This content is not endorsed by or affiliated with Cloud Imperium or its licensors.</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // DATA: Locations & Graph
+            // DATA
             const systemGraph = { "Stanton": ["Terra", "Pyro", "Nyx"], "Pyro": ["Stanton", "Nyx", "Castra"], "Nyx": ["Pyro", "Stanton"], "Castra": ["Pyro", "Terra"], "Terra": ["Stanton", "Castra"] };
             const locations = [
-                // STANTON (System)
-                { id:"hur", name: "Everus Harbor (Hurston)", system: "Stanton" }, 
-                { id:"cru", name: "Seraphim Station (Crusader)", system: "Stanton" },
-                { id:"arc", name: "Bajini Point (ArcCorp)", system: "Stanton" }, 
-                { id:"mic", name: "Port Tressler (microTech)", system: "Stanton" },
-                { id:"pyrg_st", name: "Pyro Gateway (Stanton)", system: "Stanton" },
-                { id:"nyxg_st", name: "Nyx Gateway (Stanton)", system: "Stanton" },
-                { id:"terg_st", name: "Terra Gateway (Stanton)", system: "Stanton" },
-
-                // PYRO (System)
-                { id:"pyr1", name: "Checkmate Station (Pyro I)", system: "Pyro" }, 
-                { id:"pyr2", name: "Monox Station (Pyro II)", system: "Pyro" }, 
+                { id:"hur", name: "Everus Harbor (Hurston)", system: "Stanton" }, { id:"cru", name: "Seraphim Station (Crusader)", system: "Stanton" },
+                { id:"arc", name: "Bajini Point (ArcCorp)", system: "Stanton" }, { id:"mic", name: "Port Tressler (microTech)", system: "Stanton" },
+                { id:"pyr1", name: "Checkmate Station (Pyro I)", system: "Pyro" }, { id:"pyr2", name: "Monox Station (Pyro II)", system: "Pyro" }, { id:"pyrg", name: "Pyro Gateway (Stanton)", system: "Stanton" },
                 { id:"stang_py", name: "Stanton Gateway (Pyro)", system: "Pyro" },
-                { id:"nyxg_py", name: "Nyx Gateway (Pyro)", system: "Pyro" },
-                { id:"casg_py", name: "Castra Gateway (Pyro)", system: "Pyro" },
-
-                // NYX (System)
-                { id:"nyx1", name: "Levski (Delamar)", system: "Nyx" }, 
-                { id:"pyrg_ny", name: "Pyro Gateway (Nyx)", system: "Nyx" },
-                { id:"stang_ny", name: "Stanton Gateway (Nyx)", system: "Nyx" },
-
-                // CASTRA (System)
-                { id:"cas1", name: "Sherman (Castra II)", system: "Castra" }, 
-                { id:"pyrg_ca", name: "Pyro Gateway (Castra)", system: "Castra" },
-                { id:"terg_ca", name: "Terra Gateway (Castra)", system: "Castra" },
-
-                // TERRA (System)
-                { id:"ter1", name: "Prime Orbital (Terra)", system: "Terra" }, 
-                { id:"stang_te", name: "Stanton Gateway (Terra)", system: "Terra" },
-                { id:"casg_te", name: "Castra Gateway (Terra)", system: "Terra" }
+                { id:"nyx", name: "Levski (Delamar)", system: "Nyx" }, { id:"nyxg", name: "Nyx Gateway (Stanton)", system: "Stanton" },
+                { id:"cas", name: "Sherman (Castra II)", system: "Castra" }, { id:"casg", name: "Castra Gateway", system: "Castra" },
+                { id:"ter", name: "Prime Orbital (Terra)", system: "Terra" }, { id:"terg", name: "Terra Gateway (Stanton)", system: "Stanton" }
             ];
-            
             const stantonDist = { "hur-cru": 32, "hur-arc": 22, "hur-mic": 59, "cru-arc": 42, "cru-mic": 58, "arc-mic": 59 };
             const baseDrives = { "kama": { speed: 319000, rate: 26.0, spool: 5.0 }, "pontes": { speed: 466000, rate: 39.5, spool: 4.5 }, "ts2": { speed: 590000, rate: 52.1, spool: 4.0 } };
             let commodityList = ["Hydrogen", "Iron", "Waste", "Scrap", "Processed Food", "Medical Supplies", "Corundum", "Beryl", "Quartz", "Tungsten", "Titanium", "Gold", "Diamond", "Laranite", "Agricium", "Quantanium"].sort();
@@ -374,15 +369,19 @@
                 shipCapacity: 4608, shipMaxFuelSCU: 8.6,
                 currentDriveKey: 'kama', calibratedRate: 26.0, 
                 currentLocation: "Everus Harbor (Hurston)", currentFuelSCU: 8.6, currentLoad: 0,
-                contracts: [], completedLegs: [], earnings: 0, routeMemory: {}
+                contracts: [], completedLegs: [], earnings: 0, routeMemory: {},
+                sessionStartTS: null // NEW: Track start time
             };
 
             // INIT
             loadData(); initUI(); updateUI();
+            
+            // Timer Loop
+            setInterval(updateSessionStats, 1000);
 
-            function saveData() { localStorage.setItem('covalex_v34_state', JSON.stringify(appState)); updateUI(); }
+            function saveData() { localStorage.setItem('covalex_v36_state', JSON.stringify(appState)); updateUI(); }
             function loadData() {
-                const saved = localStorage.getItem('covalex_v34_state');
+                const saved = localStorage.getItem('covalex_v36_state');
                 if(saved) { 
                     appState = JSON.parse(saved); 
                     if(!appState.calibratedRate) appState.calibratedRate = 26.0; 
@@ -390,7 +389,32 @@
                     appState.contracts.forEach(c => { if(!c.feedback) c.feedback = { status: "pending", issues: [], notes: "" }; });
                 }
             }
-            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v34_state'); location.reload(); } }
+            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v36_state'); location.reload(); } }
+
+            // STATS LOGIC
+            function updateSessionStats() {
+                if(!appState.sessionStartTS) {
+                    document.getElementById('timeActive').innerText = "00:00";
+                    document.getElementById('hourlyRate').innerText = "0";
+                    return;
+                }
+                
+                const now = Date.now();
+                const diffMs = now - appState.sessionStartTS;
+                const hours = diffMs / 3600000;
+                
+                // Format Time
+                const h = Math.floor(hours);
+                const m = Math.floor((diffMs % 3600000) / 60000);
+                const s = Math.floor((diffMs % 60000) / 1000);
+                document.getElementById('timeActive').innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+                
+                // Rate
+                if(hours > 0) {
+                    const rate = Math.round(appState.earnings / hours);
+                    document.getElementById('hourlyRate').innerText = rate.toLocaleString();
+                }
+            }
 
             // NAME HELPER
             window.applyTemplate = function() {
@@ -461,8 +485,8 @@
                 document.getElementById('fuelBar').style.width = Math.min((fVal/fMax)*100, 100) + "%";
                 let potential = 0;
                 appState.contracts.forEach(c => { const remaining = c.totalSCU - c.droppedOff; if(remaining > 0) potential += (c.price || 0); });
-                document.getElementById('moneyEarned').innerText = appState.earnings.toLocaleString() + " aUEC";
-                document.getElementById('moneyPotential').innerText = potential.toLocaleString() + " aUEC";
+                document.getElementById('moneyEarned').innerText = appState.earnings.toLocaleString();
+                document.getElementById('moneyPotential').innerText = potential.toLocaleString();
                 document.getElementById('currentLocationSelect').value = appState.currentLocation;
             }
 
@@ -487,6 +511,9 @@
             }
 
             function addContract() {
+                // START TIMER ON FIRST CONTRACT
+                if(!appState.sessionStartTS) appState.sessionStartTS = Date.now();
+
                 const name = document.getElementById('cName').value || "Contract";
                 const price = parseInt(document.getElementById('cPrice').value) || 0;
                 
@@ -515,7 +542,7 @@
                 document.getElementById('cName').value = ""; document.getElementById('cPrice').value = "";
                 document.getElementById('pickupContainer').innerHTML = ""; document.getElementById('dropContainer').innerHTML = "";
                 addPointRow('pickupContainer'); addPointRow('dropContainer');
-                appState.completedLegs.push({action:"CONTRACT", location:"-", desc:`Added ${name}`, time: new Date().toLocaleTimeString()});
+                appState.completedLegs.push({action:"CONTRACT", location:"-", desc:`Added ${name}`, time: new Date().toLocaleTimeString(), ts: Date.now()});
                 saveData(); renderLogs(); renderManifest(); calculateRoute();
             }
 
@@ -541,35 +568,20 @@
             function getRouteKey(a, b) { return a < b ? `${a}_${b}` : `${b}_${a}`; }
             function getTravelMetrics(locNameA, locNameB) {
                 if (locNameA === locNameB) return { jumps:0, distGm:0, isVerified:true };
-                const key = getRouteKey(locNameA, locNameB);
-                if (appState.routeMemory[key]) return { jumps: 0, distGm: appState.routeMemory[key].dist, isVerified: true };
+                const key = getRouteKey(locNameA, locNameB); if (appState.routeMemory[key]) return { jumps: 0, distGm: appState.routeMemory[key].dist, isVerified: true };
                 const locA = locations.find(l => l.name === locNameA); const locB = locations.find(l => l.name === locNameB);
                 if (!locA || !locB) return { jumps:99, distGm:9999, isVerified:false };
                 if (locA.system === locB.system) {
-                    if(locA.system === "Stanton") {
-                        const k1 = locA.id + "-" + locB.id; const k2 = locB.id + "-" + locA.id;
-                        if(stantonDist[k1]) return { jumps:0, distGm: stantonDist[k1], isVerified:false };
-                        if(stantonDist[k2]) return { jumps:0, distGm: stantonDist[k2], isVerified:false };
-                        return { jumps:0, distGm: 45, isVerified:false };
-                    }
-                    if(locA.system === "Pyro") return { jumps:0, distGm: 80, isVerified:false };
-                    return { jumps:0, distGm: 50, isVerified:false };
+                    if(locA.system === "Stanton") { const k1 = locA.id + "-" + locB.id; const k2 = locB.id + "-" + locA.id; if(stantonDist[k1]) return { jumps:0, distGm: stantonDist[k1], isVerified:false }; if(stantonDist[k2]) return { jumps:0, distGm: stantonDist[k2], isVerified:false }; return { jumps:0, distGm: 45, isVerified:false }; }
+                    if(locA.system === "Pyro") return { jumps:0, distGm: 80, isVerified:false }; return { jumps:0, distGm: 50, isVerified:false };
                 }
-                const result = findShortestPath(locA.system, locB.system);
-                if (!result) return { jumps:99, distGm:9999, isVerified:false };
+                const result = findShortestPath(locA.system, locB.system); if (!result) return { jumps:99, distGm:9999, isVerified:false };
                 return { jumps: result.jumps, distGm: result.jumps * 100, isVerified:false };
             }
 
             function findShortestPath(startSys, endSys) {
-                if (startSys === endSys) return { jumps: 0 };
-                let queue = [[startSys, 0]]; let visited = new Set(); visited.add(startSys);
-                while (queue.length > 0) {
-                    let [current, dist] = queue.shift();
-                    if (current === endSys) return { jumps: dist };
-                    const neighbors = systemGraph[current] || [];
-                    for (let n of neighbors) { if (!visited.has(n)) { visited.add(n); queue.push([n, dist + 1]); } }
-                }
-                return null;
+                if (startSys === endSys) return { jumps: 0 }; let queue = [[startSys, 0]]; let visited = new Set(); visited.add(startSys);
+                while (queue.length > 0) { let [current, dist] = queue.shift(); if (current === endSys) return { jumps: dist }; const neighbors = systemGraph[current] || []; for (let n of neighbors) { if (!visited.has(n)) { visited.add(n); queue.push([n, dist + 1]); } } } return null;
             }
 
             window.calculateRoute = function() {
@@ -584,59 +596,41 @@
                     let droppedSoFar = c.droppedOff;
                     c.drops.forEach(d => { let amt = d.amount; if(droppedSoFar >= amt) { droppedSoFar -= amt; } else { let rem = amt - droppedSoFar; droppedSoFar = 0; if(rem > 0) allTasks.push({type:'UNLOAD', cIdx:idx, loc:d.location, comm:d.commodity, amt:rem, done:false}); } });
                 });
-
                 let safety = 0;
                 while(safety++ < 100) {
                     const pending = allTasks.filter(t => !t.done); if(pending.length === 0) break;
                     let bestTask = null, bestScore = -Infinity;
                     pending.forEach(task => {
                         let score = 0; let isValid = false; const c = simState[task.cIdx];
-                        if (task.type === 'LOAD') { if (currentLoad + task.amt <= appState.shipCapacity) isValid = true; }
-                        else { let simPicked = c.pickedUp; let simDropped = c.droppedOff; if ((simPicked - simDropped) >= task.amt) isValid = true; }
+                        if (task.type === 'LOAD') { if (currentLoad + task.amt <= appState.shipCapacity) isValid = true; } else { let simPicked = c.pickedUp; let simDropped = c.droppedOff; if ((simPicked - simDropped) >= task.amt) isValid = true; }
                         if(isValid) {
-                            const metrics = getTravelMetrics(currentLoc, task.loc);
-                            score -= metrics.distGm; score -= metrics.jumps * 50;
+                            const metrics = getTravelMetrics(currentLoc, task.loc); score -= metrics.distGm; score -= metrics.jumps * 50;
                             if(task.loc === currentLoc) score += 1000;
                             if(task.type === 'UNLOAD') { score += 20; if(currentLoad < (appState.shipCapacity*0.5) && task.loc !== currentLoc) score -= 100; }
                             if(task.type === 'LOAD') { score += 10; if(metrics.distGm < 30) score += 50; }
                             if(score > bestScore) { bestScore = score; bestTask = task; }
                         }
                     });
-                    if(!bestTask) break;
-                    bestTask.done = true;
-                    if(bestTask.type==='LOAD') { currentLoad += bestTask.amt; simState[bestTask.cIdx].pickedUp += bestTask.amt; }
-                    else { currentLoad -= bestTask.amt; simState[bestTask.cIdx].droppedOff += bestTask.amt; }
-                    
+                    if(!bestTask) break; bestTask.done = true;
+                    if(bestTask.type==='LOAD') { currentLoad += bestTask.amt; simState[bestTask.cIdx].pickedUp += bestTask.amt; } else { currentLoad -= bestTask.amt; simState[bestTask.cIdx].droppedOff += bestTask.amt; }
                     const metrics = getTravelMetrics(currentLoc, bestTask.loc);
-                    const distFuel_mSCU = metrics.distGm * rate; const jumpFuel_mSCU = metrics.jumps * 200; 
-                    const fuelNeededSCU = (distFuel_mSCU + jumpFuel_mSCU) / 1000;
-                    
+                    const distFuel_mSCU = metrics.distGm * rate; const jumpFuel_mSCU = metrics.jumps * 200; const fuelNeededSCU = (distFuel_mSCU + jumpFuel_mSCU) / 1000;
                     let refueled = false;
-                    if(currentLoc !== bestTask.loc && currentFuelSCU < fuelNeededSCU) {
-                        currentFuelSCU = appState.shipMaxFuelSCU; refueled = true;
-                        if(steps.length>0) steps[steps.length-1].refueled = true; else steps.push({loc:currentLoc, refueled:true, actions:[], endLoad:currentLoad, endFuel:currentFuelSCU}); 
-                    }
-                    if(currentLoc !== bestTask.loc) {
-                        currentFuelSCU -= fuelNeededSCU; if(currentFuelSCU<0)currentFuelSCU=0;
-                        steps.push({ loc: bestTask.loc, isTravel: true, dist: metrics.distGm, verified: metrics.isVerified, fuel: fuelNeededSCU, actions: [bestTask], endLoad: currentLoad, endFuel: currentFuelSCU });
-                    } else {
-                        if(steps.length===0) steps.push({loc:currentLoc, actions:[], endLoad:currentLoad, endFuel:currentFuelSCU});
-                        steps[steps.length-1].actions.push(bestTask); steps[steps.length-1].endLoad = currentLoad;
-                    }
+                    if(currentLoc !== bestTask.loc && currentFuelSCU < fuelNeededSCU) { currentFuelSCU = appState.shipMaxFuelSCU; refueled = true; if(steps.length>0) steps[steps.length-1].refueled = true; else steps.push({loc:currentLoc, refueled:true, actions:[], endLoad:currentLoad, endFuel:currentFuelSCU}); }
+                    if(currentLoc !== bestTask.loc) { currentFuelSCU -= fuelNeededSCU; if(currentFuelSCU<0)currentFuelSCU=0; steps.push({ loc: bestTask.loc, isTravel: true, dist: metrics.distGm, verified: metrics.isVerified, fuel: fuelNeededSCU, actions: [bestTask], endLoad: currentLoad, endFuel: currentFuelSCU }); } 
+                    else { if(steps.length===0) steps.push({loc:currentLoc, actions:[], endLoad:currentLoad, endFuel:currentFuelSCU}); steps[steps.length-1].actions.push(bestTask); steps[steps.length-1].endLoad = currentLoad; }
                     currentLoc = bestTask.loc;
                 }
-
                 let html = "";
                 steps.forEach((step, idx) => {
                     let actionsHtml = "";
                     step.actions.forEach(a => { const color = a.type === 'LOAD' ? 'var(--sc-success)' : 'var(--sc-warning)'; actionsHtml += `<div class="step-action"><span><strong style="color:${color}">${a.type}</strong> ${a.amt} SCU ${a.comm}</span></div>`; });
                     const isNext = (idx === 0);
-                    let completeUI = isNext ? `<div style="display:flex; justify-content:flex-end; gap:5px; margin-top:5px;"><div class="fuel-input-row" title="HUD Fuel Reading"><span style="font-size:0.7rem; color:#888;">HUD (NAV Mode):</span><input type="number" id="stepFuelInput_${idx}" step="0.01" placeholder="${step.endFuel.toFixed(2)}"></div><button class="btn-complete" onclick='commitStep(${JSON.stringify(step)}, "stepFuelInput_${idx}")'>COMPLETE LEG</button></div>` : `<span style="color:#666; font-size:0.7rem; float:right;">PENDING</span>`;
-                    
+                    let completeUI = isNext ? `<div style="display:flex; justify-content:flex-end; gap:5px; margin-top:5px;"><div class="fuel-input-row" title="Arrived at ${step.loc}? Enter Fuel:"><span style="font-size:0.7rem; color:#888;">Arrived at ${step.loc}? Enter Fuel:</span><input type="number" id="stepFuelInput_${idx}" step="0.01" placeholder="${step.endFuel.toFixed(2)}"></div><button class="btn-complete" onclick='commitStep(${JSON.stringify(step)}, "stepFuelInput_${idx}")'>COMPLETE LEG</button></div>` : `<span style="color:#666; font-size:0.7rem; float:right;">PENDING</span>`;
                     let vTag = step.verified ? '<span class="stat-badge badge-verified">[V]</span>' : '<span class="stat-badge badge-estimate">[E]</span>';
-                    let distHtml = step.isTravel ? `<div class="step-distance">${vTag} Travel: ${step.dist.toFixed(1)} Gm</div>` : `<div class="step-distance">Local Operation</div>`;
+                    let distHtml = step.isTravel ? `<div class="step-distance">${vTag} Travel: ${step.dist.toFixed(1)} Gm (Fuel Est: ${step.fuel.toFixed(2)} SCU)</div>` : `<div class="step-distance">Local Operation</div>`;
                     if(step.refueled) distHtml = `<div class="step-refuel">⛽ AUTO-REFUELED</div>` + distHtml;
-                    html += `<div class="timeline-step"><div class="step-location"><span>${step.loc}</span></div>${distHtml}${actionsHtml}<div class="step-ship-load">Load: ${step.endLoad} SCU | Est: ${step.endFuel.toFixed(2)} SCU</div>${completeUI}</div>`;
+                    html += `<div class="timeline-step"><div class="step-location"><span>${step.loc}</span></div>${distHtml}${actionsHtml}<div class="step-ship-load">Load: ${step.endLoad} SCU | Est Fuel: ${step.endFuel.toFixed(2)} SCU</div>${completeUI}</div>`;
                 });
                 if(steps.length === 0) html = `<div style="padding:10px; color:var(--sc-success);">ALL CONTRACTS COMPLETED.</div>`;
                 el.innerHTML = html;
@@ -650,29 +644,22 @@
                     if (fuelUsedSCU > 0) {
                         const impliedDist = (fuelUsedSCU * 1000) / appState.calibratedRate;
                         const key = getRouteKey(appState.currentLocation, stepData.loc);
-                        if(!appState.routeMemory[key]) appState.routeMemory[key] = { dist: impliedDist, count: 1 };
-                        else { const m = appState.routeMemory[key]; m.dist = (m.dist * m.count + impliedDist) / (m.count + 1); m.count++; }
-                        appState.completedLegs.push({action: "LEARNING", location: "NavComp", desc: `Route Updated: ${key} ~${impliedDist.toFixed(1)}Gm`, time: new Date().toLocaleTimeString()});
+                        if(!appState.routeMemory[key]) appState.routeMemory[key] = { dist: impliedDist, count: 1 }; else { const m = appState.routeMemory[key]; m.dist = (m.dist * m.count + impliedDist) / (m.count + 1); m.count++; }
+                        appState.completedLegs.push({action: "LEARNING", location: "NavComp", desc: `Route Updated: ${key} ~${impliedDist.toFixed(1)}Gm`, time: new Date().toLocaleTimeString(), ts: Date.now()});
                     }
                     appState.currentFuelSCU = actualFuel;
-                } else {
-                    if(stepData.refueled) appState.currentFuelSCU = appState.shipMaxFuelSCU - (stepData.fuel || 0); else appState.currentFuelSCU = stepData.endFuel;
-                }
+                } else { if(stepData.refueled) appState.currentFuelSCU = appState.shipMaxFuelSCU - (stepData.fuel || 0); else appState.currentFuelSCU = stepData.endFuel; }
                 document.getElementById('currentFuelInput').value = appState.currentFuelSCU.toFixed(2);
                 appState.currentLocation = stepData.loc; appState.currentLoad = stepData.endLoad;
                 stepData.actions.forEach(a => {
                     const c = appState.contracts.find(ct => ct.id === appState.contracts[a.cIdx].id);
                     if(a.type === 'LOAD') c.pickedUp += a.amt;
-                    if(a.type === 'UNLOAD') {
-                        c.droppedOff += a.amt;
-                        if(c.droppedOff >= c.totalSCU) { appState.earnings += c.price; appState.completedLegs.push({action:"PAYDAY", location:stepData.loc, desc:`Earned ${c.price} aUEC`, time:new Date().toLocaleTimeString()}); }
-                    }
+                    if(a.type === 'UNLOAD') { c.droppedOff += a.amt; if(c.droppedOff >= c.totalSCU) { appState.earnings += c.price; appState.completedLegs.push({action:"PAYDAY", location:stepData.loc, desc:`Earned ${c.price} aUEC`, time:new Date().toLocaleTimeString(), ts: Date.now()}); } }
                 });
-                appState.completedLegs.push({action: stepData.isTravel ? "TRAVEL" : "OPS", location: stepData.loc, desc: `${stepData.actions.length} Actions`, time: new Date().toLocaleTimeString()});
+                appState.completedLegs.push({action: stepData.isTravel ? "TRAVEL" : "OPS", location: stepData.loc, desc: `${stepData.actions.length} Actions`, time: new Date().toLocaleTimeString(), ts: Date.now()});
                 saveData(); updateUI(); renderLogs(); calculateRoute();
             }
         });
     </script>
 </body>
 </html>
-
