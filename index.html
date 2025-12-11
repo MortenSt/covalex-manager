@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covalex Logistics - Manual Fix (V48)</title>
+    <title>Covalex Logistics - Logic Fix (V49)</title>
     <style>
         :root {
             --sc-blue: #00d8ff;
@@ -78,7 +78,6 @@
             justify-content: center; align-items: center;
         }
         .modal-overlay.active { display: flex; }
-        
         .modal-box {
             background: #162028; border: 1px solid var(--sc-blue);
             padding: 20px; width: 500px; max-width: 95%;
@@ -86,7 +85,6 @@
             border-radius: 4px;
         }
         .modal-header { font-size: 1.2rem; font-weight: bold; color: white; border-bottom: 1px solid #444; padding-bottom: 10px; margin-bottom: 15px; }
-        
         .verify-row {
             display: flex; justify-content: space-between; align-items: center;
             background: rgba(255,255,255,0.05); padding: 8px; margin-bottom: 5px; border-radius: 3px;
@@ -150,8 +148,6 @@
         .btn-log:hover { background: var(--sc-warning); color: black; }
         .btn-complete { background: transparent; border: 1px solid var(--sc-success); color: var(--sc-success); padding: 2px 10px; font-size: 0.7rem; text-transform: uppercase; cursor: pointer; }
         .btn-complete:hover { background: var(--sc-success); color:black; }
-
-        /* Reorder Buttons */
         .btn-move { background: none; border: 1px solid #444; color: #888; width: 25px; height: 25px; cursor: pointer; font-size: 0.6rem; padding: 0; display:flex; align-items:center; justify-content:center; }
         .btn-move:hover { border-color: var(--sc-blue); color: var(--sc-blue); }
 
@@ -171,10 +167,8 @@
         .check-item { display: flex; align-items: center; gap: 5px; font-size: 0.8rem; color: #ccc; cursor: pointer; background:#222; padding:2px 6px; border-radius:3px; border:1px solid #333; }
         .timeline-step { position: relative; padding-left: 30px; margin-bottom: 20px; border-left: 2px solid #333; }
         .timeline-step::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--sc-blue); box-shadow: 0 0 8px var(--sc-blue); }
-        
         .timeline-step.invalid-step::before { background: var(--sc-alert); box-shadow: 0 0 8px var(--sc-alert); }
         .timeline-step.invalid-step .step-location { color: var(--sc-alert); }
-
         .step-location { font-size: 1.1rem; font-weight: bold; color: #fff; margin-bottom: 5px; display:flex; justify-content:space-between; align-items:center; }
         .step-distance { font-size: 0.8rem; color: #666; margin-bottom: 10px; font-style: italic; display: flex; gap: 10px; }
         .stat-badge { background: #222; padding:2px 6px; border-radius:4px; border:1px solid #444; color:#aaa; }
@@ -183,7 +177,6 @@
         .step-action { background: rgba(255,255,255,0.05); padding: 8px; margin-bottom: 4px; border-radius: 3px; display: flex; justify-content: space-between; }
         .step-refuel { background: rgba(255, 153, 0, 0.1); border: 1px dashed var(--sc-fuel); color: var(--sc-fuel); font-weight: bold; padding: 8px; margin-bottom: 4px; border-radius: 3px; }
         .step-ship-load { font-size: 0.8rem; color: #888; margin-top: 5px; display:flex; justify-content:space-between; }
-
         .eng-stat-row { display:flex; justify-content: space-between; font-size:0.8rem; border-bottom:1px solid #333; padding:5px 0; }
         .eng-val { color: var(--sc-blue); font-family:monospace; }
         .log-table { width:100%; border-collapse: collapse; font-size:0.8rem; }
@@ -197,6 +190,8 @@
         .fin-stat-box { text-align:center; padding: 5px; }
         .fin-val { font-size:1.5rem; font-weight:bold; }
         .fin-sub { font-size:0.8rem; color:#888; }
+        .fuel-input-row { display: flex; gap: 10px; margin-top: 5px; align-items: center; background: #111; padding: 5px; border: 1px solid #333; }
+        .fuel-input-row input { height: 25px; margin: 0; border: 1px solid var(--sc-fuel); color: var(--sc-fuel); width: 80px; }
 
         @media (max-width: 768px) {
             .container { grid-template-columns: 1fr; gap: 10px; }
@@ -232,53 +227,32 @@
     <div id="manualTab" onclick="toggleManual()">📘 MANUAL</div>
     <div id="manualDrawer">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V48.0</span></h1>
+            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V49.0</span></h1>
             <button class="btn btn-del" style="width:auto; height:30px; padding:0 10px;" onclick="toggleManual()">CLOSE X</button>
         </div>
         <div class="manual-content">
             <p>Welcome to the Covalex Logistics Companion. This tool helps Hull C operators plan routes, manage cargo loads, and track fuel efficiency.</p>
-            
             <h2>1. Initial Setup</h2>
             <ul>
                 <li><strong>Vessel Config:</strong> Select <code>4608 SCU</code> for standard runs or <code>2880 SCU</code> for safe config.</li>
-                <li><strong>Drive Calibration:</strong> Select your Quantum Drive. 
-                    <br><span style="color:var(--sc-warning);">Note: Military drives (Pontes, TS-2) are marked as [LOCKED] because they cannot be bought in shops. Only select them if you have looted one.</span>
-                </li>
+                <li><strong>Drive Calibration:</strong> Select your Quantum Drive. Military drives (Pontes, TS-2) are marked as [LOCKED] because they cannot be bought in shops.</li>
                 <li><strong>Starting State:</strong> Select your parked location. Switch to <strong>NAV Mode</strong> in-game and enter the Fuel Reading (e.g., <code>8.60</code>).</li>
             </ul>
-
             <h2>2. Adding Contracts</h2>
             <ul>
                 <li><strong>Name:</strong> Type the name manually OR use the "Autofill Template" dropdown to paste a template.</li>
                 <li><strong>Pickups/Drops:</strong> Add each location line item individually with its specific commodity.</li>
                 <li>Click <code>ADD TO MANIFEST</code>. The itinerary will auto-calculate based on your current location.</li>
             </ul>
-
-            <h2>3. Itinerary & Execution</h2>
+            <h2>3. Execution</h2>
             <ul>
-                <li>Follow the <strong>Remaining Itinerary</strong>. Stops are optimized to minimize travel distance.</li>
-                <li><strong>Reordering:</strong> Use the <strong>[▲] [▼]</strong> buttons to manually change the flight order if needed (e.g. to avoid hostiles).</li>
-                <li><strong>Refueling:</strong> If you see a <span style="color:var(--sc-fuel)">⛽ AUTO-REFUELED</span> tag, you MUST refuel at that station before undocking.</li>
+                <li>Follow the <strong>Itinerary</strong>. Stops are optimized to minimize travel.</li>
+                <li><strong>Completing Legs:</strong> When you arrive, enter your actual Fuel Reading and click <code>COMPLETE LEG</code> to calibrate the system.</li>
             </ul>
-            
             <h2>4. Completion & Verification</h2>
             <ul>
-                <li>When you arrive at a destination, click <strong>COMPLETE LEG</strong> to open the Manifest Scanner.</li>
-                <li><strong>Verify Amounts:</strong> The scanner lists expected cargo. If the game bugged and you only transferred partial cargo, edit the numbers here to keep your records accurate.</li>
-                <li><strong>Fuel Input:</strong> Enter your exact HUD fuel reading (NAV Mode). This calibrates the "Learning Computer" to improve future distance estimates.</li>
-            </ul>
-
-            <h2>5. Mid-Trip Updates</h2>
-            <ul>
-                <li><strong>Best Practice:</strong> If you accept a new contract while flying, wait until you land and click `COMPLETE LEG` before adding it.</li>
-                <li>This ensures the solver plans from your actual arrival location rather than trying to re-route a flight you are already finishing.</li>
-            </ul>
-            
-            <h2>6. Advanced Features</h2>
-            <ul>
-                <li><strong>Adaptive Learning:</strong> The system learns actual distances as you fly. It prioritizes recent trips (weighted 30% per new trip) to adapt to game patches that move planets.</li>
-                <li><strong>Component Scarcity:</strong> Military drives are superior but rare. If you lose your ship, update the configuration to "Kama" until you find a replacement.</li>
-                <li><strong>Export:</strong> Use the `EXPORT` button to save a JSON report of your session logs and performance stats.</li>
+                <li>The Manifest Scanner lets you verify cargo amounts. If the game bugged, edit the numbers here to match reality.</li>
+                <li>Fuel inputs calibrate the "Learning Computer" to improve future distance predictions.</li>
             </ul>
         </div>
     </div>
@@ -292,8 +266,9 @@
                     <path d="M432.91 296.91H367.1l-38.05-58.09 38.05-58.09h65.81l11.03-20.41h-87.88l-51.4 78.5 51.4 78.49h87.88l-11.03-20.4z" class="cls-1"/>
                     <path d="M376.31 285.01h50.72l29.14-44.49h-50.73l-29.13 44.49zM373.16 194.03l-29.33 44.79 29.33 44.78 29.33-44.78-29.33-44.79zM405.44 237.12h50.73l-29.14-44.49h-50.72l29.13 44.49z" class="cls-1"/>
                     <path d="M197.24 412.38h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM264.86 372.74h-47.41v25.65h47.41v-25.65Zm13.99 22.73c0 4.66-1.65 8.64-4.96 11.95-3.3 3.31-7.29 4.96-11.95 4.96h-41.58c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95s7.29-4.96 11.95-4.96h41.58c4.66 0 8.64 1.65 11.95 4.96 3.3 3.3 4.96 7.29 4.96 11.95v19.82ZM374.74 358.75l-35.75 47.9c-3.43 4.6-7.48 6.89-12.15 6.89s-8.81-2.3-12.24-6.89l-35.75-47.9h17.78l30.21 41.39 30.12-41.39h17.78ZM439.15 412.38h-17.78l-7.58-10.3h-39.35l10.2-13.99h18.95l-12.44-17.1-30.12 41.39h-17.78L379 364.49c3.43-4.6 7.51-6.9 12.24-6.9s8.71 2.3 12.15 6.9l35.75 47.89ZM500.55 412.38h-44.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.95-7.29-4.95-11.95v-36.72h13.99v39.64h47.41v13.99ZM580.61 392.56h-56.74v-13.99h56.74v13.99Zm0 19.82h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.31-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM678.15 412.38h-23.03l-20.31-16.03c-2.33-1.81-3.98-4.01-4.95-6.6-.91 2.59-2.53 4.79-4.86 6.6l-20.3 16.03h-23.03l34.68-27.01-34.2-26.62h23.03l19.92 15.64c2.27 1.81 3.85 3.99 4.76 6.51.97-2.53 2.59-4.7 4.86-6.51l19.92-15.64h23.02l-34.19 26.62 34.68 27.01Z" class="cls-1"/>
+                    <path d="M146.29 449.64H122.9v-3.88h25.57v-5.34h-20.56c-3.36 0-6.07-2.71-6.07-6.06v-.97c0-3.36 2.71-6.06 6.07-6.06h23.39v3.88h-25.57v5.34h20.56c3.36 0 6.07 2.71 6.07 6.06v.97c0 3.36-2.71 6.06-6.07 6.06M229.95 449.64v-9.22h-21.69v9.22h-3.88v-22.31h3.88v9.22h21.69v-9.22h3.89v22.31h-3.89zM286.91 427.33h3.88v22.31h-3.88zM369.45 431.21h-21.69v7.76h21.69v-7.76Zm-2.18 11.64h-19.51v6.79h-3.88v-22.31h23.39c3.36 0 6.07 2.71 6.07 6.06v3.39c0 3.36-2.71 6.06-6.07 6.06M451.99 431.21H430.3v7.76h21.69v-7.76Zm-2.19 11.64h-19.51v6.79h-3.88v-22.31h23.39c3.36 0 6.07 2.71 6.07 6.06v3.39c0 3.36-2.71 6.06-6.07 6.06M508.95 427.33h3.88v22.31h-3.88zM595.62 445.64c0 2.42-1.94 4.36-4.37 4.36-1.21 0-2.31-.48-3.11-1.29l-18.33-18.59v19.52h-3.88v-18.31c0-2.42 1.94-4.36 4.37-4.36 1.21 0 2.31.48 3.12 1.29l18.33 18.58v-19.51h3.89v18.3ZM672.09 449.64h-17.32c-3.36 0-6.07-2.71-6.07-6.06V433.4c0-3.36 2.71-6.06 6.07-6.06h23.39v3.88h-25.57v14.55h21.69v-5.34H662.9v-3.88h15.26v7.03c0 3.36-2.71 6.06-6.07 6.06" class="cls-1"/>
                 </svg>
-                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V48</span></h1>
+                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V49</span></h1>
             </div>
             <div style="text-align:right;">
                 <button class="btn btn-add" style="border-color:var(--sc-money); color:var(--sc-money);" onclick="exportReport()">EXPORT</button>
@@ -466,7 +441,7 @@
             ];
             const stantonDist = { "hur-cru": 32, "hur-arc": 22, "hur-mic": 59, "cru-arc": 42, "cru-mic": 58, "arc-mic": 59 };
             
-            // --- V39 DRIVE DATA ---
+            // --- NEW V39 DRIVE DATA ---
             const baseDrives = { 
                 "kama":   { speed: 319000, rate: 26.0, spool: 5.0 }, 
                 "pontes": { speed: 282000, rate: 26.0, spool: 4.5 }, 
@@ -487,9 +462,9 @@
 
             // ---------- FUNCTIONS DEFINITIONS (Hoisted or Assigned first) ----------
 
-            function saveData() { localStorage.setItem('covalex_v48_state', JSON.stringify(appState)); updateUI(); }
+            function saveData() { localStorage.setItem('covalex_v49_state', JSON.stringify(appState)); updateUI(); }
             function loadData() {
-                const saved = localStorage.getItem('covalex_v48_state');
+                const saved = localStorage.getItem('covalex_v49_state');
                 if(saved) { 
                     appState = JSON.parse(saved); 
                     if(!appState.calibratedRate) appState.calibratedRate = 26.0; 
@@ -497,7 +472,7 @@
                     appState.contracts.forEach(c => { if(!c.feedback) c.feedback = { status: "pending", issues: [], notes: "" }; });
                 }
             }
-            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v48_state'); location.reload(); } }
+            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v49_state'); location.reload(); } }
 
             function updateSessionStats() {
                 if(!appState.sessionStartTS) {
@@ -544,7 +519,7 @@
             // MODAL LOGIC
             window.openCompletionModal = function(stepObjStr) {
                 const pendingStep = JSON.parse(decodeURIComponent(stepObjStr));
-                window.currentPendingStep = pendingStep; // Store globally
+                window.currentPendingStep = pendingStep; 
                 
                 const container = document.getElementById('verifyContent');
                 container.innerHTML = "";
@@ -753,7 +728,6 @@
             window.loadDemoData = function() { appState.currentLocation = "Everus Harbor (Hurston)"; appState.currentLoad = 0; appState.currentFuelSCU = 2.50; document.getElementById('currentFuelInput').value = "2.50"; let p1 = [{location:"Everus Harbor (Hurston)", commodity:"Iron", amount:500}, {location:"Everus Harbor (Hurston)", commodity:"Gold", amount:500}]; let d1 = [{location:"Port Tressler (microTech)", commodity:"Iron", amount:500}, {location:"Port Tressler (microTech)", commodity:"Gold", amount:500}]; appState.contracts = [ { id: 1, name: "Experienced Rank - Direct Large Cargo Haul", commodities:[{name:"Iron", scu:500}, {name:"Gold", scu:500}], price: 50000, totalSCU: 1000, pickups:p1, drops:d1, pickedUp:0, droppedOff:0, feedback: { status: "pending", issues: [], notes: "" } } ]; saveData(); window.renderManifest(); window.calculateRoute(); }
             window.removeContract = function(id) { appState.contracts = appState.contracts.filter(c => c.id !== id); saveData(); window.renderManifest(); window.calculateRoute(); };
 
-            // --- TRAVEL LOGIC ---
             function getRouteKey(a, b) { return a < b ? `${a}_${b}` : `${b}_${a}`; }
             function getTravelMetrics(locNameA, locNameB) {
                 if (locNameA === locNameB) return { jumps:0, distGm:0, isVerified:true };
@@ -865,6 +839,7 @@
             // 3. EXECUTE STARTUP (NOW SAFE)
             // ----------------------------------------------------
             
+            // This runs after all window.x functions are assigned
             window.initUI();
             window.updateUI();
             window.renderManifest();
