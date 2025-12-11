@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covalex Logistics - Verification V47</title>
+    <title>Covalex Logistics - Manual Fix (V48)</title>
     <style>
         :root {
             --sc-blue: #00d8ff;
@@ -69,8 +69,9 @@
         .manual-content h3 { color: var(--sc-blue); margin-top: 20px; }
         .manual-content ul { line-height: 1.6; color: #ccc; }
         .manual-content code { background: #222; padding: 2px 6px; border-radius: 3px; color: var(--sc-warning); }
+        .manual-content blockquote { border-left: 4px solid var(--sc-blue); margin: 20px 0; padding-left: 15px; color: #888; font-style: italic; }
 
-        /* MODAL STYLING (V47) */
+        /* MODAL STYLING */
         .modal-overlay {
             display: none; position: fixed; top:0; left:0; width:100%; height:100%;
             background: rgba(0,0,0,0.85); z-index: 3000;
@@ -231,16 +232,53 @@
     <div id="manualTab" onclick="toggleManual()">📘 MANUAL</div>
     <div id="manualDrawer">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V47.0</span></h1>
+            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V48.0</span></h1>
             <button class="btn btn-del" style="width:auto; height:30px; padding:0 10px;" onclick="toggleManual()">CLOSE X</button>
         </div>
         <div class="manual-content">
             <p>Welcome to the Covalex Logistics Companion. This tool helps Hull C operators plan routes, manage cargo loads, and track fuel efficiency.</p>
-            <h2>1. Verification (New!)</h2>
+            
+            <h2>1. Initial Setup</h2>
             <ul>
-                <li>When you arrive at a station, click <strong>COMPLETE LEG</strong> to open the Manifest Scanner.</li>
-                <li><strong>Verify Amounts:</strong> The scanner lists what you *should* load/unload. If the game bugged out and you only loaded partial cargo, edit the numbers here!</li>
-                <li><strong>Partial Payouts:</strong> The tool calculates your earnings based on the *actual* amount you deliver, ensuring accurate aUEC tracking even with bugs.</li>
+                <li><strong>Vessel Config:</strong> Select <code>4608 SCU</code> for standard runs or <code>2880 SCU</code> for safe config.</li>
+                <li><strong>Drive Calibration:</strong> Select your Quantum Drive. 
+                    <br><span style="color:var(--sc-warning);">Note: Military drives (Pontes, TS-2) are marked as [LOCKED] because they cannot be bought in shops. Only select them if you have looted one.</span>
+                </li>
+                <li><strong>Starting State:</strong> Select your parked location. Switch to <strong>NAV Mode</strong> in-game and enter the Fuel Reading (e.g., <code>8.60</code>).</li>
+            </ul>
+
+            <h2>2. Adding Contracts</h2>
+            <ul>
+                <li><strong>Name:</strong> Type the name manually OR use the "Autofill Template" dropdown to paste a template.</li>
+                <li><strong>Pickups/Drops:</strong> Add each location line item individually with its specific commodity.</li>
+                <li>Click <code>ADD TO MANIFEST</code>. The itinerary will auto-calculate based on your current location.</li>
+            </ul>
+
+            <h2>3. Itinerary & Execution</h2>
+            <ul>
+                <li>Follow the <strong>Remaining Itinerary</strong>. Stops are optimized to minimize travel distance.</li>
+                <li><strong>Reordering:</strong> Use the <strong>[▲] [▼]</strong> buttons to manually change the flight order if needed (e.g. to avoid hostiles).</li>
+                <li><strong>Refueling:</strong> If you see a <span style="color:var(--sc-fuel)">⛽ AUTO-REFUELED</span> tag, you MUST refuel at that station before undocking.</li>
+            </ul>
+            
+            <h2>4. Completion & Verification</h2>
+            <ul>
+                <li>When you arrive at a destination, click <strong>COMPLETE LEG</strong> to open the Manifest Scanner.</li>
+                <li><strong>Verify Amounts:</strong> The scanner lists expected cargo. If the game bugged and you only transferred partial cargo, edit the numbers here to keep your records accurate.</li>
+                <li><strong>Fuel Input:</strong> Enter your exact HUD fuel reading (NAV Mode). This calibrates the "Learning Computer" to improve future distance estimates.</li>
+            </ul>
+
+            <h2>5. Mid-Trip Updates</h2>
+            <ul>
+                <li><strong>Best Practice:</strong> If you accept a new contract while flying, wait until you land and click `COMPLETE LEG` before adding it.</li>
+                <li>This ensures the solver plans from your actual arrival location rather than trying to re-route a flight you are already finishing.</li>
+            </ul>
+            
+            <h2>6. Advanced Features</h2>
+            <ul>
+                <li><strong>Adaptive Learning:</strong> The system learns actual distances as you fly. It prioritizes recent trips (weighted 30% per new trip) to adapt to game patches that move planets.</li>
+                <li><strong>Component Scarcity:</strong> Military drives are superior but rare. If you lose your ship, update the configuration to "Kama" until you find a replacement.</li>
+                <li><strong>Export:</strong> Use the `EXPORT` button to save a JSON report of your session logs and performance stats.</li>
             </ul>
         </div>
     </div>
@@ -255,7 +293,7 @@
                     <path d="M376.31 285.01h50.72l29.14-44.49h-50.73l-29.13 44.49zM373.16 194.03l-29.33 44.79 29.33 44.78 29.33-44.78-29.33-44.79zM405.44 237.12h50.73l-29.14-44.49h-50.72l29.13 44.49z" class="cls-1"/>
                     <path d="M197.24 412.38h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM264.86 372.74h-47.41v25.65h47.41v-25.65Zm13.99 22.73c0 4.66-1.65 8.64-4.96 11.95-3.3 3.31-7.29 4.96-11.95 4.96h-41.58c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95s7.29-4.96 11.95-4.96h41.58c4.66 0 8.64 1.65 11.95 4.96 3.3 3.3 4.96 7.29 4.96 11.95v19.82ZM374.74 358.75l-35.75 47.9c-3.43 4.6-7.48 6.89-12.15 6.89s-8.81-2.3-12.24-6.89l-35.75-47.9h17.78l30.21 41.39 30.12-41.39h17.78ZM439.15 412.38h-17.78l-7.58-10.3h-39.35l10.2-13.99h18.95l-12.44-17.1-30.12 41.39h-17.78L379 364.49c3.43-4.6 7.51-6.9 12.24-6.9s8.71 2.3 12.15 6.9l35.75 47.89ZM500.55 412.38h-44.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.95-7.29-4.95-11.95v-36.72h13.99v39.64h47.41v13.99ZM580.61 392.56h-56.74v-13.99h56.74v13.99Zm0 19.82h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.31-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM678.15 412.38h-23.03l-20.31-16.03c-2.33-1.81-3.98-4.01-4.95-6.6-.91 2.59-2.53 4.79-4.86 6.6l-20.3 16.03h-23.03l34.68-27.01-34.2-26.62h23.03l19.92 15.64c2.27 1.81 3.85 3.99 4.76 6.51.97-2.53 2.59-4.7 4.86-6.51l19.92-15.64h23.02l-34.19 26.62 34.68 27.01Z" class="cls-1"/>
                 </svg>
-                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V47</span></h1>
+                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V48</span></h1>
             </div>
             <div style="text-align:right;">
                 <button class="btn btn-add" style="border-color:var(--sc-money); color:var(--sc-money);" onclick="exportReport()">EXPORT</button>
@@ -310,6 +348,7 @@
 
             <div class="panel">
                 <h3>02 // Add Contract</h3>
+                
                 <div style="display:flex; gap:5px; align-items:end; margin-bottom:5px;">
                     <div style="flex:2;">
                         <label>Autofill Template</label>
@@ -324,20 +363,25 @@
                         </select>
                     </div>
                 </div>
+
                 <label>Contract Name (Manual)</label>
                 <input type="text" id="cName" placeholder="Enter name...">
+
                 <label style="color:var(--sc-money);">Reward (aUEC)</label>
                 <input type="number" id="cPrice" placeholder="0">
+
                 <div class="section-header" style="margin-top:15px;">
                     <span style="font-size:0.8rem; color:#888;">PICKUP LOCATIONS (LINE ITEMS)</span>
                     <button id="btnAddPickup" class="btn btn-add" type="button">+ ADD PICKUP</button>
                 </div>
                 <div id="pickupContainer"></div>
+
                 <div class="section-header" style="margin-top:15px;">
                     <span style="font-size:0.8rem; color:#888;">DROP-OFF LOCATIONS (LINE ITEMS)</span>
                     <button id="btnAddDrop" class="btn btn-add" type="button">+ ADD DROP</button>
                 </div>
                 <div id="dropContainer"></div>
+
                 <div id="statusLog"></div>
                 <button id="btnSubmit" class="btn" type="button">ADD TO MANIFEST</button>
                 <button id="btnLoadDemo" class="btn" type="button" style="border-color:#555; color:#888; margin-top:5px;">LOAD DEMO</button>
@@ -346,82 +390,161 @@
 
         <div class="main-content">
             <div class="panel financial-grid">
-                <div class="fin-stat-box"><div class="fin-sub">EARNED</div><div id="moneyEarned" class="fin-val" style="color:var(--sc-money);">0</div></div>
-                <div class="fin-stat-box"><div class="fin-sub">POTENTIAL</div><div id="moneyPotential" class="fin-val" style="color:#fff;">0</div></div>
-                <div class="fin-stat-box"><div class="fin-sub">TIME ACTIVE</div><div id="timeActive" class="fin-val" style="color:var(--sc-blue);">00:00</div></div>
-                <div class="fin-stat-box"><div class="fin-sub">aUEC / HOUR</div><div id="hourlyRate" class="fin-val" style="color:var(--sc-warning);">0</div></div>
+                <div class="fin-stat-box">
+                    <div class="fin-sub">EARNED</div>
+                    <div id="moneyEarned" class="fin-val" style="color:var(--sc-money);">0</div>
+                </div>
+                <div class="fin-stat-box">
+                    <div class="fin-sub">POTENTIAL</div>
+                    <div id="moneyPotential" class="fin-val" style="color:#fff;">0</div>
+                </div>
+                <div class="fin-stat-box">
+                    <div class="fin-sub">TIME ACTIVE</div>
+                    <div id="timeActive" class="fin-val" style="color:var(--sc-blue);">00:00</div>
+                </div>
+                <div class="fin-stat-box">
+                    <div class="fin-sub">aUEC / HOUR</div>
+                    <div id="hourlyRate" class="fin-val" style="color:var(--sc-warning);">0</div>
+                </div>
             </div>
+
             <div class="panel">
                 <div style="display:flex; justify-content:space-between; align-items:end;"><h4 style="margin:0; color:#888;">CARGO LOAD</h4><span id="capacityText" style="margin:0; font-weight:bold;">0 / 4608 SCU</span></div>
                 <div class="capacity-bar-container"><div id="fillBar" class="capacity-bar"></div></div>
                 <div style="display:flex; justify-content:space-between; align-items:end;"><h4 style="margin:0; color:#888;">QUANTUM FUEL (SCU)</h4><span id="fuelText" style="margin:0; font-weight:bold; color:var(--sc-fuel);">8.60 / 8.60</span></div>
                 <div class="capacity-bar-container"><div id="fuelBar" class="capacity-bar fuel-bar" style="width:100%;"></div></div>
             </div>
+
             <div class="panel">
-                <div style="display:flex; justify-content:space-between; align-items:center;"><h3>Remaining Itinerary</h3><button class="btn btn-calc" style="width:auto; margin:0; padding:8px 20px;" onclick="calculateRoute(true)">Recalculate (Reset Order)</button></div>
-                <p style="font-size:0.8rem; color:#888; margin-bottom:20px;">Use [▲] [▼] to manually reorder. Click COMPLETE LEG to scan manifest.</p>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3>Remaining Itinerary</h3>
+                    <button class="btn btn-calc" style="width:auto; margin:0; padding:8px 20px;" onclick="calculateRoute()">Recalculate</button>
+                </div>
+                <p style="font-size:0.8rem; color:#888; margin-bottom:20px;">
+                    Itinerary uses verified data where available ([V]). Estimates marked ([E]).
+                </p>
                 <div id="itineraryContent"></div>
             </div>
+
             <div class="panel">
                 <h3>Active Contracts & Dev Feedback</h3>
-                <div id="manifestList"><p style="color:#666; font-style:italic; padding:10px;">No active contracts.</p></div>
+                <div id="manifestList">
+                    <p style="color:#666; font-style:italic; padding:10px;">No active contracts.</p>
+                </div>
             </div>
+
             <div class="panel">
                 <h3>Session Log</h3>
                 <div id="sessionLog" style="max-height:200px; overflow-y:auto;">
-                    <table class="log-table"><thead><tr><th>Action</th><th>Location</th><th>Change</th><th>Time</th></tr></thead><tbody id="logBody"></tbody></table>
+                    <table class="log-table">
+                        <thead><tr><th>Action</th><th>Location</th><th>Change</th><th>Time</th></tr></thead>
+                        <tbody id="logBody"></tbody>
+                    </table>
                 </div>
             </div>
+
         </div>
     </div>
 
-    <footer><p>This is an unofficial Star Citizen fan site.</p></footer>
+    <footer>
+        <p>This is an unofficial Star Citizen fan site.</p>
+        <p>This content is not endorsed by or affiliated with Cloud Imperium or its licensors.</p>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // DATA
+            const systemGraph = { "Stanton": ["Terra", "Pyro", "Nyx"], "Pyro": ["Stanton", "Nyx", "Castra"], "Nyx": ["Pyro", "Stanton"], "Castra": ["Pyro", "Terra"], "Terra": ["Stanton", "Castra"] };
             const locations = [
                 { id:"hur", name: "Everus Harbor (Hurston)", system: "Stanton" }, { id:"cru", name: "Seraphim Station (Crusader)", system: "Stanton" },
                 { id:"arc", name: "Bajini Point (ArcCorp)", system: "Stanton" }, { id:"mic", name: "Port Tressler (microTech)", system: "Stanton" },
                 { id:"pyr1", name: "Checkmate Station (Pyro I)", system: "Pyro" }, { id:"pyr2", name: "Monox Station (Pyro II)", system: "Pyro" }, { id:"pyrg", name: "Pyro Gateway (Stanton)", system: "Stanton" },
-                { id:"stang_py", name: "Stanton Gateway (Pyro)", system: "Pyro" }, { id:"nyx", name: "Levski (Delamar)", system: "Nyx" }, { id:"nyxg", name: "Nyx Gateway (Stanton)", system: "Stanton" },
+                { id:"stang_py", name: "Stanton Gateway (Pyro)", system: "Pyro" },
+                { id:"nyx", name: "Levski (Delamar)", system: "Nyx" }, { id:"nyxg", name: "Nyx Gateway (Stanton)", system: "Stanton" },
                 { id:"cas", name: "Sherman (Castra II)", system: "Castra" }, { id:"casg", name: "Castra Gateway", system: "Castra" },
                 { id:"ter", name: "Prime Orbital (Terra)", system: "Terra" }, { id:"terg", name: "Terra Gateway (Stanton)", system: "Stanton" }
             ];
-            const systemGraph = { "Stanton": ["Terra", "Pyro", "Nyx"], "Pyro": ["Stanton", "Nyx", "Castra"], "Nyx": ["Pyro", "Stanton"], "Castra": ["Pyro", "Terra"], "Terra": ["Stanton", "Castra"] };
-            const baseDrives = { "kama": { speed: 319000, rate: 26.0, spool: 5.0 }, "pontes": { speed: 282000, rate: 26.0, spool: 4.5 }, "ts2": { speed: 395000, rate: 18.0, spool: 4.0 } };
+            const stantonDist = { "hur-cru": 32, "hur-arc": 22, "hur-mic": 59, "cru-arc": 42, "cru-mic": 58, "arc-mic": 59 };
+            
+            // --- V39 DRIVE DATA ---
+            const baseDrives = { 
+                "kama":   { speed: 319000, rate: 26.0, spool: 5.0 }, 
+                "pontes": { speed: 282000, rate: 26.0, spool: 4.5 }, 
+                "ts2":    { speed: 395000, rate: 18.0, spool: 4.0 } 
+            };
+            
             let commodityList = ["Hydrogen", "Iron", "Waste", "Scrap", "Processed Food", "Medical Supplies", "Corundum", "Beryl", "Quartz", "Tungsten", "Titanium", "Gold", "Diamond", "Laranite", "Agricium", "Quantanium"].sort();
             let locationOptionsHTML = ''; let commodityOptionsHTML = '';
 
+            // STATE
             let appState = {
-                shipCapacity: 4608, shipMaxFuelSCU: 8.6, currentDriveKey: 'kama', calibratedRate: 26.0, 
+                shipCapacity: 4608, shipMaxFuelSCU: 8.6,
+                currentDriveKey: 'kama', calibratedRate: 26.0, 
                 currentLocation: "Everus Harbor (Hurston)", currentFuelSCU: 8.6, currentLoad: 0,
-                contracts: [], completedLegs: [], earnings: 0, routeMemory: {}, sessionStartTS: null,
-                manualRoute: null
+                contracts: [], completedLegs: [], earnings: 0, routeMemory: {},
+                sessionStartTS: null
             };
 
-            // Global State for Modal
-            let pendingStep = null;
+            // ---------- FUNCTIONS DEFINITIONS (Hoisted or Assigned first) ----------
 
-            // FUNCTIONS ----------------
-            function saveData() { localStorage.setItem('covalex_v47_state', JSON.stringify(appState)); updateUI(); }
+            function saveData() { localStorage.setItem('covalex_v48_state', JSON.stringify(appState)); updateUI(); }
             function loadData() {
-                const saved = localStorage.getItem('covalex_v47_state');
-                if(saved) { appState = JSON.parse(saved); if(!appState.calibratedRate) appState.calibratedRate = 26.0; if(!appState.routeMemory) appState.routeMemory = {}; }
+                const saved = localStorage.getItem('covalex_v48_state');
+                if(saved) { 
+                    appState = JSON.parse(saved); 
+                    if(!appState.calibratedRate) appState.calibratedRate = 26.0; 
+                    if(!appState.routeMemory) appState.routeMemory = {}; 
+                    appState.contracts.forEach(c => { if(!c.feedback) c.feedback = { status: "pending", issues: [], notes: "" }; });
+                }
             }
-            window.resetAllData = function() { if(confirm("Clear data?")) { localStorage.removeItem('covalex_v47_state'); location.reload(); } }
+            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v48_state'); location.reload(); } }
+
+            function updateSessionStats() {
+                if(!appState.sessionStartTS) {
+                    document.getElementById('timeActive').innerText = "00:00";
+                    document.getElementById('hourlyRate').innerText = "0";
+                    return;
+                }
+                const now = Date.now();
+                const diffMs = now - appState.sessionStartTS;
+                const hours = diffMs / 3600000;
+                const h = Math.floor(hours);
+                const m = Math.floor((diffMs % 3600000) / 60000);
+                const s = Math.floor((diffMs % 60000) / 1000);
+                document.getElementById('timeActive').innerText = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+                if(hours > 0) {
+                    const rate = Math.round(appState.earnings / hours);
+                    document.getElementById('hourlyRate').innerText = rate.toLocaleString();
+                }
+            }
+
+            window.applyTemplate = function() {
+                const val = document.getElementById('nameTemplate').value;
+                if(val) document.getElementById('cName').value = val;
+            }
+
+            window.exportReport = function() {
+                const data = {
+                    sessionTime: new Date().toString(),
+                    shipConfig: { capacity: appState.shipCapacity, fuelMax: appState.shipMaxFuelSCU, drive: appState.currentDriveKey, calibratedEfficiency: appState.calibratedRate },
+                    learnedRoutes: appState.routeMemory,
+                    contracts: appState.contracts.map(c => ({ name: c.name, totalSCU: c.totalSCU, feedbackStatus: c.feedback.status, reportedIssues: c.feedback.issues, devNotes: c.feedback.notes })),
+                    logs: appState.completedLegs
+                };
+                const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json"});
+                const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = url; a.download = "Covalex_Report_" + Date.now() + ".json"; a.click();
+            }
 
             window.toggleManual = function() {
-                const drawer = document.getElementById('manualDrawer'); const tab = document.getElementById('manualTab');
+                const drawer = document.getElementById('manualDrawer');
+                const tab = document.getElementById('manualTab');
                 if(drawer.classList.contains('active')) { drawer.classList.remove('active'); tab.classList.remove('active'); } else { drawer.classList.add('active'); tab.classList.add('active'); }
             }
-
+            
             // MODAL LOGIC
             window.openCompletionModal = function(stepObjStr) {
-                // We need to parse the step object, but JSON.stringify in HTML attr can be tricky.
-                // Better approach: Store current calculated sequence in a global temp var or re-find it.
-                // Since we passed stringified, let's parse.
-                pendingStep = JSON.parse(decodeURIComponent(stepObjStr));
+                const pendingStep = JSON.parse(decodeURIComponent(stepObjStr));
+                window.currentPendingStep = pendingStep; // Store globally
                 
                 const container = document.getElementById('verifyContent');
                 container.innerHTML = "";
@@ -430,53 +553,42 @@
                     let color = a.type === 'LOAD' ? 'var(--sc-success)' : 'var(--sc-warning)';
                     container.innerHTML += `
                         <div class="verify-row">
-                            <div>
-                                <strong style="color:${color}">${a.type}</strong> ${a.comm}
-                            </div>
+                            <div><strong style="color:${color}">${a.type}</strong> ${a.comm}</div>
                             <input type="number" id="act_amt_${idx}" class="verify-input" value="${a.amt}">
                         </div>
                     `;
                 });
                 
-                // Pre-fill expected fuel
                 document.getElementById('verifyFuel').value = pendingStep.endFuel.toFixed(2);
                 document.getElementById('verifyModal').classList.add('active');
             }
 
             window.closeModal = function() {
                 document.getElementById('verifyModal').classList.remove('active');
-                pendingStep = null;
+                window.currentPendingStep = null;
             }
 
             window.confirmCompletion = function() {
+                const pendingStep = window.currentPendingStep;
                 if(!pendingStep) return;
                 
-                // 1. Gather Actuals
                 const actualFuel = parseFloat(document.getElementById('verifyFuel').value);
                 
-                // 2. Process Actions
-                let actionLog = [];
                 pendingStep.actions.forEach((a, idx) => {
                     const actualAmt = parseInt(document.getElementById(`act_amt_${idx}`).value) || 0;
                     const c = appState.contracts.find(ct => ct.id === appState.contracts[a.cIdx].id);
-                    
-                    if(a.type === 'LOAD') {
-                        c.pickedUp += actualAmt;
-                        appState.currentLoad += actualAmt;
-                    } else {
-                        // UNLOAD
-                        c.droppedOff += actualAmt;
-                        appState.currentLoad -= actualAmt;
-                        // Partial Payout Logic: (Actual / Total) * Price
+                    if(a.type === 'LOAD') { c.pickedUp += actualAmt; appState.currentLoad += actualAmt; }
+                    else { 
+                        c.droppedOff += actualAmt; 
+                        appState.currentLoad -= actualAmt; 
                         if(c.totalSCU > 0 && c.price > 0) {
                             const payout = Math.round((actualAmt / c.totalSCU) * c.price);
                             appState.earnings += payout;
-                            actionLog.push(`Dropped ${actualAmt}, Earned ${payout}`);
+                            appState.completedLegs.push({action:"EARNING", location:pendingStep.loc, desc:`Delivered ${actualAmt}, Earned ${payout}`, time:new Date().toLocaleTimeString()});
                         }
                     }
                 });
 
-                // 3. Update Fuel/Loc
                 if (pendingStep.isTravel && !isNaN(actualFuel)) {
                     let startFuel = appState.currentFuelSCU; 
                     if(pendingStep.refueled) startFuel = appState.shipMaxFuelSCU;
@@ -496,7 +608,6 @@
                 document.getElementById('currentFuelInput').value = appState.currentFuelSCU.toFixed(2);
                 appState.currentLocation = pendingStep.loc;
 
-                // 4. Log
                 appState.completedLegs.push({
                     action: pendingStep.isTravel ? "TRAVEL" : "OPS",
                     location: pendingStep.loc,
@@ -505,11 +616,7 @@
                     ts: Date.now()
                 });
                 
-                // 5. Cleanup
-                // If manual route was active, shift it? 
-                // Simplified: Just recalc fresh.
-                appState.manualRoute = null; // Reset manual override on completion to force fresh opt
-                
+                appState.manualRoute = null; 
                 saveData();
                 closeModal();
                 updateUI();
@@ -517,6 +624,9 @@
                 calculateRoute();
             }
 
+            // ----------------------------------------------------
+            // 2. UI UPDATE & RENDERING FUNCTIONS
+            // ----------------------------------------------------
 
             window.initUI = function() {
                 let opts = ''; const sysMap = {};
@@ -524,29 +634,31 @@
                 for(let s in sysMap) { opts += `<optgroup label="${s}">${sysMap[s].map(n=>`<option value="${n}">${n}</option>`).join('')}</optgroup>`; }
                 locationOptionsHTML = opts;
                 document.getElementById('currentLocationSelect').innerHTML = opts;
+                document.getElementById('currentLocationSelect').value = appState.currentLocation;
                 
                 let cOpts = '<option value="" disabled selected>Select Commodity...</option>';
                 commodityList.forEach(c => cOpts += `<option value="${c}">${c}</option>`);
                 commodityOptionsHTML = cOpts;
 
-                // Restore Input Values
-                document.getElementById('currentLocationSelect').value = appState.currentLocation;
                 document.getElementById('shipSelect').value = appState.shipCapacity === 4608 ? "4608" : (appState.shipCapacity===2880?"2880":"custom");
+                if(document.getElementById('shipSelect').value==='custom') document.getElementById('customShipInput').style.display='block';
                 document.getElementById('shipFuelCap').value = appState.shipMaxFuelSCU;
                 document.getElementById('qtDriveSelect').value = appState.currentDriveKey;
                 document.getElementById('currentFuelInput').value = appState.currentFuelSCU.toFixed(2);
 
-                // Listeners
                 document.getElementById('shipSelect').addEventListener('change', window.updateShipConfig);
                 document.getElementById('shipFuelCap').addEventListener('input', window.updateShipConfig);
                 document.getElementById('qtDriveSelect').addEventListener('change', window.updateShipConfig);
+                
                 document.getElementById('nameTemplate').addEventListener('change', window.applyTemplate);
+
                 document.getElementById('btnAddPickup').addEventListener('click', ()=>window.addPointRow('pickupContainer'));
                 document.getElementById('btnAddDrop').addEventListener('click', ()=>window.addPointRow('dropContainer'));
                 document.getElementById('btnSubmit').addEventListener('click', window.addContract);
                 document.getElementById('btnLoadDemo').addEventListener('click', window.loadDemoData);
 
                 window.addPointRow('pickupContainer'); window.addPointRow('dropContainer');
+                window.renderLogs();
             }
 
             window.updateUI = function() {
@@ -554,22 +666,98 @@
                 const rawRate = drv.rate;
                 document.getElementById('dsSpeed').innerText = drv.speed.toLocaleString();
                 document.getElementById('dsCons').innerText = rawRate.toFixed(2);
-                document.getElementById('dsEffScore').innerText = (drv.speed / (rawRate * 1000)).toFixed(2);
+                const effScore = drv.speed / (rawRate * 1000);
+                document.getElementById('dsEffScore').innerText = effScore.toFixed(2);
+
                 document.getElementById('capacityText').innerText = `${appState.currentLoad} / ${appState.shipCapacity} SCU`;
                 document.getElementById('fillBar').style.width = Math.min((appState.currentLoad/appState.shipCapacity)*100, 100) + "%";
-                document.getElementById('fuelText').innerText = `${appState.currentFuelSCU.toFixed(2)} / ${appState.shipMaxFuelSCU.toFixed(2)} SCU`;
-                document.getElementById('fuelBar').style.width = Math.min((appState.currentFuelSCU/appState.shipMaxFuelSCU)*100, 100) + "%";
-                let potential = 0; appState.contracts.forEach(c => { if(c.totalSCU - c.droppedOff > 0) potential += (c.price || 0); });
+                const fVal = appState.currentFuelSCU;
+                const fMax = appState.shipMaxFuelSCU;
+                document.getElementById('fuelText').innerText = `${fVal.toFixed(2)} / ${fMax.toFixed(2)} SCU`;
+                document.getElementById('fuelBar').style.width = Math.min((fVal/fMax)*100, 100) + "%";
+                let potential = 0;
+                appState.contracts.forEach(c => { const remaining = c.totalSCU - c.droppedOff; if(remaining > 0) potential += (c.price || 0); });
                 document.getElementById('moneyEarned').innerText = appState.earnings.toLocaleString();
                 document.getElementById('moneyPotential').innerText = potential.toLocaleString();
                 document.getElementById('currentLocationSelect').value = appState.currentLocation;
             }
 
-            // CORE LOGIC V46: Reorder & Simulate
+            window.updateShipConfig = function() {
+                const sVal = document.getElementById('shipSelect').value;
+                if(sVal === 'custom') { document.getElementById('customShipInput').style.display='block'; appState.shipCapacity = parseInt(document.getElementById('customCapacity').value) || 1000; } 
+                else { document.getElementById('customShipInput').style.display='none'; appState.shipCapacity = parseInt(sVal); }
+                appState.shipMaxFuelSCU = parseFloat(document.getElementById('shipFuelCap').value) || 8.6;
+                appState.currentDriveKey = document.getElementById('qtDriveSelect').value;
+                const newDrv = baseDrives[appState.currentDriveKey];
+                appState.calibratedRate = newDrv.rate;
+                appState.currentFuelSCU = appState.shipMaxFuelSCU;
+                document.getElementById('currentFuelInput').value = appState.currentFuelSCU.toFixed(2);
+                saveData(); window.calculateRoute();
+            }
+
+            window.manualFuelUpdate = function() { appState.currentFuelSCU = parseFloat(document.getElementById('currentFuelInput').value); saveData(); window.calculateRoute(); }
+            window.updateCurrentLocationOverride = function() { appState.currentLocation = document.getElementById('currentLocationSelect').value; saveData(); window.calculateRoute(); }
+
+            window.addPointRow = function(containerId) {
+                const div = document.createElement('div'); div.className = 'dynamic-row-complex';
+                div.innerHTML = `<div class="drc-top"><select class="loc-input" style="width:100%; font-weight:bold;">${locationOptionsHTML}</select></div><div class="drc-mid"><select class="comm-input" style="flex:2">${commodityOptionsHTML}</select><input type="number" class="scu-input" placeholder="SCU" style="flex:1"></div><div class="drc-bot"><button class="btn btn-del" onclick="this.parentElement.parentElement.remove()">-</button></div>`;
+                document.getElementById(containerId).appendChild(div);
+            }
+
+            window.addContract = function() {
+                if(!appState.sessionStartTS) appState.sessionStartTS = Date.now();
+                const name = document.getElementById('cName').value || "Contract";
+                const price = parseInt(document.getElementById('cPrice').value) || 0;
+                const getPoints = (id) => {
+                    const rows = document.getElementById(id).querySelectorAll('.dynamic-row-complex');
+                    let pts=[]; let t=0; let commMap={};
+                    rows.forEach(r => {
+                        const l=r.querySelector('.loc-input').value; const c=r.querySelector('.comm-input').value; const s=parseInt(r.querySelector('.scu-input').value);
+                        if(l&&c&&s) { pts.push({location:l, commodity:c, amount:s}); t+=s; if(!commMap[c]) commMap[c]=0; commMap[c]+=s; }
+                    });
+                    return {pts, t, commMap};
+                };
+                const p = getPoints('pickupContainer'); const d = getPoints('dropContainer');
+                if(p.t === 0 || d.t === 0) { alert("Add Pickups/Drops."); return; }
+                if(p.t !== d.t) { if(!confirm(`Pickup Total (${p.t}) != Drop Total (${d.t}). Proceed?`)) return; }
+                for(let comm in p.commMap) { if(p.commMap[comm] !== d.commMap[comm]) { if(!confirm(`Commodity Mismatch: ${comm}. Proceed?`)) return; } }
+                let summaryComms = []; for(let comm in p.commMap) { summaryComms.push({name: comm, scu: p.commMap[comm]}); }
+                appState.contracts.push({
+                    id: Date.now(), name: name, commodities: summaryComms, price: price,
+                    pickups: p.pts, drops: d.pts, totalSCU: p.t, pickedUp: 0, droppedOff: 0,
+                    feedback: { status: "pending", issues: [], notes: "" }
+                });
+                document.getElementById('cName').value = ""; document.getElementById('cPrice').value = "";
+                document.getElementById('pickupContainer').innerHTML = ""; document.getElementById('dropContainer').innerHTML = "";
+                window.addPointRow('pickupContainer'); window.addPointRow('dropContainer');
+                appState.completedLegs.push({action:"CONTRACT", location:"-", desc:`Added ${name}`, time: new Date().toLocaleTimeString(), ts: Date.now()});
+                saveData(); window.renderLogs(); window.renderManifest(); window.calculateRoute();
+            }
+
+            window.toggleFeedback = function(id) { const drawer = document.getElementById('feedback-' + id); drawer.style.display = drawer.style.display === 'block' ? 'none' : 'block'; }
+            window.updateFeedback = function(id, field, value) { const c = appState.contracts.find(ctr => ctr.id === id); if(c) { if(field === 'issue') { const idx = c.feedback.issues.indexOf(value); if(idx > -1) c.feedback.issues.splice(idx, 1); else c.feedback.issues.push(value); } else { c.feedback[field] = value; } saveData(); } }
+            
+            window.renderManifest = function() {
+                const listEl = document.getElementById('manifestList'); listEl.innerHTML = "";
+                appState.contracts.forEach(c => {
+                    let commsHtml = ""; c.commodities.forEach(cm => { commsHtml += `<span class="comm-pill">${cm.scu} ${cm.name}</span>`; });
+                    if(!c.feedback) c.feedback = { status: "pending", issues: [], notes: "" };
+                    const isChecked = (val) => c.feedback.issues.includes(val) ? 'checked' : '';
+                    const div = document.createElement('div'); div.className = 'contract-card';
+                    div.innerHTML = `<div><div style="display:flex; justify-content:space-between; align-items:center;"><strong>${c.name}</strong><button class="btn-log" onclick="window.toggleFeedback(${c.id})">📝 LOG</button></div><div style="margin-top:5px;">${commsHtml}</div><div id="feedback-${c.id}" class="feedback-drawer"><label>Completion</label><select onchange="window.updateFeedback(${c.id}, 'status', this.value)"><option value="pending" ${c.feedback.status==='pending'?'selected':''}>Pending</option><option value="success" ${c.feedback.status==='success'?'selected':''}>Success</option><option value="partial" ${c.feedback.status==='partial'?'selected':''}>Partial</option><option value="failed" ${c.feedback.status==='failed'?'selected':''}>Failed</option></select><label>Bugs</label><div class="check-group"><label class="check-item"><input type="checkbox" onchange="window.updateFeedback(${c.id}, 'issue', 'chair_glitch')" ${isChecked('chair_glitch')}> Chair Glitch</label><label class="check-item"><input type="checkbox" onchange="window.updateFeedback(${c.id}, 'issue', 'docking_fail')" ${isChecked('docking_fail')}> Docking Bug</label></div><label>Notes</label><textarea onchange="window.updateFeedback(${c.id}, 'notes', this.value)">${c.feedback.notes}</textarea></div></div><div style="text-align:right; margin-left:10px;"><b>${c.totalSCU} SCU</b><br><span style="color:var(--sc-money); font-size:0.8rem;">${c.price.toLocaleString()} aUEC</span><br><button class="btn btn-del" style="width:auto; height:20px; font-size:0.7rem;" onclick="window.removeContract(${c.id})">Remove</button></div>`;
+                    listEl.appendChild(div);
+                });
+            }
+
+            window.renderLogs = function() { const tbody = document.getElementById('logBody'); tbody.innerHTML = ""; [...appState.completedLegs].reverse().forEach(log => { tbody.innerHTML += `<tr><td>${log.action}</td><td>${log.location}</td><td>${log.desc}</td><td>${log.time}</td></tr>`; }); }
+            window.loadDemoData = function() { appState.currentLocation = "Everus Harbor (Hurston)"; appState.currentLoad = 0; appState.currentFuelSCU = 2.50; document.getElementById('currentFuelInput').value = "2.50"; let p1 = [{location:"Everus Harbor (Hurston)", commodity:"Iron", amount:500}, {location:"Everus Harbor (Hurston)", commodity:"Gold", amount:500}]; let d1 = [{location:"Port Tressler (microTech)", commodity:"Iron", amount:500}, {location:"Port Tressler (microTech)", commodity:"Gold", amount:500}]; appState.contracts = [ { id: 1, name: "Experienced Rank - Direct Large Cargo Haul", commodities:[{name:"Iron", scu:500}, {name:"Gold", scu:500}], price: 50000, totalSCU: 1000, pickups:p1, drops:d1, pickedUp:0, droppedOff:0, feedback: { status: "pending", issues: [], notes: "" } } ]; saveData(); window.renderManifest(); window.calculateRoute(); }
+            window.removeContract = function(id) { appState.contracts = appState.contracts.filter(c => c.id !== id); saveData(); window.renderManifest(); window.calculateRoute(); };
+
+            // --- TRAVEL LOGIC ---
+            function getRouteKey(a, b) { return a < b ? `${a}_${b}` : `${b}_${a}`; }
             function getTravelMetrics(locNameA, locNameB) {
                 if (locNameA === locNameB) return { jumps:0, distGm:0, isVerified:true };
-                const key = getRouteKey(locNameA, locNameB);
-                if (appState.routeMemory[key]) return { jumps: 0, distGm: appState.routeMemory[key].dist, isVerified: true };
+                const key = getRouteKey(locNameA, locNameB); if (appState.routeMemory[key]) return { jumps: 0, distGm: appState.routeMemory[key].dist, isVerified: true };
                 const locA = locations.find(l => l.name === locNameA); const locB = locations.find(l => l.name === locNameB);
                 if (!locA || !locB) return { jumps:99, distGm:9999, isVerified:false };
                 if (locA.system === locB.system) {
@@ -579,7 +767,7 @@
                 const result = findShortestPath(locA.system, locB.system); if (!result) return { jumps:99, distGm:9999, isVerified:false };
                 return { jumps: result.jumps, distGm: result.jumps * 100, isVerified:false };
             }
-            function getRouteKey(a, b) { return a < b ? `${a}_${b}` : `${b}_${a}`; }
+
             function findShortestPath(startSys, endSys) {
                 if (startSys === endSys) return { jumps: 0 }; let queue = [[startSys, 0]]; let visited = new Set(); visited.add(startSys);
                 while (queue.length > 0) { let [current, dist] = queue.shift(); if (current === endSys) return { jumps: dist }; const neighbors = systemGraph[current] || []; for (let n of neighbors) { if (!visited.has(n)) { visited.add(n); queue.push([n, dist + 1]); } } } return null;
@@ -645,7 +833,6 @@
                     if (isTravel) { simFuel -= reqFuel; if(simFuel<0) simFuel=0; }
                     simLoc = step.loc;
                     
-                    // Inject calculated fuel for the modal to use later
                     step.endFuel = simFuel;
                     step.dist = m.distGm;
                     step.isTravel = isTravel;
@@ -674,39 +861,16 @@
                 el.innerHTML = html;
             }
 
-            // Boilerplate
-            window.updateShipConfig = function() {
-                const sVal = document.getElementById('shipSelect').value;
-                if(sVal === 'custom') { document.getElementById('customShipInput').style.display='block'; appState.shipCapacity = parseInt(document.getElementById('customCapacity').value) || 1000; } 
-                else { document.getElementById('customShipInput').style.display='none'; appState.shipCapacity = parseInt(sVal); }
-                appState.shipMaxFuelSCU = parseFloat(document.getElementById('shipFuelCap').value) || 8.6;
-                appState.currentDriveKey = document.getElementById('qtDriveSelect').value;
-                const newDrv = baseDrives[appState.currentDriveKey];
-                appState.calibratedRate = newDrv.rate;
-                appState.currentFuelSCU = appState.shipMaxFuelSCU;
-                document.getElementById('currentFuelInput').value = appState.currentFuelSCU.toFixed(2);
-                saveData(); calculateRoute();
-            }
-            window.manualFuelUpdate = function() { appState.currentFuelSCU = parseFloat(document.getElementById('currentFuelInput').value); saveData(); calculateRoute(); }
-            window.updateCurrentLocationOverride = function() { appState.currentLocation = document.getElementById('currentLocationSelect').value; saveData(); calculateRoute(); }
-            window.addPointRow = function(containerId) {
-                const div = document.createElement('div'); div.className = 'dynamic-row-complex';
-                div.innerHTML = `<div class="drc-top"><select class="loc-input" style="width:100%; font-weight:bold;">${locationOptionsHTML}</select></div><div class="drc-mid"><select class="comm-input" style="flex:2">${commodityOptionsHTML}</select><input type="number" class="scu-input" placeholder="SCU" style="flex:1"></div><div class="drc-bot"><button class="btn btn-del" onclick="this.parentElement.parentElement.remove()">-</button></div>`;
-                document.getElementById(containerId).appendChild(div);
-            }
-            window.applyTemplate = function() { const val = document.getElementById('nameTemplate').value; if(val) document.getElementById('cName').value = val; }
-            window.exportReport = function() {
-                const data = { sessionTime: new Date().toString(), shipConfig: { capacity: appState.shipCapacity, fuelMax: appState.shipMaxFuelSCU, drive: appState.currentDriveKey, calibratedEfficiency: appState.calibratedRate }, learnedRoutes: appState.routeMemory, contracts: appState.contracts.map(c => ({ name: c.name, totalSCU: c.totalSCU, feedbackStatus: c.feedback.status, reportedIssues: c.feedback.issues, devNotes: c.feedback.notes })), logs: appState.completedLegs };
-                const blob = new Blob([JSON.stringify(data, null, 2)], {type: "application/json"}); const url = URL.createObjectURL(blob); const a = document.createElement("a"); a.href = url; a.download = "Covalex_Report_" + Date.now() + ".json"; a.click();
-            }
-
-            // LOAD & RUN
-            loadData();
-            initUI();
-            updateUI();
-            renderManifest();
-            calculateRoute(); // Initial calculation
+            // ----------------------------------------------------
+            // 3. EXECUTE STARTUP (NOW SAFE)
+            // ----------------------------------------------------
+            
+            window.initUI();
+            window.updateUI();
+            window.renderManifest();
+            window.calculateRoute();
             window.renderLogs();
+            
         });
     </script>
 </body>
