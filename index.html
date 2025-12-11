@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covalex Logistics - Auto-Calc Fix (V52)</title>
+    <title>Covalex Logistics - Persistent V53</title>
     <style>
         :root {
             --sc-blue: #00d8ff;
@@ -227,7 +227,7 @@
     <div id="manualTab" onclick="toggleManual()">📘 MANUAL</div>
     <div id="manualDrawer">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V52.0</span></h1>
+            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V53.0</span></h1>
             <button class="btn btn-del" style="width:auto; height:30px; padding:0 10px;" onclick="toggleManual()">CLOSE X</button>
         </div>
         <div class="manual-content">
@@ -267,7 +267,7 @@
                     <path d="M376.31 285.01h50.72l29.14-44.49h-50.73l-29.13 44.49zM373.16 194.03l-29.33 44.79 29.33 44.78 29.33-44.78-29.33-44.79zM405.44 237.12h50.73l-29.14-44.49h-50.72l29.13 44.49z" class="cls-1"/>
                     <path d="M197.24 412.38h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM264.86 372.74h-47.41v25.65h47.41v-25.65Zm13.99 22.73c0 4.66-1.65 8.64-4.96 11.95-3.3 3.31-7.29 4.96-11.95 4.96h-41.58c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95s7.29-4.96 11.95-4.96h41.58c4.66 0 8.64 1.65 11.95 4.96 3.3 3.3 4.96 7.29 4.96 11.95v19.82ZM374.74 358.75l-35.75 47.9c-3.43 4.6-7.48 6.89-12.15 6.89s-8.81-2.3-12.24-6.89l-35.75-47.9h17.78l30.21 41.39 30.12-41.39h17.78ZM439.15 412.38h-17.78l-7.58-10.3h-39.35l10.2-13.99h18.95l-12.44-17.1-30.12 41.39h-17.78L379 364.49c3.43-4.6 7.51-6.9 12.24-6.9s8.71 2.3 12.15 6.9l35.75 47.89ZM500.55 412.38h-44.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.95-7.29-4.95-11.95v-36.72h13.99v39.64h47.41v13.99ZM580.61 392.56h-56.74v-13.99h56.74v13.99Zm0 19.82h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.31-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM678.15 412.38h-23.03l-20.31-16.03c-2.33-1.81-3.98-4.01-4.95-6.6-.91 2.59-2.53 4.79-4.86 6.6l-20.3 16.03h-23.03l34.68-27.01-34.2-26.62h23.03l19.92 15.64c2.27 1.81 3.85 3.99 4.76 6.51.97-2.53 2.59-4.7 4.86-6.51l19.92-15.64h23.02l-34.19 26.62 34.68 27.01Z" class="cls-1"/>
                 </svg>
-                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V52</span></h1>
+                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V53</span></h1>
             </div>
             <div style="text-align:right;">
                 <button class="btn btn-add" style="border-color:var(--sc-money); color:var(--sc-money);" onclick="exportReport()">EXPORT</button>
@@ -401,8 +401,7 @@
                 { id:"hur", name: "Everus Harbor (Hurston)", system: "Stanton" }, { id:"cru", name: "Seraphim Station (Crusader)", system: "Stanton" },
                 { id:"arc", name: "Bajini Point (ArcCorp)", system: "Stanton" }, { id:"mic", name: "Port Tressler (microTech)", system: "Stanton" },
                 { id:"pyr1", name: "Checkmate Station (Pyro I)", system: "Pyro" }, { id:"pyr2", name: "Monox Station (Pyro II)", system: "Pyro" }, { id:"pyrg", name: "Pyro Gateway (Stanton)", system: "Stanton" },
-                { id:"stang_py", name: "Stanton Gateway (Pyro)", system: "Pyro" },
-                { id:"nyx", name: "Levski (Delamar)", system: "Nyx" }, { id:"nyxg", name: "Nyx Gateway (Stanton)", system: "Stanton" },
+                { id:"stang_py", name: "Stanton Gateway (Pyro)", system: "Pyro" }, { id:"nyx", name: "Levski (Delamar)", system: "Nyx" }, { id:"nyxg", name: "Nyx Gateway (Stanton)", system: "Stanton" },
                 { id:"cas", name: "Sherman (Castra II)", system: "Castra" }, { id:"casg", name: "Castra Gateway", system: "Castra" },
                 { id:"ter", name: "Prime Orbital (Terra)", system: "Terra" }, { id:"terg", name: "Terra Gateway (Stanton)", system: "Stanton" }
             ];
@@ -427,9 +426,13 @@
 
             // ---------- FUNCTIONS DEFINITIONS (Hoisted or Assigned first) ----------
 
-            function saveData() { localStorage.setItem('covalex_v52_state', JSON.stringify(appState)); updateUI(); }
+            function saveData() { 
+                // PERSISTENCE FIX: USE STABLE KEY
+                localStorage.setItem('covalex_persistent_data', JSON.stringify(appState)); 
+                window.updateUI(); 
+            }
             function loadData() {
-                const saved = localStorage.getItem('covalex_v52_state');
+                const saved = localStorage.getItem('covalex_persistent_data');
                 if(saved) { 
                     appState = JSON.parse(saved); 
                     if(!appState.calibratedRate) appState.calibratedRate = 26.0; 
@@ -437,7 +440,12 @@
                     appState.contracts.forEach(c => { if(!c.feedback) c.feedback = { status: "pending", issues: [], notes: "" }; });
                 }
             }
-            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v52_state'); location.reload(); } }
+            window.resetAllData = function() { 
+                if(confirm("Clear all data?")) { 
+                    localStorage.removeItem('covalex_persistent_data'); 
+                    location.reload(); 
+                } 
+            }
 
             function updateSessionStats() {
                 if(!appState.sessionStartTS) {
@@ -580,6 +588,7 @@
                 commodityList.forEach(c => cOpts += `<option value="${c}">${c}</option>`);
                 commodityOptionsHTML = cOpts;
 
+                // Restore Inputs from State
                 document.getElementById('shipSelect').value = appState.shipCapacity === 4608 ? "4608" : (appState.shipCapacity===2880?"2880":"custom");
                 if(document.getElementById('shipSelect').value==='custom') document.getElementById('customShipInput').style.display='block';
                 document.getElementById('shipFuelCap').value = appState.shipMaxFuelSCU;
@@ -606,7 +615,7 @@
                 const rawRate = drv.rate;
                 document.getElementById('dsSpeed').innerText = drv.speed.toLocaleString();
                 document.getElementById('dsCons').innerText = rawRate.toFixed(2);
-                document.getElementById('dsEffScore').innerText = drv.eff.toFixed(2); // V51 FIX
+                document.getElementById('dsEffScore').innerText = drv.eff.toFixed(2); 
 
                 document.getElementById('capacityText').innerText = `${appState.currentLoad} / ${appState.shipCapacity} SCU`;
                 document.getElementById('fillBar').style.width = Math.min((appState.currentLoad/appState.shipCapacity)*100, 100) + "%";
@@ -671,18 +680,17 @@
                 window.addPointRow('pickupContainer'); window.addPointRow('dropContainer');
                 appState.completedLegs.push({action:"CONTRACT", location:"-", desc:`Added ${name}`, time: new Date().toLocaleTimeString(), ts: Date.now()});
                 
-                // V52 FIX: Force Recalculate AND reset manual Route
-                appState.manualRoute = null; // Clear old route so we gen a new one with new stop
+                appState.manualRoute = null; // FORCE RECALC
                 saveData(); 
                 window.renderLogs(); 
                 window.renderManifest(); 
-                window.calculateRoute(); // Will now generate fresh route
+                window.calculateRoute(); 
             }
             
             // Remove Contract fix
             window.removeContract = function(id) { 
                 appState.contracts = appState.contracts.filter(c => c.id !== id); 
-                appState.manualRoute = null; // V52 FIX
+                appState.manualRoute = null; 
                 saveData(); 
                 window.renderManifest(); 
                 window.calculateRoute(); 
@@ -756,9 +764,6 @@
                                 } 
                             });
                             
-                            // V51 STRICT LOGIC: Only allow drop-off if we actually picked it up in this SIMULATION sequence
-                            // But simulation state is tricky. Simplest heuristic for V52:
-                            // If (Total Picked - Total Dropped) > 0, we can drop.
                             let simPickedTotal = c.pickedUp;
                             let simDroppedTotal = c.droppedOff;
                             let cargoOnBoard = simPickedTotal - simDroppedTotal;
@@ -766,7 +771,6 @@
                             if (cargoOnBoard > 0) {
                                 c.drops.forEach(d => {
                                     let amt = d.amount;
-                                    // Distribute cargoOnBoard across drops? Simple: just allow any drop up to amt
                                     allTasks.push({type:'UNLOAD', cIdx:idx, loc:d.location, comm:d.commodity, amt:Math.min(amt, cargoOnBoard)});
                                 });
                             }
@@ -811,7 +815,10 @@
                     if (isTravel) { simFuel -= reqFuel; if(simFuel<0) simFuel=0; }
                     simLoc = step.loc;
                     
-                    step.endFuel = simFuel; step.dist = m.distGm; step.isTravel = isTravel; step.refueled = refueled;
+                    step.endFuel = simFuel;
+                    step.dist = m.distGm;
+                    step.isTravel = isTravel;
+                    step.refueled = refueled;
 
                     let stepValid = true; let actionHtml = "";
                     step.actions.forEach(a => {
@@ -840,6 +847,7 @@
             // 3. EXECUTE STARTUP (NOW SAFE)
             // ----------------------------------------------------
             
+            // This runs after all window.x functions are assigned
             window.initUI();
             window.updateUI();
             window.renderManifest();
