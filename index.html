@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covalex Logistics - Logic Fixed (V51)</title>
+    <title>Covalex Logistics - Auto-Calc Fix (V52)</title>
     <style>
         :root {
             --sc-blue: #00d8ff;
@@ -227,7 +227,7 @@
     <div id="manualTab" onclick="toggleManual()">📘 MANUAL</div>
     <div id="manualDrawer">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V51.0</span></h1>
+            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V52.0</span></h1>
             <button class="btn btn-del" style="width:auto; height:30px; padding:0 10px;" onclick="toggleManual()">CLOSE X</button>
         </div>
         <div class="manual-content">
@@ -267,7 +267,7 @@
                     <path d="M376.31 285.01h50.72l29.14-44.49h-50.73l-29.13 44.49zM373.16 194.03l-29.33 44.79 29.33 44.78 29.33-44.78-29.33-44.79zM405.44 237.12h50.73l-29.14-44.49h-50.72l29.13 44.49z" class="cls-1"/>
                     <path d="M197.24 412.38h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM264.86 372.74h-47.41v25.65h47.41v-25.65Zm13.99 22.73c0 4.66-1.65 8.64-4.96 11.95-3.3 3.31-7.29 4.96-11.95 4.96h-41.58c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95s7.29-4.96 11.95-4.96h41.58c4.66 0 8.64 1.65 11.95 4.96 3.3 3.3 4.96 7.29 4.96 11.95v19.82ZM374.74 358.75l-35.75 47.9c-3.43 4.6-7.48 6.89-12.15 6.89s-8.81-2.3-12.24-6.89l-35.75-47.9h17.78l30.21 41.39 30.12-41.39h17.78ZM439.15 412.38h-17.78l-7.58-10.3h-39.35l10.2-13.99h18.95l-12.44-17.1-30.12 41.39h-17.78L379 364.49c3.43-4.6 7.51-6.9 12.24-6.9s8.71 2.3 12.15 6.9l35.75 47.89ZM500.55 412.38h-44.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.95-7.29-4.95-11.95v-36.72h13.99v39.64h47.41v13.99ZM580.61 392.56h-56.74v-13.99h56.74v13.99Zm0 19.82h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.31-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM678.15 412.38h-23.03l-20.31-16.03c-2.33-1.81-3.98-4.01-4.95-6.6-.91 2.59-2.53 4.79-4.86 6.6l-20.3 16.03h-23.03l34.68-27.01-34.2-26.62h23.03l19.92 15.64c2.27 1.81 3.85 3.99 4.76 6.51.97-2.53 2.59-4.7 4.86-6.51l19.92-15.64h23.02l-34.19 26.62 34.68 27.01Z" class="cls-1"/>
                 </svg>
-                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V51</span></h1>
+                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V52</span></h1>
             </div>
             <div style="text-align:right;">
                 <button class="btn btn-add" style="border-color:var(--sc-money); color:var(--sc-money);" onclick="exportReport()">EXPORT</button>
@@ -322,7 +322,6 @@
 
             <div class="panel">
                 <h3>02 // Add Contract</h3>
-                
                 <div style="display:flex; gap:5px; align-items:end; margin-bottom:5px;">
                     <div style="flex:2;">
                         <label>Autofill Template</label>
@@ -337,25 +336,20 @@
                         </select>
                     </div>
                 </div>
-
                 <label>Contract Name (Manual)</label>
                 <input type="text" id="cName" placeholder="Enter name...">
-
                 <label style="color:var(--sc-money);">Reward (aUEC)</label>
                 <input type="number" id="cPrice" placeholder="0">
-
                 <div class="section-header" style="margin-top:15px;">
                     <span style="font-size:0.8rem; color:#888;">PICKUP LOCATIONS (LINE ITEMS)</span>
                     <button id="btnAddPickup" class="btn btn-add" type="button">+ ADD PICKUP</button>
                 </div>
                 <div id="pickupContainer"></div>
-
                 <div class="section-header" style="margin-top:15px;">
                     <span style="font-size:0.8rem; color:#888;">DROP-OFF LOCATIONS (LINE ITEMS)</span>
                     <button id="btnAddDrop" class="btn btn-add" type="button">+ ADD DROP</button>
                 </div>
                 <div id="dropContainer"></div>
-
                 <div id="statusLog"></div>
                 <button id="btnSubmit" class="btn" type="button">ADD TO MANIFEST</button>
                 <button id="btnLoadDemo" class="btn" type="button" style="border-color:#555; color:#888; margin-top:5px;">LOAD DEMO</button>
@@ -364,22 +358,10 @@
 
         <div class="main-content">
             <div class="panel financial-grid">
-                <div class="fin-stat-box">
-                    <div class="fin-sub">EARNED</div>
-                    <div id="moneyEarned" class="fin-val" style="color:var(--sc-money);">0</div>
-                </div>
-                <div class="fin-stat-box">
-                    <div class="fin-sub">POTENTIAL</div>
-                    <div id="moneyPotential" class="fin-val" style="color:#fff;">0</div>
-                </div>
-                <div class="fin-stat-box">
-                    <div class="fin-sub">TIME ACTIVE</div>
-                    <div id="timeActive" class="fin-val" style="color:var(--sc-blue);">00:00</div>
-                </div>
-                <div class="fin-stat-box">
-                    <div class="fin-sub">aUEC / HOUR</div>
-                    <div id="hourlyRate" class="fin-val" style="color:var(--sc-warning);">0</div>
-                </div>
+                <div class="fin-stat-box"><div class="fin-sub">EARNED</div><div id="moneyEarned" class="fin-val" style="color:var(--sc-money);">0</div></div>
+                <div class="fin-stat-box"><div class="fin-sub">POTENTIAL</div><div id="moneyPotential" class="fin-val" style="color:#fff;">0</div></div>
+                <div class="fin-stat-box"><div class="fin-sub">TIME ACTIVE</div><div id="timeActive" class="fin-val" style="color:var(--sc-blue);">00:00</div></div>
+                <div class="fin-stat-box"><div class="fin-sub">aUEC / HOUR</div><div id="hourlyRate" class="fin-val" style="color:var(--sc-warning);">0</div></div>
             </div>
 
             <div class="panel">
@@ -390,40 +372,26 @@
             </div>
 
             <div class="panel">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <h3>Remaining Itinerary</h3>
-                    <button class="btn btn-calc" style="width:auto; margin:0; padding:8px 20px;" onclick="calculateRoute(true)">Recalculate</button>
-                </div>
-                <p style="font-size:0.8rem; color:#888; margin-bottom:20px;">
-                    Itinerary uses verified data where available ([V]). Estimates marked ([E]).
-                </p>
+                <div style="display:flex; justify-content:space-between; align-items:center;"><h3>Remaining Itinerary</h3><button class="btn btn-calc" style="width:auto; margin:0; padding:8px 20px;" onclick="calculateRoute(true)">Recalculate (Reset Order)</button></div>
+                <p style="font-size:0.8rem; color:#888; margin-bottom:20px;">Itinerary uses verified data where available ([V]). Estimates marked ([E]).</p>
                 <div id="itineraryContent"></div>
             </div>
 
             <div class="panel">
                 <h3>Active Contracts & Dev Feedback</h3>
-                <div id="manifestList">
-                    <p style="color:#666; font-style:italic; padding:10px;">No active contracts.</p>
-                </div>
+                <div id="manifestList"><p style="color:#666; font-style:italic; padding:10px;">No active contracts.</p></div>
             </div>
 
             <div class="panel">
                 <h3>Session Log</h3>
                 <div id="sessionLog" style="max-height:200px; overflow-y:auto;">
-                    <table class="log-table">
-                        <thead><tr><th>Action</th><th>Location</th><th>Change</th><th>Time</th></tr></thead>
-                        <tbody id="logBody"></tbody>
-                    </table>
+                    <table class="log-table"><thead><tr><th>Action</th><th>Location</th><th>Change</th><th>Time</th></tr></thead><tbody id="logBody"></tbody></table>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <footer>
-        <p>This is an unofficial Star Citizen fan site.</p>
-        <p>This content is not endorsed by or affiliated with Cloud Imperium or its licensors.</p>
-    </footer>
+    <footer><p>This is an unofficial Star Citizen fan site.</p></footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -439,11 +407,6 @@
                 { id:"ter", name: "Prime Orbital (Terra)", system: "Terra" }, { id:"terg", name: "Terra Gateway (Stanton)", system: "Stanton" }
             ];
             const stantonDist = { "hur-cru": 32, "hur-arc": 22, "hur-mic": 59, "cru-arc": 42, "cru-mic": 58, "arc-mic": 59 };
-            
-            // --- V51 DRIVE DATA (Updated) ---
-            // Kama: 1.23
-            // Pontes: 1.08
-            // TS-2: 2.19
             const baseDrives = { 
                 "kama":   { speed: 319000, rate: 26.0, spool: 5.0, eff: 1.23 }, 
                 "pontes": { speed: 282000, rate: 26.0, spool: 4.5, eff: 1.08 }, 
@@ -464,9 +427,9 @@
 
             // ---------- FUNCTIONS DEFINITIONS (Hoisted or Assigned first) ----------
 
-            function saveData() { localStorage.setItem('covalex_v51_state', JSON.stringify(appState)); updateUI(); }
+            function saveData() { localStorage.setItem('covalex_v52_state', JSON.stringify(appState)); updateUI(); }
             function loadData() {
-                const saved = localStorage.getItem('covalex_v51_state');
+                const saved = localStorage.getItem('covalex_v52_state');
                 if(saved) { 
                     appState = JSON.parse(saved); 
                     if(!appState.calibratedRate) appState.calibratedRate = 26.0; 
@@ -474,7 +437,7 @@
                     appState.contracts.forEach(c => { if(!c.feedback) c.feedback = { status: "pending", issues: [], notes: "" }; });
                 }
             }
-            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v51_state'); location.reload(); } }
+            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v52_state'); location.reload(); } }
 
             function updateSessionStats() {
                 if(!appState.sessionStartTS) {
@@ -643,7 +606,7 @@
                 const rawRate = drv.rate;
                 document.getElementById('dsSpeed').innerText = drv.speed.toLocaleString();
                 document.getElementById('dsCons').innerText = rawRate.toFixed(2);
-                document.getElementById('dsEffScore').innerText = drv.eff.toFixed(2); // V51: Use explicit eff value
+                document.getElementById('dsEffScore').innerText = drv.eff.toFixed(2); // V51 FIX
 
                 document.getElementById('capacityText').innerText = `${appState.currentLoad} / ${appState.shipCapacity} SCU`;
                 document.getElementById('fillBar').style.width = Math.min((appState.currentLoad/appState.shipCapacity)*100, 100) + "%";
@@ -708,12 +671,22 @@
                 window.addPointRow('pickupContainer'); window.addPointRow('dropContainer');
                 appState.completedLegs.push({action:"CONTRACT", location:"-", desc:`Added ${name}`, time: new Date().toLocaleTimeString(), ts: Date.now()});
                 
-                // V51 FIX: Immediate Recalc trigger
+                // V52 FIX: Force Recalculate AND reset manual Route
+                appState.manualRoute = null; // Clear old route so we gen a new one with new stop
                 saveData(); 
                 window.renderLogs(); 
                 window.renderManifest(); 
-                window.calculateRoute();
+                window.calculateRoute(); // Will now generate fresh route
             }
+            
+            // Remove Contract fix
+            window.removeContract = function(id) { 
+                appState.contracts = appState.contracts.filter(c => c.id !== id); 
+                appState.manualRoute = null; // V52 FIX
+                saveData(); 
+                window.renderManifest(); 
+                window.calculateRoute(); 
+            };
 
             window.toggleFeedback = function(id) { const drawer = document.getElementById('feedback-' + id); drawer.style.display = drawer.style.display === 'block' ? 'none' : 'block'; }
             window.updateFeedback = function(id, field, value) { const c = appState.contracts.find(ctr => ctr.id === id); if(c) { if(field === 'issue') { const idx = c.feedback.issues.indexOf(value); if(idx > -1) c.feedback.issues.splice(idx, 1); else c.feedback.issues.push(value); } else { c.feedback[field] = value; } saveData(); } }
@@ -732,7 +705,6 @@
 
             window.renderLogs = function() { const tbody = document.getElementById('logBody'); tbody.innerHTML = ""; [...appState.completedLegs].reverse().forEach(log => { tbody.innerHTML += `<tr><td>${log.action}</td><td>${log.location}</td><td>${log.desc}</td><td>${log.time}</td></tr>`; }); }
             window.loadDemoData = function() { appState.currentLocation = "Everus Harbor (Hurston)"; appState.currentLoad = 0; appState.currentFuelSCU = 2.50; document.getElementById('currentFuelInput').value = "2.50"; let p1 = [{location:"Everus Harbor (Hurston)", commodity:"Iron", amount:500}, {location:"Everus Harbor (Hurston)", commodity:"Gold", amount:500}]; let d1 = [{location:"Port Tressler (microTech)", commodity:"Iron", amount:500}, {location:"Port Tressler (microTech)", commodity:"Gold", amount:500}]; appState.contracts = [ { id: 1, name: "Experienced Rank - Direct Large Cargo Haul", commodities:[{name:"Iron", scu:500}, {name:"Gold", scu:500}], price: 50000, totalSCU: 1000, pickups:p1, drops:d1, pickedUp:0, droppedOff:0, feedback: { status: "pending", issues: [], notes: "" } } ]; saveData(); window.renderManifest(); window.calculateRoute(); }
-            window.removeContract = function(id) { appState.contracts = appState.contracts.filter(c => c.id !== id); saveData(); window.renderManifest(); window.calculateRoute(); };
 
             // --- TRAVEL LOGIC ---
             function getRouteKey(a, b) { return a < b ? `${a}_${b}` : `${b}_${a}`; }
@@ -775,7 +747,6 @@
                         let allTasks = [];
                         simState.forEach((c, idx) => {
                             let picked = c.pickedUp;
-                            // V51 FIX: Strict check (Only push LOAD if remaining > 0)
                             c.pickups.forEach(p => { 
                                 let amt=p.amount; 
                                 if(picked>=amt){ picked-=amt; } 
@@ -785,36 +756,17 @@
                                 } 
                             });
                             
-                            // V51 FIX: Strict check (Only push UNLOAD if actually picked up > dropped off)
-                            let dropped = c.droppedOff;
-                            // Need total picked up for this contract so far in SIMULATION, not just appState
-                            // Tracking simulation state is complex.
-                            // Simplified V51 Heuristic:
-                            // We only allow UNLOAD if the simulation has already processed the corresponding LOAD.
-                            // This prevents "Ghost Drops" appearing before pickups.
-                            
-                            // To do this simply: We only generate UNLOAD tasks if (SimPickedUp > SimDroppedOff)
-                            let realPicked = c.pickedUp; // Already handled above in appState
-                            // BUT inside the loop, we modify simState.pickedUp.
-                            
-                            let simPickedTotal = simState[idx].pickedUp;
-                            let simDroppedTotal = simState[idx].droppedOff;
+                            // V51 STRICT LOGIC: Only allow drop-off if we actually picked it up in this SIMULATION sequence
+                            // But simulation state is tricky. Simplest heuristic for V52:
+                            // If (Total Picked - Total Dropped) > 0, we can drop.
+                            let simPickedTotal = c.pickedUp;
+                            let simDroppedTotal = c.droppedOff;
                             let cargoOnBoard = simPickedTotal - simDroppedTotal;
                             
                             if (cargoOnBoard > 0) {
-                                // We have cargo to drop!
-                                // Distribute this "cargoOnBoard" to the drops
                                 c.drops.forEach(d => {
                                     let amt = d.amount;
-                                    // Check if this specific drop line is already fulfilled
-                                    // We don't track line-item fulfillment in simState, just totals.
-                                    // So we simply say: if we have cargo, we can go to any drop that isn't full.
-                                    // This is "Good Enough" for the heuristic.
-                                    
-                                    // How much of this DROP is remaining?
-                                    // We need to track drops per line in SimState too. 
-                                    // Complex.
-                                    // Fallback: Just allow UNLOAD at any drop location, but validate capacity.
+                                    // Distribute cargoOnBoard across drops? Simple: just allow any drop up to amt
                                     allTasks.push({type:'UNLOAD', cIdx:idx, loc:d.location, comm:d.commodity, amt:Math.min(amt, cargoOnBoard)});
                                 });
                             }
@@ -827,11 +779,6 @@
                             let isValid = true;
                             if (task.type === 'LOAD' && currentLoad + task.amt > appState.shipCapacity) isValid = false;
                             
-                            // V51: UNLOAD only valid if we actually have cargo
-                            if (task.type === 'UNLOAD') {
-                                // Already checked cargoOnBoard above when generating tasks
-                            }
-                            
                             if(isValid) {
                                 const m = getTravelMetrics(currentLoc, task.loc);
                                 score -= m.distGm; score -= m.jumps * 50;
@@ -843,7 +790,6 @@
                         
                         if(!bestTask) break;
                         
-                        // Execute Logic
                         if(bestTask.type==='LOAD') { currentLoad += bestTask.amt; simState[bestTask.cIdx].pickedUp += bestTask.amt; }
                         else { currentLoad -= bestTask.amt; simState[bestTask.cIdx].droppedOff += bestTask.amt; }
                         
@@ -894,7 +840,6 @@
             // 3. EXECUTE STARTUP (NOW SAFE)
             // ----------------------------------------------------
             
-            // This runs after all window.x functions are assigned
             window.initUI();
             window.updateUI();
             window.renderManifest();
