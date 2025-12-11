@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covalex Logistics - Persistent V53</title>
+    <title>Covalex Logistics - Logic Overhaul (V54)</title>
     <style>
         :root {
             --sc-blue: #00d8ff;
@@ -227,7 +227,7 @@
     <div id="manualTab" onclick="toggleManual()">📘 MANUAL</div>
     <div id="manualDrawer">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V53.0</span></h1>
+            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V54.0</span></h1>
             <button class="btn btn-del" style="width:auto; height:30px; padding:0 10px;" onclick="toggleManual()">CLOSE X</button>
         </div>
         <div class="manual-content">
@@ -267,7 +267,7 @@
                     <path d="M376.31 285.01h50.72l29.14-44.49h-50.73l-29.13 44.49zM373.16 194.03l-29.33 44.79 29.33 44.78 29.33-44.78-29.33-44.79zM405.44 237.12h50.73l-29.14-44.49h-50.72l29.13 44.49z" class="cls-1"/>
                     <path d="M197.24 412.38h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM264.86 372.74h-47.41v25.65h47.41v-25.65Zm13.99 22.73c0 4.66-1.65 8.64-4.96 11.95-3.3 3.31-7.29 4.96-11.95 4.96h-41.58c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95s7.29-4.96 11.95-4.96h41.58c4.66 0 8.64 1.65 11.95 4.96 3.3 3.3 4.96 7.29 4.96 11.95v19.82ZM374.74 358.75l-35.75 47.9c-3.43 4.6-7.48 6.89-12.15 6.89s-8.81-2.3-12.24-6.89l-35.75-47.9h17.78l30.21 41.39 30.12-41.39h17.78ZM439.15 412.38h-17.78l-7.58-10.3h-39.35l10.2-13.99h18.95l-12.44-17.1-30.12 41.39h-17.78L379 364.49c3.43-4.6 7.51-6.9 12.24-6.9s8.71 2.3 12.15 6.9l35.75 47.89ZM500.55 412.38h-44.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.95-7.29-4.95-11.95v-36.72h13.99v39.64h47.41v13.99ZM580.61 392.56h-56.74v-13.99h56.74v13.99Zm0 19.82h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.31-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM678.15 412.38h-23.03l-20.31-16.03c-2.33-1.81-3.98-4.01-4.95-6.6-.91 2.59-2.53 4.79-4.86 6.6l-20.3 16.03h-23.03l34.68-27.01-34.2-26.62h23.03l19.92 15.64c2.27 1.81 3.85 3.99 4.76 6.51.97-2.53 2.59-4.7 4.86-6.51l19.92-15.64h23.02l-34.19 26.62 34.68 27.01Z" class="cls-1"/>
                 </svg>
-                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V53</span></h1>
+                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V54</span></h1>
             </div>
             <div style="text-align:right;">
                 <button class="btn btn-add" style="border-color:var(--sc-money); color:var(--sc-money);" onclick="exportReport()">EXPORT</button>
@@ -314,7 +314,7 @@
                         </div>
                         <div class="eng-stat-row" style="border-top:1px dashed #333; margin-top:5px; padding-top:5px;">
                             <span>Efficiency Rating</span> 
-                            <span id="dsEffScore" class="eng-val" style="color:var(--sc-success); font-weight:bold;">12.3</span>
+                            <span id="dsEffScore" class="eng-val" style="color:var(--sc-success); font-weight:bold;">1.23</span>
                         </div>
                     </div>
                 </div>
@@ -322,6 +322,7 @@
 
             <div class="panel">
                 <h3>02 // Add Contract</h3>
+                
                 <div style="display:flex; gap:5px; align-items:end; margin-bottom:5px;">
                     <div style="flex:2;">
                         <label>Autofill Template</label>
@@ -336,20 +337,25 @@
                         </select>
                     </div>
                 </div>
+
                 <label>Contract Name (Manual)</label>
                 <input type="text" id="cName" placeholder="Enter name...">
+
                 <label style="color:var(--sc-money);">Reward (aUEC)</label>
                 <input type="number" id="cPrice" placeholder="0">
+
                 <div class="section-header" style="margin-top:15px;">
                     <span style="font-size:0.8rem; color:#888;">PICKUP LOCATIONS (LINE ITEMS)</span>
                     <button id="btnAddPickup" class="btn btn-add" type="button">+ ADD PICKUP</button>
                 </div>
                 <div id="pickupContainer"></div>
+
                 <div class="section-header" style="margin-top:15px;">
                     <span style="font-size:0.8rem; color:#888;">DROP-OFF LOCATIONS (LINE ITEMS)</span>
                     <button id="btnAddDrop" class="btn btn-add" type="button">+ ADD DROP</button>
                 </div>
                 <div id="dropContainer"></div>
+
                 <div id="statusLog"></div>
                 <button id="btnSubmit" class="btn" type="button">ADD TO MANIFEST</button>
                 <button id="btnLoadDemo" class="btn" type="button" style="border-color:#555; color:#888; margin-top:5px;">LOAD DEMO</button>
@@ -358,10 +364,22 @@
 
         <div class="main-content">
             <div class="panel financial-grid">
-                <div class="fin-stat-box"><div class="fin-sub">EARNED</div><div id="moneyEarned" class="fin-val" style="color:var(--sc-money);">0</div></div>
-                <div class="fin-stat-box"><div class="fin-sub">POTENTIAL</div><div id="moneyPotential" class="fin-val" style="color:#fff;">0</div></div>
-                <div class="fin-stat-box"><div class="fin-sub">TIME ACTIVE</div><div id="timeActive" class="fin-val" style="color:var(--sc-blue);">00:00</div></div>
-                <div class="fin-stat-box"><div class="fin-sub">aUEC / HOUR</div><div id="hourlyRate" class="fin-val" style="color:var(--sc-warning);">0</div></div>
+                <div class="fin-stat-box">
+                    <div class="fin-sub">EARNED</div>
+                    <div id="moneyEarned" class="fin-val" style="color:var(--sc-money);">0</div>
+                </div>
+                <div class="fin-stat-box">
+                    <div class="fin-sub">POTENTIAL</div>
+                    <div id="moneyPotential" class="fin-val" style="color:#fff;">0</div>
+                </div>
+                <div class="fin-stat-box">
+                    <div class="fin-sub">TIME ACTIVE</div>
+                    <div id="timeActive" class="fin-val" style="color:var(--sc-blue);">00:00</div>
+                </div>
+                <div class="fin-stat-box">
+                    <div class="fin-sub">aUEC / HOUR</div>
+                    <div id="hourlyRate" class="fin-val" style="color:var(--sc-warning);">0</div>
+                </div>
             </div>
 
             <div class="panel">
@@ -372,67 +390,103 @@
             </div>
 
             <div class="panel">
-                <div style="display:flex; justify-content:space-between; align-items:center;"><h3>Remaining Itinerary</h3><button class="btn btn-calc" style="width:auto; margin:0; padding:8px 20px;" onclick="calculateRoute(true)">Recalculate (Reset Order)</button></div>
-                <p style="font-size:0.8rem; color:#888; margin-bottom:20px;">Itinerary uses verified data where available ([V]). Estimates marked ([E]).</p>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <h3>Remaining Itinerary</h3>
+                    <button class="btn btn-calc" style="width:auto; margin:0; padding:8px 20px;" onclick="calculateRoute(true)">Recalculate (Reset Order)</button>
+                </div>
+                <p style="font-size:0.8rem; color:#888; margin-bottom:20px;">
+                    Itinerary uses verified data where available ([V]). Estimates marked ([E]).
+                </p>
                 <div id="itineraryContent"></div>
             </div>
 
             <div class="panel">
                 <h3>Active Contracts & Dev Feedback</h3>
-                <div id="manifestList"><p style="color:#666; font-style:italic; padding:10px;">No active contracts.</p></div>
+                <div id="manifestList">
+                    <p style="color:#666; font-style:italic; padding:10px;">No active contracts.</p>
+                </div>
             </div>
 
             <div class="panel">
                 <h3>Session Log</h3>
                 <div id="sessionLog" style="max-height:200px; overflow-y:auto;">
-                    <table class="log-table"><thead><tr><th>Action</th><th>Location</th><th>Change</th><th>Time</th></tr></thead><tbody id="logBody"></tbody></table>
+                    <table class="log-table">
+                        <thead><tr><th>Action</th><th>Location</th><th>Change</th><th>Time</th></tr></thead>
+                        <tbody id="logBody"></tbody>
+                    </table>
                 </div>
             </div>
+
         </div>
     </div>
 
     <footer><p>This is an unofficial Star Citizen fan site.</p></footer>
 
     <script>
+        // GLOBAL DATA DEFINITIONS (MUST BE TOP LEVEL)
+        const systemGraph = { "Stanton": ["Terra", "Pyro", "Nyx"], "Pyro": ["Stanton", "Nyx", "Castra"], "Nyx": ["Pyro", "Stanton"], "Castra": ["Pyro", "Terra"], "Terra": ["Stanton", "Castra"] };
+        
+        const locations = [
+            { id:"hur", name: "Everus Harbor (Hurston)", system: "Stanton" }, 
+            { id:"cru", name: "Seraphim Station (Crusader)", system: "Stanton" },
+            { id:"arc", name: "Bajini Point (ArcCorp)", system: "Stanton" }, 
+            { id:"mic", name: "Port Tressler (microTech)", system: "Stanton" },
+            { id:"pyr1", name: "Checkmate Station (Pyro I)", system: "Pyro" }, 
+            { id:"pyr2", name: "Monox Station (Pyro II)", system: "Pyro" }, 
+            { id:"pyrg", name: "Pyro Gateway (Stanton)", system: "Stanton" },
+            { id:"stang_py", name: "Stanton Gateway (Pyro)", system: "Pyro" },
+            { id:"nyx", name: "Levski (Delamar)", system: "Nyx" }, 
+            { id:"nyxg", name: "Nyx Gateway (Stanton)", system: "Stanton" },
+            { id:"cas", name: "Sherman (Castra II)", system: "Castra" }, 
+            { id:"casg", name: "Castra Gateway", system: "Castra" },
+            { id:"ter", name: "Prime Orbital (Terra)", system: "Terra" }, 
+            { id:"terg", name: "Terra Gateway (Stanton)", system: "Stanton" }
+        ];
+
+        const stantonDist = { "hur-cru": 32, "hur-arc": 22, "hur-mic": 59, "cru-arc": 42, "cru-mic": 58, "arc-mic": 59 };
+        
+        const baseDrives = { 
+            "kama":   { speed: 319000, rate: 26.0, spool: 5.0, eff: 1.23 }, 
+            "pontes": { speed: 282000, rate: 26.0, spool: 4.5, eff: 1.08 }, 
+            "ts2":    { speed: 395000, rate: 18.0, spool: 4.0, eff: 2.19 } 
+        };
+
+        let commodityList = ["Hydrogen", "Iron", "Waste", "Scrap", "Processed Food", "Medical Supplies", "Corundum", "Beryl", "Quartz", "Tungsten", "Titanium", "Gold", "Diamond", "Laranite", "Agricium", "Quantanium"].sort();
+        let locationOptionsHTML = ''; 
+        let commodityOptionsHTML = '';
+
+        // STATE OBJECT
+        let appState = {
+            shipCapacity: 4608, shipMaxFuelSCU: 8.6, currentDriveKey: 'kama', calibratedRate: 26.0, 
+            currentLocation: "Everus Harbor (Hurston)", currentFuelSCU: 8.6, currentLoad: 0,
+            contracts: [], completedLegs: [], earnings: 0, routeMemory: {}, sessionStartTS: null, manualRoute: null
+        };
+        
+        let currentPendingStep = null;
+
+        // HELPER FUNCTIONS (GLOBAL SCOPE)
+        function cleanFloat(val) {
+            if(typeof val === 'string') return parseFloat(val.replace(',', '.'));
+            return val;
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
-            // DATA
-            const systemGraph = { "Stanton": ["Terra", "Pyro", "Nyx"], "Pyro": ["Stanton", "Nyx", "Castra"], "Nyx": ["Pyro", "Stanton"], "Castra": ["Pyro", "Terra"], "Terra": ["Stanton", "Castra"] };
-            const locations = [
-                { id:"hur", name: "Everus Harbor (Hurston)", system: "Stanton" }, { id:"cru", name: "Seraphim Station (Crusader)", system: "Stanton" },
-                { id:"arc", name: "Bajini Point (ArcCorp)", system: "Stanton" }, { id:"mic", name: "Port Tressler (microTech)", system: "Stanton" },
-                { id:"pyr1", name: "Checkmate Station (Pyro I)", system: "Pyro" }, { id:"pyr2", name: "Monox Station (Pyro II)", system: "Pyro" }, { id:"pyrg", name: "Pyro Gateway (Stanton)", system: "Stanton" },
-                { id:"stang_py", name: "Stanton Gateway (Pyro)", system: "Pyro" }, { id:"nyx", name: "Levski (Delamar)", system: "Nyx" }, { id:"nyxg", name: "Nyx Gateway (Stanton)", system: "Stanton" },
-                { id:"cas", name: "Sherman (Castra II)", system: "Castra" }, { id:"casg", name: "Castra Gateway", system: "Castra" },
-                { id:"ter", name: "Prime Orbital (Terra)", system: "Terra" }, { id:"terg", name: "Terra Gateway (Stanton)", system: "Stanton" }
-            ];
-            const stantonDist = { "hur-cru": 32, "hur-arc": 22, "hur-mic": 59, "cru-arc": 42, "cru-mic": 58, "arc-mic": 59 };
-            const baseDrives = { 
-                "kama":   { speed: 319000, rate: 26.0, spool: 5.0, eff: 1.23 }, 
-                "pontes": { speed: 282000, rate: 26.0, spool: 4.5, eff: 1.08 }, 
-                "ts2":    { speed: 395000, rate: 18.0, spool: 4.0, eff: 2.19 } 
-            };
+            // Populate HTML Strings
+            let opts = ''; 
+            const sysMap = {};
+            locations.forEach(l => { if(!sysMap[l.system]) sysMap[l.system]=[]; sysMap[l.system].push(l.name); });
+            for(let s in sysMap) { opts += `<optgroup label="${s}">${sysMap[s].map(n=>`<option value="${n}">${n}</option>`).join('')}</optgroup>`; }
+            locationOptionsHTML = opts;
             
-            let commodityList = ["Hydrogen", "Iron", "Waste", "Scrap", "Processed Food", "Medical Supplies", "Corundum", "Beryl", "Quartz", "Tungsten", "Titanium", "Gold", "Diamond", "Laranite", "Agricium", "Quantanium"].sort();
-            let locationOptionsHTML = ''; let commodityOptionsHTML = '';
+            let cOpts = '<option value="" disabled selected>Select Commodity...</option>';
+            commodityList.forEach(c => cOpts += `<option value="${c}">${c}</option>`);
+            commodityOptionsHTML = cOpts;
 
-            // STATE
-            let appState = {
-                shipCapacity: 4608, shipMaxFuelSCU: 8.6,
-                currentDriveKey: 'kama', calibratedRate: 26.0, 
-                currentLocation: "Everus Harbor (Hurston)", currentFuelSCU: 8.6, currentLoad: 0,
-                contracts: [], completedLegs: [], earnings: 0, routeMemory: {},
-                sessionStartTS: null
-            };
+            // --- FUNCTION DEFINITIONS INSIDE DOM READY (Safe Access to DOM) ---
 
-            // ---------- FUNCTIONS DEFINITIONS (Hoisted or Assigned first) ----------
-
-            function saveData() { 
-                // PERSISTENCE FIX: USE STABLE KEY
-                localStorage.setItem('covalex_persistent_data', JSON.stringify(appState)); 
-                window.updateUI(); 
-            }
-            function loadData() {
-                const saved = localStorage.getItem('covalex_persistent_data');
+            window.saveData = function() { localStorage.setItem('covalex_v54_state', JSON.stringify(appState)); window.updateUI(); }
+            window.loadData = function() {
+                const saved = localStorage.getItem('covalex_v54_state');
                 if(saved) { 
                     appState = JSON.parse(saved); 
                     if(!appState.calibratedRate) appState.calibratedRate = 26.0; 
@@ -440,14 +494,9 @@
                     appState.contracts.forEach(c => { if(!c.feedback) c.feedback = { status: "pending", issues: [], notes: "" }; });
                 }
             }
-            window.resetAllData = function() { 
-                if(confirm("Clear all data?")) { 
-                    localStorage.removeItem('covalex_persistent_data'); 
-                    location.reload(); 
-                } 
-            }
+            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v54_state'); location.reload(); } }
 
-            function updateSessionStats() {
+            window.updateSessionStats = function() {
                 if(!appState.sessionStartTS) {
                     document.getElementById('timeActive').innerText = "00:00";
                     document.getElementById('hourlyRate').innerText = "0";
@@ -488,113 +537,62 @@
                 const tab = document.getElementById('manualTab');
                 if(drawer.classList.contains('active')) { drawer.classList.remove('active'); tab.classList.remove('active'); } else { drawer.classList.add('active'); tab.classList.add('active'); }
             }
-            
-            // MODAL LOGIC
+
             window.openCompletionModal = function(stepObjStr) {
                 const pendingStep = JSON.parse(decodeURIComponent(stepObjStr));
-                window.currentPendingStep = pendingStep; 
-                
+                currentPendingStep = pendingStep;
                 const container = document.getElementById('verifyContent');
                 container.innerHTML = "";
-                
                 pendingStep.actions.forEach((a, idx) => {
                     let color = a.type === 'LOAD' ? 'var(--sc-success)' : 'var(--sc-warning)';
-                    container.innerHTML += `
-                        <div class="verify-row">
-                            <div><strong style="color:${color}">${a.type}</strong> ${a.comm}</div>
-                            <input type="number" id="act_amt_${idx}" class="verify-input" value="${a.amt}">
-                        </div>
-                    `;
+                    container.innerHTML += `<div class="verify-row"><div><strong style="color:${color}">${a.type}</strong> ${a.comm}</div><input type="number" id="act_amt_${idx}" class="verify-input" value="${a.amt}"></div>`;
                 });
-                
                 document.getElementById('verifyFuel').value = pendingStep.endFuel.toFixed(2);
                 document.getElementById('verifyModal').classList.add('active');
             }
 
-            window.closeModal = function() {
-                document.getElementById('verifyModal').classList.remove('active');
-                window.currentPendingStep = null;
-            }
+            window.closeModal = function() { document.getElementById('verifyModal').classList.remove('active'); currentPendingStep = null; }
 
             window.confirmCompletion = function() {
-                const pendingStep = window.currentPendingStep;
-                if(!pendingStep) return;
+                if(!currentPendingStep) return;
+                const actualFuel = cleanFloat(document.getElementById('verifyFuel').value);
                 
-                const actualFuel = parseFloat(document.getElementById('verifyFuel').value);
-                
-                pendingStep.actions.forEach((a, idx) => {
+                currentPendingStep.actions.forEach((a, idx) => {
                     const actualAmt = parseInt(document.getElementById(`act_amt_${idx}`).value) || 0;
                     const c = appState.contracts.find(ct => ct.id === appState.contracts[a.cIdx].id);
                     if(a.type === 'LOAD') { c.pickedUp += actualAmt; appState.currentLoad += actualAmt; }
-                    else { 
-                        c.droppedOff += actualAmt; 
-                        appState.currentLoad -= actualAmt; 
-                        if(c.totalSCU > 0 && c.price > 0) {
-                            const payout = Math.round((actualAmt / c.totalSCU) * c.price);
-                            appState.earnings += payout;
-                            appState.completedLegs.push({action:"EARNING", location:pendingStep.loc, desc:`Delivered ${actualAmt}, Earned ${payout}`, time:new Date().toLocaleTimeString()});
-                        }
-                    }
+                    else { c.droppedOff += actualAmt; appState.currentLoad -= actualAmt; if(c.totalSCU > 0 && c.price > 0) { const payout = Math.round((actualAmt / c.totalSCU) * c.price); appState.earnings += payout; appState.completedLegs.push({action:"EARNING", location:currentPendingStep.loc, desc:`Delivered ${actualAmt}, Earned ${payout}`, time:new Date().toLocaleTimeString()}); } }
                 });
 
-                if (pendingStep.isTravel && !isNaN(actualFuel)) {
-                    let startFuel = appState.currentFuelSCU; 
-                    if(pendingStep.refueled) startFuel = appState.shipMaxFuelSCU;
+                if (currentPendingStep.isTravel && !isNaN(actualFuel)) {
+                    let startFuel = appState.currentFuelSCU; if(currentPendingStep.refueled) startFuel = appState.shipMaxFuelSCU;
                     const fuelUsedSCU = startFuel - actualFuel;
                     if (fuelUsedSCU > 0) {
                         const impliedDist = (fuelUsedSCU * 1000) / appState.calibratedRate;
-                        const key = getRouteKey(appState.currentLocation, pendingStep.loc);
-                        if(!appState.routeMemory[key]) appState.routeMemory[key] = { dist: impliedDist, count: 1 }; 
-                        else { const m = appState.routeMemory[key]; m.dist = (m.dist * 0.7) + (impliedDist * 0.3); m.count++; }
+                        const key = (appState.currentLocation < currentPendingStep.loc) ? `${appState.currentLocation}_${currentPendingStep.loc}` : `${currentPendingStep.loc}_${appState.currentLocation}`;
+                        if(!appState.routeMemory[key]) appState.routeMemory[key] = { dist: impliedDist, count: 1 }; else { const m = appState.routeMemory[key]; m.dist = (m.dist * 0.7) + (impliedDist * 0.3); m.count++; }
                         appState.completedLegs.push({action: "LEARNING", location: "NavComp", desc: `Route Updated: ${key} ~${impliedDist.toFixed(1)}Gm`, time: new Date().toLocaleTimeString(), ts: Date.now()});
                     }
                     appState.currentFuelSCU = actualFuel;
-                } else {
-                    appState.currentFuelSCU = actualFuel;
-                }
+                } else { appState.currentFuelSCU = actualFuel; }
                 
                 document.getElementById('currentFuelInput').value = appState.currentFuelSCU.toFixed(2);
-                appState.currentLocation = pendingStep.loc;
-
-                appState.completedLegs.push({
-                    action: pendingStep.isTravel ? "TRAVEL" : "OPS",
-                    location: pendingStep.loc,
-                    desc: `${pendingStep.actions.length} Actions Completed`,
-                    time: new Date().toLocaleTimeString(), 
-                    ts: Date.now()
-                });
-                
-                appState.manualRoute = null; 
-                saveData();
-                closeModal();
-                updateUI();
-                renderLogs();
-                calculateRoute();
+                appState.currentLocation = currentPendingStep.loc;
+                appState.completedLegs.push({action: currentPendingStep.isTravel ? "TRAVEL" : "OPS", location: currentPendingStep.loc, desc: `${currentPendingStep.actions.length} Actions Completed`, time: new Date().toLocaleTimeString(), ts: Date.now()});
+                appState.manualRoute = null; saveData(); closeModal(); updateUI(); renderLogs(); calculateRoute();
             }
 
-            // ----------------------------------------------------
-            // 2. UI UPDATE & RENDERING FUNCTIONS
-            // ----------------------------------------------------
-
             window.initUI = function() {
-                let opts = ''; const sysMap = {};
-                locations.forEach(l => { if(!sysMap[l.system]) sysMap[l.system]=[]; sysMap[l.system].push(l.name); });
-                for(let s in sysMap) { opts += `<optgroup label="${s}">${sysMap[s].map(n=>`<option value="${n}">${n}</option>`).join('')}</optgroup>`; }
-                locationOptionsHTML = opts;
-                document.getElementById('currentLocationSelect').innerHTML = opts;
-                document.getElementById('currentLocationSelect').value = appState.currentLocation;
+                document.getElementById('currentLocationSelect').innerHTML = locationOptionsHTML;
                 
-                let cOpts = '<option value="" disabled selected>Select Commodity...</option>';
-                commodityList.forEach(c => cOpts += `<option value="${c}">${c}</option>`);
-                commodityOptionsHTML = cOpts;
-
-                // Restore Inputs from State
+                // Set Values
+                document.getElementById('currentLocationSelect').value = appState.currentLocation;
                 document.getElementById('shipSelect').value = appState.shipCapacity === 4608 ? "4608" : (appState.shipCapacity===2880?"2880":"custom");
-                if(document.getElementById('shipSelect').value==='custom') document.getElementById('customShipInput').style.display='block';
                 document.getElementById('shipFuelCap').value = appState.shipMaxFuelSCU;
                 document.getElementById('qtDriveSelect').value = appState.currentDriveKey;
                 document.getElementById('currentFuelInput').value = appState.currentFuelSCU.toFixed(2);
 
+                // Listeners
                 document.getElementById('shipSelect').addEventListener('change', window.updateShipConfig);
                 document.getElementById('shipFuelCap').addEventListener('input', window.updateShipConfig);
                 document.getElementById('qtDriveSelect').addEventListener('change', window.updateShipConfig);
@@ -623,8 +621,7 @@
                 const fMax = appState.shipMaxFuelSCU;
                 document.getElementById('fuelText').innerText = `${fVal.toFixed(2)} / ${fMax.toFixed(2)} SCU`;
                 document.getElementById('fuelBar').style.width = Math.min((fVal/fMax)*100, 100) + "%";
-                let potential = 0;
-                appState.contracts.forEach(c => { const remaining = c.totalSCU - c.droppedOff; if(remaining > 0) potential += (c.price || 0); });
+                let potential = 0; appState.contracts.forEach(c => { if(c.totalSCU - c.droppedOff > 0) potential += (c.price || 0); });
                 document.getElementById('moneyEarned').innerText = appState.earnings.toLocaleString();
                 document.getElementById('moneyPotential').innerText = potential.toLocaleString();
                 document.getElementById('currentLocationSelect').value = appState.currentLocation;
@@ -643,7 +640,7 @@
                 saveData(); window.calculateRoute();
             }
 
-            window.manualFuelUpdate = function() { appState.currentFuelSCU = parseFloat(document.getElementById('currentFuelInput').value); saveData(); window.calculateRoute(); }
+            window.manualFuelUpdate = function() { appState.currentFuelSCU = cleanFloat(document.getElementById('currentFuelInput').value); saveData(); window.calculateRoute(); }
             window.updateCurrentLocationOverride = function() { appState.currentLocation = document.getElementById('currentLocationSelect').value; saveData(); window.calculateRoute(); }
 
             window.addPointRow = function(containerId) {
@@ -684,7 +681,7 @@
                 saveData(); 
                 window.renderLogs(); 
                 window.renderManifest(); 
-                window.calculateRoute(); 
+                window.calculateRoute(true); // V54: Explicit Force Reset
             }
             
             // Remove Contract fix
@@ -693,7 +690,7 @@
                 appState.manualRoute = null; 
                 saveData(); 
                 window.renderManifest(); 
-                window.calculateRoute(); 
+                window.calculateRoute(true); 
             };
 
             window.toggleFeedback = function(id) { const drawer = document.getElementById('feedback-' + id); drawer.style.display = drawer.style.display === 'block' ? 'none' : 'block'; }
@@ -743,40 +740,76 @@
                 saveData(); window.calculateRoute(false); 
             }
 
+            // V54: REWRITTEN SOLVER FOR LINE-ITEM STRICTNESS
             window.calculateRoute = function(forceReset = false) {
                 const el = document.getElementById('itineraryContent'); el.innerHTML = "Calculating...";
                 let sequence = [];
-                if (appState.manualRoute && !forceReset) { sequence = appState.manualRoute; } else {
+                
+                if (appState.manualRoute && !forceReset) { 
+                    sequence = appState.manualRoute; 
+                } else {
+                    // Deep copy for simulation
+                    // We need to track line-item progress, not just total
+                    // Since appState contracts don't track line item progress persistent (only pickedUp total),
+                    // we must assume for Route Calculation that:
+                    //   IF (pickedUp < totalPickupAmount), we need to pickup.
+                    //   IF (pickedUp > droppedOff), we have cargo on board for a specific line.
+                    // BUT: Which line? We have to guess/distribute based on order.
+                    
                     let simState = JSON.parse(JSON.stringify(appState.contracts));
                     let currentLoc = appState.currentLocation;
                     let currentLoad = appState.currentLoad;
+                    
+                    // Helper: Initialize sim tracking for lines
+                    simState.forEach(c => {
+                        let alreadyPicked = c.pickedUp;
+                        c.pickups.forEach(p => {
+                            if(alreadyPicked >= p.amount) { p.simLoaded = p.amount; alreadyPicked -= p.amount; }
+                            else { p.simLoaded = alreadyPicked; alreadyPicked = 0; }
+                        });
+                        
+                        let alreadyDropped = c.droppedOff;
+                        c.drops.forEach(d => {
+                            if(alreadyDropped >= d.amount) { d.simDropped = d.amount; alreadyDropped -= d.amount; }
+                            else { d.simDropped = alreadyDropped; alreadyDropped = 0; }
+                        });
+                    });
+
                     let safety = 0;
                     while(safety++ < 100) {
                         let allTasks = [];
                         simState.forEach((c, idx) => {
-                            let picked = c.pickedUp;
-                            c.pickups.forEach(p => { 
-                                let amt=p.amount; 
-                                if(picked>=amt){ picked-=amt; } 
-                                else { 
-                                    let rem=amt-picked; picked=0; 
-                                    if(rem>0) allTasks.push({type:'LOAD', cIdx:idx, loc:p.location, comm:p.commodity, amt:rem}); 
-                                } 
+                            // Generate Pickup Tasks
+                            c.pickups.forEach((p, pIdx) => {
+                                let rem = p.amount - (p.simLoaded || 0);
+                                if(rem > 0) {
+                                    allTasks.push({type:'LOAD', cIdx:idx, pIdx:pIdx, loc:p.location, comm:p.commodity, amt:rem});
+                                }
                             });
                             
-                            let simPickedTotal = c.pickedUp;
-                            let simDroppedTotal = c.droppedOff;
-                            let cargoOnBoard = simPickedTotal - simDroppedTotal;
+                            // Generate Drop Tasks
+                            // ONLY if we have cargo on board for this line?
+                            // Issue: We don't map Pickup Line -> Drop Line 1:1 in UI.
+                            // We map Pickup Total -> Drop Total.
+                            // So we calculate: Total Loaded On Board = (Sum of p.simLoaded) - (Sum of d.simDropped).
+                            let totalLoaded = 0; c.pickups.forEach(p=>totalLoaded+=(p.simLoaded||0));
+                            let totalDropped = 0; c.drops.forEach(d=>totalDropped+=(d.simDropped||0));
+                            let cargoOnBoard = totalLoaded - totalDropped;
                             
                             if (cargoOnBoard > 0) {
-                                c.drops.forEach(d => {
-                                    let amt = d.amount;
-                                    allTasks.push({type:'UNLOAD', cIdx:idx, loc:d.location, comm:d.commodity, amt:Math.min(amt, cargoOnBoard)});
+                                c.drops.forEach((d, dIdx) => {
+                                    let rem = d.amount - (d.simDropped || 0);
+                                    if(rem > 0) {
+                                        // Valid drop target.
+                                        // Can only drop min(rem, cargoOnBoard)
+                                        allTasks.push({type:'UNLOAD', cIdx:idx, dIdx:dIdx, loc:d.location, comm:d.commodity, amt:Math.min(rem, cargoOnBoard)});
+                                    }
                                 });
                             }
                         });
 
                         if(allTasks.length === 0) break;
+                        
                         let bestTask = null, bestScore = -Infinity;
                         allTasks.forEach(task => {
                             let score = 0;
@@ -794,8 +827,15 @@
                         
                         if(!bestTask) break;
                         
-                        if(bestTask.type==='LOAD') { currentLoad += bestTask.amt; simState[bestTask.cIdx].pickedUp += bestTask.amt; }
-                        else { currentLoad -= bestTask.amt; simState[bestTask.cIdx].droppedOff += bestTask.amt; }
+                        // Execute Simulation
+                        if(bestTask.type==='LOAD') { 
+                            currentLoad += bestTask.amt; 
+                            simState[bestTask.cIdx].pickups[bestTask.pIdx].simLoaded += bestTask.amt;
+                        }
+                        else { 
+                            currentLoad -= bestTask.amt; 
+                            simState[bestTask.cIdx].drops[bestTask.dIdx].simDropped += bestTask.amt;
+                        }
                         
                         if(sequence.length > 0 && sequence[sequence.length-1].loc === bestTask.loc) { sequence[sequence.length-1].actions.push(bestTask); } 
                         else { sequence.push({ loc: bestTask.loc, actions: [bestTask] }); }
@@ -815,10 +855,7 @@
                     if (isTravel) { simFuel -= reqFuel; if(simFuel<0) simFuel=0; }
                     simLoc = step.loc;
                     
-                    step.endFuel = simFuel;
-                    step.dist = m.distGm;
-                    step.isTravel = isTravel;
-                    step.refueled = refueled;
+                    step.endFuel = simFuel; step.dist = m.distGm; step.isTravel = isTravel; step.refueled = refueled;
 
                     let stepValid = true; let actionHtml = "";
                     step.actions.forEach(a => {
@@ -847,7 +884,6 @@
             // 3. EXECUTE STARTUP (NOW SAFE)
             // ----------------------------------------------------
             
-            // This runs after all window.x functions are assigned
             window.initUI();
             window.updateUI();
             window.renderManifest();
