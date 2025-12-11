@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Covalex Logistics - Stable V44</title>
+    <title>Covalex Logistics - V45 Stable</title>
     <style>
         :root {
             --sc-blue: #00d8ff;
@@ -39,10 +39,10 @@
         }
 
         /* HEADER & LOGO */
-        .brand-header { display: flex; align-items: center; gap: 15px; }
+        .brand-header { display: flex; align-items: center; gap: 20px; }
         .covalex-logo {
-            width: 250px; height: 250px;
-            filter: drop-shadow(0 0 5px var(--sc-blue));
+            width: 250px; height: 250px; /* V45: UPDATED SIZE */
+            filter: drop-shadow(0 0 8px var(--sc-blue));
         }
         .cls-1 { fill: var(--sc-blue); } 
         .cls-2 { fill: #fff; }
@@ -163,13 +163,10 @@
 
         .contract-name-builder { display:flex; flex-direction:column; gap:5px; background:rgba(255,255,255,0.05); padding:10px; border:1px solid #444; margin-bottom:10px; }
         .cnb-row { display:flex; gap:5px; }
-        
-        .financial-grid { display:grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap:10px; text-align:center; }
         .fin-stat-box { text-align:center; padding: 5px; }
         .fin-val { font-size:1.5rem; font-weight:bold; }
         .fin-sub { font-size:0.8rem; color:#888; }
 
-        /* MOBILE RESPONSIVENESS */
         @media (max-width: 768px) {
             .container { grid-template-columns: 1fr; gap: 10px; }
             .sidebar { order: 1; }
@@ -182,7 +179,6 @@
             .fuel-input-row { width: 100%; }
             .btn-complete { width: 100%; margin-top: 5px; }
         }
-
     </style>
 </head>
 <body>
@@ -190,7 +186,7 @@
     <div id="manualTab" onclick="toggleManual()">📘 MANUAL</div>
     <div id="manualDrawer">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V44.0</span></h1>
+            <h1>OPERATIONS MANUAL <span style="font-size:0.5em; color:white; opacity:0.5;">// V45.0</span></h1>
             <button class="btn btn-del" style="width:auto; height:30px; padding:0 10px;" onclick="toggleManual()">CLOSE X</button>
         </div>
         <div class="manual-content">
@@ -226,7 +222,7 @@
                     <path d="M197.24 412.38h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM264.86 372.74h-47.41v25.65h47.41v-25.65Zm13.99 22.73c0 4.66-1.65 8.64-4.96 11.95-3.3 3.31-7.29 4.96-11.95 4.96h-41.58c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95s7.29-4.96 11.95-4.96h41.58c4.66 0 8.64 1.65 11.95 4.96 3.3 3.3 4.96 7.29 4.96 11.95v19.82ZM374.74 358.75l-35.75 47.9c-3.43 4.6-7.48 6.89-12.15 6.89s-8.81-2.3-12.24-6.89l-35.75-47.9h17.78l30.21 41.39 30.12-41.39h17.78ZM439.15 412.38h-17.78l-7.58-10.3h-39.35l10.2-13.99h18.95l-12.44-17.1-30.12 41.39h-17.78L379 364.49c3.43-4.6 7.51-6.9 12.24-6.9s8.71 2.3 12.15 6.9l35.75 47.89ZM500.55 412.38h-44.49c-4.66 0-8.65-1.65-11.95-4.96-3.3-3.3-4.95-7.29-4.95-11.95v-36.72h13.99v39.64h47.41v13.99ZM580.61 392.56h-56.74v-13.99h56.74v13.99Zm0 19.82h-58.49c-4.66 0-8.65-1.65-11.95-4.96-3.31-3.3-4.96-7.29-4.96-11.95v-19.82c0-4.66 1.65-8.64 4.96-11.95 3.3-3.3 7.28-4.96 11.95-4.96h58.49v13.99h-61.4v25.65h61.4v13.99ZM678.15 412.38h-23.03l-20.31-16.03c-2.33-1.81-3.98-4.01-4.95-6.6-.91 2.59-2.53 4.79-4.86 6.6l-20.3 16.03h-23.03l34.68-27.01-34.2-26.62h23.03l19.92 15.64c2.27 1.81 3.85 3.99 4.76 6.51.97-2.53 2.59-4.7 4.86-6.51l19.92-15.64h23.02l-34.19 26.62 34.68 27.01Z" class="cls-1"/>
                     <path d="M146.29 449.64H122.9v-3.88h25.57v-5.34h-20.56c-3.36 0-6.07-2.71-6.07-6.06v-.97c0-3.36 2.71-6.06 6.07-6.06h23.39v3.88h-25.57v5.34h20.56c3.36 0 6.07 2.71 6.07 6.06v.97c0 3.36-2.71 6.06-6.07 6.06M229.95 449.64v-9.22h-21.69v9.22h-3.88v-22.31h3.88v9.22h21.69v-9.22h3.89v22.31h-3.89zM286.91 427.33h3.88v22.31h-3.88zM369.45 431.21h-21.69v7.76h21.69v-7.76Zm-2.18 11.64h-19.51v6.79h-3.88v-22.31h23.39c3.36 0 6.07 2.71 6.07 6.06v3.39c0 3.36-2.71 6.06-6.07 6.06M451.99 431.21H430.3v7.76h21.69v-7.76Zm-2.19 11.64h-19.51v6.79h-3.88v-22.31h23.39c3.36 0 6.07 2.71 6.07 6.06v3.39c0 3.36-2.71 6.06-6.07 6.06M508.95 427.33h3.88v22.31h-3.88zM595.62 445.64c0 2.42-1.94 4.36-4.37 4.36-1.21 0-2.31-.48-3.11-1.29l-18.33-18.59v19.52h-3.88v-18.31c0-2.42 1.94-4.36 4.37-4.36 1.21 0 2.31.48 3.12 1.29l18.33 18.58v-19.51h3.89v18.3ZM672.09 449.64h-17.32c-3.36 0-6.07-2.71-6.07-6.06V433.4c0-3.36 2.71-6.06 6.07-6.06h23.39v3.88h-25.57v14.55h21.69v-5.34H662.9v-3.88h15.26v7.03c0 3.36-2.71 6.06-6.07 6.06" class="cls-1"/>
                 </svg>
-                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V44</span></h1>
+                <h1>Covalex Logistics <span style="font-size:0.5em; color:white; opacity:0.5;">// MANAGER V45</span></h1>
             </div>
             <div style="text-align:right;">
                 <button class="btn btn-add" style="border-color:var(--sc-money); color:var(--sc-money);" onclick="exportReport()">EXPORT</button>
@@ -386,7 +382,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // DATA
+            // DATA DEFINITIONS
             const systemGraph = { "Stanton": ["Terra", "Pyro", "Nyx"], "Pyro": ["Stanton", "Nyx", "Castra"], "Nyx": ["Pyro", "Stanton"], "Castra": ["Pyro", "Terra"], "Terra": ["Stanton", "Castra"] };
             const locations = [
                 { id:"hur", name: "Everus Harbor (Hurston)", system: "Stanton" }, { id:"cru", name: "Seraphim Station (Crusader)", system: "Stanton" },
@@ -398,14 +394,11 @@
                 { id:"ter", name: "Prime Orbital (Terra)", system: "Terra" }, { id:"terg", name: "Terra Gateway (Stanton)", system: "Stanton" }
             ];
             const stantonDist = { "hur-cru": 32, "hur-arc": 22, "hur-mic": 59, "cru-arc": 42, "cru-mic": 58, "arc-mic": 59 };
-            
-            // --- V39 DRIVE DATA ---
             const baseDrives = { 
                 "kama":   { speed: 319000, rate: 26.0, spool: 5.0 }, 
                 "pontes": { speed: 282000, rate: 26.0, spool: 4.5 }, 
                 "ts2":    { speed: 395000, rate: 18.0, spool: 4.0 } 
             };
-            
             let commodityList = ["Hydrogen", "Iron", "Waste", "Scrap", "Processed Food", "Medical Supplies", "Corundum", "Beryl", "Quartz", "Tungsten", "Titanium", "Gold", "Diamond", "Laranite", "Agricium", "Quantanium"].sort();
             let locationOptionsHTML = ''; let commodityOptionsHTML = '';
 
@@ -418,11 +411,13 @@
                 sessionStartTS: null
             };
 
-            // ---------- FUNCTIONS DEFINITIONS (Hoisted or Assigned first) ----------
+            // ----------------------------------------------------
+            // 1. UTILITY FUNCTIONS (Defined FIRST to be available)
+            // ----------------------------------------------------
 
-            function saveData() { localStorage.setItem('covalex_v44_state', JSON.stringify(appState)); updateUI(); }
+            function saveData() { localStorage.setItem('covalex_v45_state', JSON.stringify(appState)); updateUI(); }
             function loadData() {
-                const saved = localStorage.getItem('covalex_v44_state');
+                const saved = localStorage.getItem('covalex_v45_state');
                 if(saved) { 
                     appState = JSON.parse(saved); 
                     if(!appState.calibratedRate) appState.calibratedRate = 26.0; 
@@ -430,9 +425,9 @@
                     appState.contracts.forEach(c => { if(!c.feedback) c.feedback = { status: "pending", issues: [], notes: "" }; });
                 }
             }
-            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v44_state'); location.reload(); } }
+            window.resetAllData = function() { if(confirm("Clear all data?")) { localStorage.removeItem('covalex_v45_state'); location.reload(); } }
 
-            function updateSessionStats() {
+            window.updateSessionStats = function() {
                 if(!appState.sessionStartTS) {
                     document.getElementById('timeActive').innerText = "00:00";
                     document.getElementById('hourlyRate').innerText = "0";
@@ -473,8 +468,12 @@
                 const tab = document.getElementById('manualTab');
                 if(drawer.classList.contains('active')) { drawer.classList.remove('active'); tab.classList.remove('active'); } else { drawer.classList.add('active'); tab.classList.add('active'); }
             }
+            
+            // ----------------------------------------------------
+            // 2. UI UPDATE & RENDERING FUNCTIONS
+            // ----------------------------------------------------
 
-            function initUI() {
+            window.initUI = function() {
                 let opts = ''; const sysMap = {};
                 locations.forEach(l => { if(!sysMap[l.system]) sysMap[l.system]=[]; sysMap[l.system].push(l.name); });
                 for(let s in sysMap) { opts += `<optgroup label="${s}">${sysMap[s].map(n=>`<option value="${n}">${n}</option>`).join('')}</optgroup>`; }
@@ -492,23 +491,23 @@
                 document.getElementById('qtDriveSelect').value = appState.currentDriveKey;
                 document.getElementById('currentFuelInput').value = appState.currentFuelSCU.toFixed(2);
 
-                document.getElementById('shipSelect').addEventListener('change', updateShipConfig);
-                document.getElementById('shipFuelCap').addEventListener('input', updateShipConfig);
-                document.getElementById('qtDriveSelect').addEventListener('change', updateShipConfig);
+                document.getElementById('shipSelect').addEventListener('change', window.updateShipConfig);
+                document.getElementById('shipFuelCap').addEventListener('input', window.updateShipConfig);
+                document.getElementById('qtDriveSelect').addEventListener('change', window.updateShipConfig);
                 
-                // Event Listeners
-                document.getElementById('nameTemplate').addEventListener('change', applyTemplate);
+                // EVENT LISTENER FIX: Added here
+                document.getElementById('nameTemplate').addEventListener('change', window.applyTemplate);
 
-                document.getElementById('btnAddPickup').addEventListener('click', ()=>addPointRow('pickupContainer'));
-                document.getElementById('btnAddDrop').addEventListener('click', ()=>addPointRow('dropContainer'));
-                document.getElementById('btnSubmit').addEventListener('click', addContract);
-                document.getElementById('btnLoadDemo').addEventListener('click', loadDemoData);
+                document.getElementById('btnAddPickup').addEventListener('click', ()=>window.addPointRow('pickupContainer'));
+                document.getElementById('btnAddDrop').addEventListener('click', ()=>window.addPointRow('dropContainer'));
+                document.getElementById('btnSubmit').addEventListener('click', window.addContract);
+                document.getElementById('btnLoadDemo').addEventListener('click', window.loadDemoData);
 
-                addPointRow('pickupContainer'); addPointRow('dropContainer');
-                renderLogs();
+                window.addPointRow('pickupContainer'); window.addPointRow('dropContainer');
+                window.renderLogs();
             }
 
-            function updateUI() {
+            window.updateUI = function() {
                 const drv = baseDrives[appState.currentDriveKey];
                 const rawRate = drv.rate;
                 document.getElementById('dsSpeed').innerText = drv.speed.toLocaleString();
@@ -529,7 +528,7 @@
                 document.getElementById('currentLocationSelect').value = appState.currentLocation;
             }
 
-            function updateShipConfig() {
+            window.updateShipConfig = function() {
                 const sVal = document.getElementById('shipSelect').value;
                 if(sVal === 'custom') { document.getElementById('customShipInput').style.display='block'; appState.shipCapacity = parseInt(document.getElementById('customCapacity').value) || 1000; } 
                 else { document.getElementById('customShipInput').style.display='none'; appState.shipCapacity = parseInt(sVal); }
@@ -539,19 +538,19 @@
                 appState.calibratedRate = newDrv.rate;
                 appState.currentFuelSCU = appState.shipMaxFuelSCU;
                 document.getElementById('currentFuelInput').value = appState.currentFuelSCU.toFixed(2);
-                saveData(); calculateRoute();
+                saveData(); window.calculateRoute();
             }
 
-            window.manualFuelUpdate = function() { appState.currentFuelSCU = parseFloat(document.getElementById('currentFuelInput').value); saveData(); calculateRoute(); }
-            window.updateCurrentLocationOverride = function() { appState.currentLocation = document.getElementById('currentLocationSelect').value; saveData(); calculateRoute(); }
+            window.manualFuelUpdate = function() { appState.currentFuelSCU = parseFloat(document.getElementById('currentFuelInput').value); saveData(); window.calculateRoute(); }
+            window.updateCurrentLocationOverride = function() { appState.currentLocation = document.getElementById('currentLocationSelect').value; saveData(); window.calculateRoute(); }
 
-            function addPointRow(containerId) {
+            window.addPointRow = function(containerId) {
                 const div = document.createElement('div'); div.className = 'dynamic-row-complex';
                 div.innerHTML = `<div class="drc-top"><select class="loc-input" style="width:100%; font-weight:bold;">${locationOptionsHTML}</select></div><div class="drc-mid"><select class="comm-input" style="flex:2">${commodityOptionsHTML}</select><input type="number" class="scu-input" placeholder="SCU" style="flex:1"></div><div class="drc-bot"><button class="btn btn-del" onclick="this.parentElement.parentElement.remove()">-</button></div>`;
                 document.getElementById(containerId).appendChild(div);
             }
 
-            function addContract() {
+            window.addContract = function() {
                 if(!appState.sessionStartTS) appState.sessionStartTS = Date.now();
                 const name = document.getElementById('cName').value || "Contract";
                 const price = parseInt(document.getElementById('cPrice').value) || 0;
@@ -576,30 +575,31 @@
                 });
                 document.getElementById('cName').value = ""; document.getElementById('cPrice').value = "";
                 document.getElementById('pickupContainer').innerHTML = ""; document.getElementById('dropContainer').innerHTML = "";
-                addPointRow('pickupContainer'); addPointRow('dropContainer');
+                window.addPointRow('pickupContainer'); window.addPointRow('dropContainer');
                 appState.completedLegs.push({action:"CONTRACT", location:"-", desc:`Added ${name}`, time: new Date().toLocaleTimeString(), ts: Date.now()});
-                saveData(); renderLogs(); renderManifest(); calculateRoute();
+                saveData(); window.renderLogs(); window.renderManifest(); window.calculateRoute();
             }
 
             window.toggleFeedback = function(id) { const drawer = document.getElementById('feedback-' + id); drawer.style.display = drawer.style.display === 'block' ? 'none' : 'block'; }
             window.updateFeedback = function(id, field, value) { const c = appState.contracts.find(ctr => ctr.id === id); if(c) { if(field === 'issue') { const idx = c.feedback.issues.indexOf(value); if(idx > -1) c.feedback.issues.splice(idx, 1); else c.feedback.issues.push(value); } else { c.feedback[field] = value; } saveData(); } }
             
-            function renderManifest() {
+            window.renderManifest = function() {
                 const listEl = document.getElementById('manifestList'); listEl.innerHTML = "";
                 appState.contracts.forEach(c => {
                     let commsHtml = ""; c.commodities.forEach(cm => { commsHtml += `<span class="comm-pill">${cm.scu} ${cm.name}</span>`; });
                     if(!c.feedback) c.feedback = { status: "pending", issues: [], notes: "" };
                     const isChecked = (val) => c.feedback.issues.includes(val) ? 'checked' : '';
                     const div = document.createElement('div'); div.className = 'contract-card';
-                    div.innerHTML = `<div><div style="display:flex; justify-content:space-between; align-items:center;"><strong>${c.name}</strong><button class="btn-log" onclick="toggleFeedback(${c.id})">📝 LOG</button></div><div style="margin-top:5px;">${commsHtml}</div><div id="feedback-${c.id}" class="feedback-drawer"><label>Completion</label><select onchange="updateFeedback(${c.id}, 'status', this.value)"><option value="pending" ${c.feedback.status==='pending'?'selected':''}>Pending</option><option value="success" ${c.feedback.status==='success'?'selected':''}>Success</option><option value="partial" ${c.feedback.status==='partial'?'selected':''}>Partial</option><option value="failed" ${c.feedback.status==='failed'?'selected':''}>Failed</option></select><label>Bugs</label><div class="check-group"><label class="check-item"><input type="checkbox" onchange="updateFeedback(${c.id}, 'issue', 'chair_glitch')" ${isChecked('chair_glitch')}> Chair Glitch</label><label class="check-item"><input type="checkbox" onchange="updateFeedback(${c.id}, 'issue', 'docking_fail')" ${isChecked('docking_fail')}> Docking Bug</label></div><label>Notes</label><textarea onchange="updateFeedback(${c.id}, 'notes', this.value)">${c.feedback.notes}</textarea></div></div><div style="text-align:right; margin-left:10px;"><b>${c.totalSCU} SCU</b><br><span style="color:var(--sc-money); font-size:0.8rem;">${c.price.toLocaleString()} aUEC</span><br><button class="btn btn-del" style="width:auto; height:20px; font-size:0.7rem;" onclick="removeContract(${c.id})">Remove</button></div>`;
+                    div.innerHTML = `<div><div style="display:flex; justify-content:space-between; align-items:center;"><strong>${c.name}</strong><button class="btn-log" onclick="window.toggleFeedback(${c.id})">📝 LOG</button></div><div style="margin-top:5px;">${commsHtml}</div><div id="feedback-${c.id}" class="feedback-drawer"><label>Completion</label><select onchange="window.updateFeedback(${c.id}, 'status', this.value)"><option value="pending" ${c.feedback.status==='pending'?'selected':''}>Pending</option><option value="success" ${c.feedback.status==='success'?'selected':''}>Success</option><option value="partial" ${c.feedback.status==='partial'?'selected':''}>Partial</option><option value="failed" ${c.feedback.status==='failed'?'selected':''}>Failed</option></select><label>Bugs</label><div class="check-group"><label class="check-item"><input type="checkbox" onchange="window.updateFeedback(${c.id}, 'issue', 'chair_glitch')" ${isChecked('chair_glitch')}> Chair Glitch</label><label class="check-item"><input type="checkbox" onchange="window.updateFeedback(${c.id}, 'issue', 'docking_fail')" ${isChecked('docking_fail')}> Docking Bug</label></div><label>Notes</label><textarea onchange="window.updateFeedback(${c.id}, 'notes', this.value)">${c.feedback.notes}</textarea></div></div><div style="text-align:right; margin-left:10px;"><b>${c.totalSCU} SCU</b><br><span style="color:var(--sc-money); font-size:0.8rem;">${c.price.toLocaleString()} aUEC</span><br><button class="btn btn-del" style="width:auto; height:20px; font-size:0.7rem;" onclick="window.removeContract(${c.id})">Remove</button></div>`;
                     listEl.appendChild(div);
                 });
             }
 
-            function renderLogs() { const tbody = document.getElementById('logBody'); tbody.innerHTML = ""; [...appState.completedLegs].reverse().forEach(log => { tbody.innerHTML += `<tr><td>${log.action}</td><td>${log.location}</td><td>${log.desc}</td><td>${log.time}</td></tr>`; }); }
-            function loadDemoData() { appState.currentLocation = "Everus Harbor (Hurston)"; appState.currentLoad = 0; appState.currentFuelSCU = 2.50; document.getElementById('currentFuelInput').value = "2.50"; let p1 = [{location:"Everus Harbor (Hurston)", commodity:"Iron", amount:500}, {location:"Everus Harbor (Hurston)", commodity:"Gold", amount:500}]; let d1 = [{location:"Port Tressler (microTech)", commodity:"Iron", amount:500}, {location:"Port Tressler (microTech)", commodity:"Gold", amount:500}]; appState.contracts = [ { id: 1, name: "Experienced Rank - Direct Large Cargo Haul", commodities:[{name:"Iron", scu:500}, {name:"Gold", scu:500}], price: 50000, totalSCU: 1000, pickups:p1, drops:d1, pickedUp:0, droppedOff:0, feedback: { status: "pending", issues: [], notes: "" } } ]; saveData(); renderManifest(); calculateRoute(); }
-            window.removeContract = function(id) { appState.contracts = appState.contracts.filter(c => c.id !== id); saveData(); renderManifest(); calculateRoute(); };
+            window.renderLogs = function() { const tbody = document.getElementById('logBody'); tbody.innerHTML = ""; [...appState.completedLegs].reverse().forEach(log => { tbody.innerHTML += `<tr><td>${log.action}</td><td>${log.location}</td><td>${log.desc}</td><td>${log.time}</td></tr>`; }); }
+            window.loadDemoData = function() { appState.currentLocation = "Everus Harbor (Hurston)"; appState.currentLoad = 0; appState.currentFuelSCU = 2.50; document.getElementById('currentFuelInput').value = "2.50"; let p1 = [{location:"Everus Harbor (Hurston)", commodity:"Iron", amount:500}, {location:"Everus Harbor (Hurston)", commodity:"Gold", amount:500}]; let d1 = [{location:"Port Tressler (microTech)", commodity:"Iron", amount:500}, {location:"Port Tressler (microTech)", commodity:"Gold", amount:500}]; appState.contracts = [ { id: 1, name: "Experienced Rank - Direct Large Cargo Haul", commodities:[{name:"Iron", scu:500}, {name:"Gold", scu:500}], price: 50000, totalSCU: 1000, pickups:p1, drops:d1, pickedUp:0, droppedOff:0, feedback: { status: "pending", issues: [], notes: "" } } ]; saveData(); window.renderManifest(); window.calculateRoute(); }
+            window.removeContract = function(id) { appState.contracts = appState.contracts.filter(c => c.id !== id); saveData(); window.renderManifest(); window.calculateRoute(); };
 
+            // --- TRAVEL LOGIC ---
             function getRouteKey(a, b) { return a < b ? `${a}_${b}` : `${b}_${a}`; }
             function getTravelMetrics(locNameA, locNameB) {
                 if (locNameA === locNameB) return { jumps:0, distGm:0, isVerified:true };
@@ -661,7 +661,7 @@
                     let actionsHtml = "";
                     step.actions.forEach(a => { const color = a.type === 'LOAD' ? 'var(--sc-success)' : 'var(--sc-warning)'; actionsHtml += `<div class="step-action"><span><strong style="color:${color}">${a.type}</strong> ${a.amt} SCU ${a.comm}</span></div>`; });
                     const isNext = (idx === 0);
-                    let completeUI = isNext ? `<div style="display:flex; justify-content:flex-end; gap:5px; margin-top:5px;"><div class="fuel-input-row" title="Arrived at ${step.loc}? Enter Fuel:"><span style="font-size:0.7rem; color:#888;">Arrived at ${step.loc}? Enter Fuel:</span><input type="number" id="stepFuelInput_${idx}" step="0.01" placeholder="${step.endFuel.toFixed(2)}"></div><button class="btn-complete" onclick='commitStep(${JSON.stringify(step)}, "stepFuelInput_${idx}")'>COMPLETE LEG</button></div>` : `<span style="color:#666; font-size:0.7rem; float:right;">PENDING</span>`;
+                    let completeUI = isNext ? `<div style="display:flex; justify-content:flex-end; gap:5px; margin-top:5px;"><div class="fuel-input-row" title="Arrived at ${step.loc}? Enter Fuel:"><span style="font-size:0.7rem; color:#888;">Arrived at ${step.loc}? Enter Fuel:</span><input type="number" id="stepFuelInput_${idx}" step="0.01" placeholder="${step.endFuel.toFixed(2)}"></div><button class="btn-complete" onclick='window.commitStep(${JSON.stringify(step)}, "stepFuelInput_${idx}")'>COMPLETE LEG</button></div>` : `<span style="color:#666; font-size:0.7rem; float:right;">PENDING</span>`;
                     let vTag = step.verified ? '<span class="stat-badge badge-verified">[V]</span>' : '<span class="stat-badge badge-estimate">[E]</span>';
                     let distHtml = step.isTravel ? `<div class="step-distance">${vTag} Travel: ${step.dist.toFixed(1)} Gm (Fuel Est: ${step.fuel.toFixed(2)} SCU)</div>` : `<div class="step-distance">Local Operation</div>`;
                     if(step.refueled) distHtml = `<div class="step-refuel">⛽ AUTO-REFUELED</div>` + distHtml;
@@ -679,13 +679,7 @@
                     if (fuelUsedSCU > 0) {
                         const impliedDist = (fuelUsedSCU * 1000) / appState.calibratedRate;
                         const key = getRouteKey(appState.currentLocation, stepData.loc);
-                        if(!appState.routeMemory[key]) {
-                            appState.routeMemory[key] = { dist: impliedDist, count: 1 };
-                        } else { 
-                            const m = appState.routeMemory[key];
-                            m.dist = (m.dist * 0.7) + (impliedDist * 0.3);
-                            m.count++; 
-                        }
+                        if(!appState.routeMemory[key]) appState.routeMemory[key] = { dist: impliedDist, count: 1 }; else { const m = appState.routeMemory[key]; m.dist = (m.dist * 0.7) + (impliedDist * 0.3); m.count++; }
                         appState.completedLegs.push({action: "LEARNING", location: "NavComp", desc: `Route Updated: ${key} ~${impliedDist.toFixed(1)}Gm`, time: new Date().toLocaleTimeString(), ts: Date.now()});
                     }
                     appState.currentFuelSCU = actualFuel;
@@ -698,16 +692,21 @@
                     if(a.type === 'UNLOAD') { c.droppedOff += a.amt; if(c.droppedOff >= c.totalSCU) { appState.earnings += c.price; appState.completedLegs.push({action:"PAYDAY", location:stepData.loc, desc:`Earned ${c.price} aUEC`, time:new Date().toLocaleTimeString(), ts: Date.now()}); } }
                 });
                 appState.completedLegs.push({action: stepData.isTravel ? "TRAVEL" : "OPS", location: stepData.loc, desc: `${stepData.actions.length} Actions`, time: new Date().toLocaleTimeString(), ts: Date.now()});
-                saveData(); updateUI(); renderLogs(); calculateRoute();
+                saveData(); window.updateUI(); window.renderLogs(); window.calculateRoute();
             }
+
+            // ----------------------------------------------------
+            // 3. EXECUTE STARTUP (NOW SAFE)
+            // ----------------------------------------------------
             
-            // --- END OF DOMCONTENTLOADED ---
-            // Trigger initial render immediately after function definitions
-            updateUI();
-            renderManifest();
-            calculateRoute();
+            // This runs after all window.x functions are assigned
+            window.initUI();
+            window.updateUI();
+            window.renderManifest();
+            window.calculateRoute();
+            window.renderLogs();
+            
         });
     </script>
 </body>
 </html>
-
